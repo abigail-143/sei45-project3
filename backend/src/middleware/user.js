@@ -10,7 +10,10 @@ const auth = (req, res, next) => {
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
-      req.decoded = decoded;
+      // this will be useful for the `like content` and `like comments`
+      req.user_id = decoded.user_id;
+      // may be useful for the for you page if we want to render a `Hi ${username}!` kind of stuff
+      req.username = decoded.username;
       next();
     } catch (error) {
       return res.status(401).json({ status: error, msg: "unauthorised" });
