@@ -61,8 +61,9 @@ const seedContents = async (req, res) => {
     ];
 
     await ContentModel.create(contents);
-    // =----------------==================================================
 
+    // ensuring /fyp/seed-content adds content into UserModel.createdContent
+    // =========================================================
     // ensuring no repeated userId in here
     const uniqueUsers = new Set(contents.map((content) => content.userId));
 
@@ -81,7 +82,7 @@ const seedContents = async (req, res) => {
       user.save();
       console.log(user);
     }
-
+    // =========================================================
     res.json({ status: "ok", msg: "seed content successful" });
   } catch (error) {
     console.log(error);
@@ -114,13 +115,24 @@ const getOneContentByContentID = async (req, res) => {
 // PATCH - add a like count to content through contentId param
 const addToLikeCount = async (req, res) => {
   try {
+    // i'm guessing this part will be sorted out by frontend
     const updateLikeCount = await ContentModel.findByIdAndUpdate(
       req.params.contentId,
       {
+        // front end needs to pass in either +1 or -1
         $set: { likeCount: req.body.likeCount },
       }
     );
 
+    // ===============================inputed by hou==============================
+    // find the user who liked the content. see the middleware for info
+    const likedUser = await UserModel.findOne({ _id: req.user_id });
+    console.log(likedUser);
+    // push the contentId into the likedContent array
+    likedUser.likedContent.push(updateLikeCount);
+    console.log(likedUser.likedContent);
+    likedUser.save();
+    //===========================================================
     res.json({ status: "ok", msg: "likes updated" });
   } catch (error) {
     console.log(error.message);
