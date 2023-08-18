@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const connectDB = require("./src/database/database");
+const forYouPage = require("./src/routers/forYouPage")
 
 connectDB();
 
@@ -22,6 +23,9 @@ app.use(helmet());
 app.use(limit);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/fyp", forYouPage)
+
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
