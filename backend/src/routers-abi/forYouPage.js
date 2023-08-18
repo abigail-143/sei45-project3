@@ -5,6 +5,7 @@ const {
   getAllContents,
   getOneContentByContentID,
   addToLikeCount,
+  addCommentToContent,
 } = require("../controllers/forYouPage");
 const router = express.Router();
 
@@ -12,6 +13,7 @@ router.get("/seed-users", seedUsers);
 router.get("/seed-contents", seedContents);
 router.get("/all-contents", getAllContents);
 router.post("/:contentId", getOneContentByContentID);
-router.patch("/:contentId", addToLikeCount);
+router.patch("/likes/:contentId", addToLikeCount);
+router.patch("/comments/:contentId", addCommentToContent);
 
 module.exports = router;
