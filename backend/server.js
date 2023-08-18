@@ -26,8 +26,10 @@ app.use(limit);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 app.use("/landing", auth);
 app.use("/beer", content);
+
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
