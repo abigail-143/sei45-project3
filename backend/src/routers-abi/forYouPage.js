@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  seedUsers,
+  // seedUsers,
   seedContents,
   getAllContents,
   getOneContentByContentID,
@@ -8,7 +8,7 @@ const {
 } = require("../controllers/forYouPage");
 const router = express.Router();
 
-router.get("/seed-users", seedUsers);
+// router.get("/seed-users", seedUsers);
 router.get("/seed-contents", seedContents);
 router.get("/all-contents", getAllContents);
 router.post("/:contentId", getOneContentByContentID);

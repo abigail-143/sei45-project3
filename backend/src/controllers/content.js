@@ -19,8 +19,8 @@ const createNewContent = async (req, res) => {
       userID: userId._id,
     });
 
-    userId.createdContent.push(content);
     await content.save();
+    userId.createdContent.push(content);
     await userId.save();
     // res.json(content);
     res.json(userId);
@@ -33,8 +33,12 @@ const createNewContent = async (req, res) => {
 //delete user's content
 const deleteContent = async (req, res) => {
   try {
-    const user = await UserModel.findById(req.params.id)
-    await user.ContentModel.findByIdAndDelete(req.body.id);
+    await ContentModel.findByIdAndDelete(req.params.id);
+
+    await UserModel.updateOne(
+      {},
+      { $pull: { createdContent: { _id: req.params.id } } }
+    );
 
     res.json({ status: "ok", msg: "Content deleted" });
   } catch (error) {
@@ -62,7 +66,6 @@ const updateContent = async (req, res) => {
     res.json({ status: "error", msg: error.message });
   }
 };
-
 
 module.exports = {
   getContent,

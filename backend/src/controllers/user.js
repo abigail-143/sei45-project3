@@ -10,22 +10,25 @@ const seedUsers = async (req, res) => {
     await UserModel.deleteMany();
     await UserModel.create(
       {
+        _id: "64dee7d7e713527aee8c75bc",
         username: "user1",
         hashPWD: await bcrypt.hash("password1", 12),
         profilePhoto: "string1",
       },
       {
+        _id: "64dee7d7e713527aee8c75bd",
         username: "user2",
         hashPWD: await bcrypt.hash("password2", 12),
         profilePhoto: "string2",
       },
       {
+        _id: "64dee7d7e713527aee8c75be",
         username: "user3",
         hashPWD: await bcrypt.hash("password3", 12),
         profilePhoto: "string3",
       }
     );
-    res.json({ status: "ok", msg: "seeding successful" });
+    res.json({ status: "ok", msg: "seed users successful" });
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ status: "error", msg: "seeding error" });
@@ -62,6 +65,7 @@ const register = async (req, res) => {
   }
 };
 
+// login controller
 const login = async (req, res) => {
   try {
     const user = await UserModel.findOne({ username: req.body.username });
