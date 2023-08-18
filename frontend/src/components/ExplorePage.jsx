@@ -16,7 +16,7 @@ const ExplorePage = () => {
           <p>{content.contentReview}</p>
         </div>
       </figure>
-    );
+    ); // need to hid the detailDiv, only show on hover and also make the position relative to the imgDiv
   });
   return (
     <>
