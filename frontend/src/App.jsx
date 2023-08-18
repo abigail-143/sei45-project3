@@ -28,7 +28,6 @@ export default App;
 
 // <Header />
 // <WelcomePage />
-// <LandingPage />
 // <ExplorePage />
 // <UserPage />
 // <ExploreContentDisplay />

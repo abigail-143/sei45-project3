@@ -1,3 +1,6 @@
+// 2 types of headers - one for register/login/welcome pages, one for user/explore/submit pages
+// will use the showXXPage boolean indicators to toggle between the headers
+
 import React from "react";
 import styles from "./Header.module.css"
 
