@@ -23,3 +23,12 @@ const getOneContentByContentID = async (req, res) => {
         res.json({status: "error", msg: "failed to retrieve content."})
     }
 }
+
+// PATCH - add a like count to content through contentId param
+const addToLikeCount = async (req, res) => {
+    try {
+        const addLikeCount = await ContentModel.findByIdAndUpdate(req.params.contentId)
+    } catch (error) {
+        
+    }
+}
