@@ -2,6 +2,7 @@ const ContentModel = require("../models/Content");
 const CommentModel = require("../models/Comment");
 const UserModel = require("../models/User");
 
+// GET - to seed test data for Users
 const seedUsers = async (req, res) => {
   try {
     await UserModel.deleteMany();
@@ -26,6 +27,7 @@ const seedUsers = async (req, res) => {
   }
 };
 
+// GET - to seed test data for Contents
 const seedContents = async (req, res) => {
   try {
     await ContentModel.deleteMany();
@@ -103,10 +105,29 @@ const addToLikeCount = async (req, res) => {
   }
 };
 
+// PATCH - to add a comment to content through contentId param
+const addCommentToContent = async (req, res) => {
+  try {
+    const content = await ContentModel.findById(req.params.contentId);
+    const comment = await CommentModel.create({
+      comment: req.body.comment,
+      contentId: req.params.contentId,
+      userId: content.userId,
+    });
+    content.comments.push(comment);
+    await content.save();
+    res.json({ status: "ok", msg: "comment added" });
+  } catch (error) {
+    console.log(error),
+      res.status(400).json({ status: "error", msg: "fail to add comment" });
+  }
+};
+
 module.exports = {
   seedUsers,
   seedContents,
   getAllContents,
   getOneContentByContentID,
   addToLikeCount,
+  addCommentToContent,
 };
