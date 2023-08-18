@@ -30,7 +30,7 @@ const seedContents = async (req, res) => {
   try {
     await ContentModel.deleteMany();
 
-    await ContentModel.create(
+    const contents = await ContentModel.create(
       {
         contentPhoto: "photo.jpg",
         drinkName: "drink1",
@@ -89,10 +89,18 @@ const getOneContentByContentID = async (req, res) => {
 // PATCH - add a like count to content through contentId param
 const addToLikeCount = async (req, res) => {
   try {
-    const addLikeCount = await ContentModel.findByIdAndUpdate(
-      req.params.contentId
+    const updateLikeCount = await ContentModel.findByIdAndUpdate(
+      req.params.contentId,
+      {
+        $set: { likeCount: req.body.likeCount },
+      }
     );
-  } catch (error) {}
+
+    res.json({ status: "ok", msg: "likes updated" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ status: "error", msg: "fail to update likes" });
+  }
 };
 
 module.exports = {
@@ -100,4 +108,5 @@ module.exports = {
   seedContents,
   getAllContents,
   getOneContentByContentID,
+  addToLikeCount,
 };
