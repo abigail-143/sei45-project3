@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/fyp", forYouPage)
 
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
