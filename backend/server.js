@@ -9,6 +9,7 @@ const connectDB = require("./src/database/database");
 connectDB();
 
 const auth = require("./src/routers_hou/user");
+const content = require("./src/router_cy/content");
 
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/landing", auth);
+app.use("/beer", content);
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
