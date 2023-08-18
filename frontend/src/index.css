@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+.quickFilter {
+  background-color: lemonchiffon;
+  border: 1px solid blanchedalmond;
+  width: 100vw;
+  height: 80px;
+}
+
+.explore {
+  width: 75vw;
+  margin: auto;
+}
+
+figure {
+  max-width: 270px;
+  max-height: auto;
+  margin: 5px 5px;
+}
+
+.imgDiv > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
