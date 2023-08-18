@@ -8,6 +8,8 @@ const connectDB = require("./src/database/database");
 
 connectDB();
 
+const auth = require("./src/routers_hou/user");
+
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -23,7 +25,9 @@ app.use(limit);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const PORT = process.env.PORT || 5001;
+app.use("/landing", auth);
+
+const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
