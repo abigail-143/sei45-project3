@@ -8,8 +8,8 @@ function App() {
   // const [showRegister, setShowRegister] = useState(false);
   // const [showLogin, setShowLogin] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
-  const [showExplorePage, setShowExplorePage] = useState(false);
-  const [showUserPage, setShowUserPage] = useState(true);
+  const [showExplorePage, setShowExplorePage] = useState(true);
+  const [showUserPage, setShowUserPage] = useState(false);
   // const [showSubmitContent, setShowSubmisContent] = useState(false);
   return (
     <>

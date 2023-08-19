@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Masonry from "react-responsive-masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 
 const ExplorePage = () => {
+  const [hide, setHide] = useState(true);
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
   const hashtags = tags.split(" ");
@@ -22,11 +23,23 @@ const ExplorePage = () => {
         <div className={styles.imgDisplay}>
           <img src={content.contentPhoto}></img>
         </div>
-        <div className={styles.detailDisplay}>
-          <a href="/" target="_blank" className={styles.usernameLink}>
+        <div
+          className={styles.detailDisplay}
+          onClick={() => {
+            setHide(false);
+          }}
+        >
+          <a
+            href="https://www.google.com"
+            target="_blank"
+            className={styles.usernameLink}
+          >
             {content.username}
           </a>
-          <img className={styles.likeBtn} src="../public/heart.png"></img>
+          <img
+            className={styles.likeBtn}
+            src={hide ? "../public/heart.png" : "../public/comment.png"}
+          ></img>
         </div>
       </figure>
     ); // need to hid the detailDiv, only show on hover and also make the position relative to the imgDiv
