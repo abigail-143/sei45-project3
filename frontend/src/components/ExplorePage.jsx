@@ -1,6 +1,7 @@
 import React from "react";
 import Masonry from "react-responsive-masonry";
 import testImgs from "./testImgArray";
+import styles from "./ExplorePage.module.css";
 
 const ExplorePage = () => {
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
@@ -8,7 +9,7 @@ const ExplorePage = () => {
   const hashtags = tags.split(" ");
   const hashtagItems = hashtags.map((hashtag, index) => {
     return (
-      <li key={index} className="quickFilterItem">
+      <li key={index} className={styles.quickFilterItem}>
         <a href="/">{hashtag}</a>
       </li>
     );
@@ -18,24 +19,24 @@ const ExplorePage = () => {
   const contentBlocks = testImgs.map((content, index) => {
     return (
       <figure key={index}>
-        <div className="imgDisplay">
+        <div className={styles.imgDisplay}>
           <img src={content.contentPhoto}></img>
         </div>
-        <div className="detailDisplay">
-          <a href="/" target="_blank" className="usernameLink">
+        <div className={styles.detailDisplay}>
+          <a href="/" target="_blank" className={styles.usernameLink}>
             {content.username}
           </a>
-          <img className="likeBtn" src="../public/heart.png"></img>
+          <img className={styles.likeBtn} src="../public/heart.png"></img>
         </div>
       </figure>
     ); // need to hid the detailDiv, only show on hover and also make the position relative to the imgDiv
   });
   return (
     <>
-      <div className="quickFilter">
-        <ul className="quickFilterBar">{hashtagItems}</ul>
+      <div className={styles.quickFilter}>
+        <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>
-      <section className="explore">
+      <section className={styles.explore}>
         <Masonry columnsCount={4} gutter="10px">
           {contentBlocks}
         </Masonry>
