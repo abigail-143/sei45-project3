@@ -77,3 +77,26 @@
   height: 80%;
   flex-shrink: 0;
 }
+
+#arrow {
+  width: 5%;
+  height: 2%;
+  fill: #8d7b68;
+  stroke-width: 4px;
+  stroke: #8d7b68;
+  position: relative;
+  padding-top: 10%;
+  left: 1%;
+}
+
+#foryou {
+  color: #8d7b68;
+  font-family: Merriweather Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: relative;
+  padding-top: 10.2%;
+
+}
