@@ -5,6 +5,9 @@ const {
   getAllContents,
   getOneContentByContentID,
   addToLikeCount,
+  addCommentToContent,
+  deleteComment,
+  findContentWithSpecifcComment,
 } = require("../controllers/forYouPage");
 const { auth } = require("../middleware/user");
 const router = express.Router();
