@@ -14,9 +14,9 @@ const UserPage = () => {
           <img className={styles.imgDisplay} src={content.contentPhoto}></img>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.icon} src="../public/heart.png"></img>
+          <img className={styles.icon} src="/heart.png"></img>
           <label className={styles.numLabel}>{content.likeCount}</label>
-          <img className={styles.icon} src="../public/comment.png"></img>
+          <img className={styles.icon} src="/comment.png"></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
           <button className={styles.deleteBtn}>Delete</button>
         </div>
@@ -35,10 +35,10 @@ const UserPage = () => {
           <p>{content.username}</p>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.favIcon} src="../public/heart.png"></img>
+          <img className={styles.favIcon} src="/heart.png"></img>
           <label className={styles.favNumLabel}>{content.likeCount}</label>
           <div className={styles.divider}></div>
-          <img className={styles.favIcon} src="../public/comment.png"></img>
+          <img className={styles.favIcon} src="/comment.png"></img>
           <label className={styles.favNumLabel}>
             {content.comments.length}
           </label>
