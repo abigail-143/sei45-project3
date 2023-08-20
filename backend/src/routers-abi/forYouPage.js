@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  seedUsers,
+  // seedUsers,
   seedContents,
   getAllContents,
   getOneContentByContentID,
@@ -12,10 +12,6 @@ const {
 const { auth } = require("../middleware/user");
 const router = express.Router();
 
-router.get("/seed-users", seedUsers);
-router.patch("/comments/:contentId", addCommentToContent);
-router.delete("/comments/:commentId", deleteComment);
-router.get("/find", findContentWithSpecifcComment);
 router.get("/seed-contents", auth, seedContents);
 router.get("/all-contents", auth, getAllContents);
 router.post("/:contentId", auth, getOneContentByContentID);
