@@ -2,7 +2,6 @@ const ContentModel = require("../models/Content");
 const CommentModel = require("../models/Comment");
 const UserModel = require("../models/User");
 
-// GET - to seed test data for Users
 // const seedUsers = async (req, res) => {
 //   try {
 //     await UserModel.deleteMany();
