@@ -24,6 +24,8 @@ app.use(limit);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/landing", auth);
+app.use("/beer", content);
 app.use("/fyp", forYouPage);
 
 const PORT = process.env.PORT || 5002;

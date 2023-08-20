@@ -3,29 +3,29 @@ const CommentModel = require("../models/Comment");
 const UserModel = require("../models/User");
 
 // GET - to seed test data for Users
-const seedUsers = async (req, res) => {
-  try {
-    await UserModel.deleteMany();
+// const seedUsers = async (req, res) => {
+//   try {
+//     await UserModel.deleteMany();
 
-    await UserModel.create(
-      {
-        username: "user1",
-        hashPWD: "user1",
-        profilePhoto: "profile.jpg",
-      },
-      {
-        username: "user2",
-        hashPWD: "user2",
-        profilePhoto: "profile.jpg",
-      }
-    );
+//     await UserModel.create(
+//       {
+//         username: "user1",
+//         hashPWD: "user1",
+//         profilePhoto: "profile.jpg",
+//       },
+//       {
+//         username: "user2",
+//         hashPWD: "user2",
+//         profilePhoto: "profile.jpg",
+//       }
+//     );
 
-    res.json({ status: "ok", msg: "seed user successful" });
-  } catch (error) {
-    console.log(error.message);
-    res.status(400).json({ status: "error", msg: "seed user error." });
-  }
-};
+//     res.json({ status: "ok", msg: "seed user successful" });
+//   } catch (error) {
+//     console.log(error.message);
+//     res.status(400).json({ status: "error", msg: "seed user error." });
+//   }
+// };
 
 // GET - to seed test data for Contents
 const seedContents = async (req, res) => {
