@@ -2,9 +2,24 @@
 // will use the showXXPage boolean indicators to toggle between the headers
 
 import React from "react";
-import styles from "./Header.module.css"
+import styles from "./Header.module.css";
 
 const Header = (props) => {
+  const handleClickExplore = () => {
+    if (props.showUserPage) {
+      props.setShowUserPage(false);
+      props.setShowExplorePage(true);
+      console.log("handleClickExplore");
+    }
+  };
+
+  const handleClickUser = () => {
+    if (props.showExplorePage) {
+      props.setShowExplorePage(false);
+      props.setShowUserPage(true);
+      console.log("handleClickUser");
+    }
+  };
   return (
     <>
       {props.showWelcome && (
@@ -29,13 +44,14 @@ const Header = (props) => {
             width="50"
             height="50"
             className={styles.appLogo}
+            onClick={handleClickExplore}
           ></img>
-          <div className={styles.appName}>
+          <div className={styles.appName} onClick={handleClickExplore}>
             <p>Better Time, Beer Time</p>
           </div>
           <input className={styles.searchBar} placeholder="hello"></input>
           <img
-            src="https://picsum.photos/200"
+            src="/heart.png"
             width="40"
             height="40"
             className={styles.likesIcon}
@@ -45,6 +61,7 @@ const Header = (props) => {
             width="40"
             height="40"
             className={styles.profilePic}
+            onClick={handleClickUser}
           ></img>
         </div>
       )}

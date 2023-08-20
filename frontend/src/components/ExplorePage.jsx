@@ -38,7 +38,7 @@ const ExplorePage = () => {
           </a>
           <img
             className={styles.likeBtn}
-            src={hide ? "../public/heart.png" : "../public/comment.png"}
+            src={hide ? "/heart.png" : "/comment.png"}
           ></img>
         </div>
       </figure>
