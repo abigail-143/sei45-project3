@@ -26,6 +26,7 @@ const UserModel = require("../models/User");
 //   }
 // };
 
+// GET - to seed test data for Contents
 const seedContents = async (req, res) => {
   try {
     await ContentModel.deleteMany();
@@ -140,10 +141,50 @@ const addToLikeCount = async (req, res) => {
   }
 };
 
+// PATCH - to add a comment to content through contentId param
+const addCommentToContent = async (req, res) => {
+  try {
+    // get the content to add comment to
+    const content = await ContentModel.findById(req.params.contentId);
+    // create a new comment in Comment Model
+    const comment = await CommentModel.create({
+      comment: req.body.comment,
+      contentId: req.params.contentId,
+      userId: content.userId,
+    });
+    // add the new comment to the content
+    content.comments.push(comment);
+    await content.save();
+    res.json({ status: "ok", msg: "comment added" });
+  } catch (error) {
+    console.log(error),
+      res.status(400).json({ status: "error", msg: "fail to add comment" });
+  }
+};
+
+// DELETE - to delete a comment from content using commentId
+const deleteComment = async (req, res) => {
+  try {
+    // delete comment from the Comment Model
+    await CommentModel.findByIdAndDelete(req.params.commentId);
+    // delete comment from the Content Model
+    await ContentModel.updateOne(
+      {},
+      { $pull: { comments: { _id: req.params.commentId } } }
+    );
+    res.json({ status: "ok", msg: "comment deleted from Comment and Content" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ status: "error", msg: "fail to delete comment" });
+  }
+};
+
 module.exports = {
   // seedUsers,
   seedContents,
   getAllContents,
   getOneContentByContentID,
   addToLikeCount,
+  addCommentToContent,
+  deleteComment,
 };

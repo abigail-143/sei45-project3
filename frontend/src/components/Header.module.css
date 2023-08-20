@@ -1,0 +1,78 @@
+.header {
+  border: 1px solid black;
+  background-color: lightblue;
+  width: 100vw;
+  height: 70px;
+  display: flex;
+}
+
+.appLogo {
+  border: 1px solid green;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.appName {
+  border: 1px solid pink;
+  background-color: lightcoral;
+  height: 50px;
+  width: auto;
+  position: absolute;
+  top: 10px;
+  left: 90px;
+}
+
+.appName > p {
+  background-color: lightgreen;
+}
+
+.registerBtn {
+  border: 1px solid yellow;
+  background-color: lightcyan;
+  height: 30px;
+  width: 100px;
+  position: absolute;
+  right: 140px;
+  top: 20px;
+}
+
+.loginBtn {
+  border: 1px solid yellowgreen;
+  background-color: lightgoldenrodyellow;
+  height: 30px;
+  width: 100px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.searchBar {
+  border: 1px solid purple;
+  background-color: lightsalmon;
+  position: absolute;
+  height: 30px;
+  width: 50vw;
+  left: 260px;
+  top: 20px;
+  border-radius: 20px;
+}
+
+.searchBar::placeholder {
+  position: absolute;
+  left: 20px;
+}
+
+.likesIcon {
+  position: absolute;
+  right: 80px;
+  top: 15px;
+}
+
+.profilePic {
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
