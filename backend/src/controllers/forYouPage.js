@@ -143,6 +143,21 @@ const deleteComment = async (req, res) => {
   }
 };
 
+// GET - to find in nested array
+const findContentWithSpecifcComment = async (req, res) => {
+  try {
+    const contents = await ContentModel.find({
+      "comments": { $elemMatch: { "comment": req.body.comment } },
+    });
+
+    res.json(contents);
+
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ status: "error", msg: "cannot find comment" });
+  }
+};
+
 module.exports = {
   seedUsers,
   seedContents,
@@ -151,4 +166,5 @@ module.exports = {
   addToLikeCount,
   addCommentToContent,
   deleteComment,
+  findContentWithSpecifcComment,
 };

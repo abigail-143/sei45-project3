@@ -7,6 +7,7 @@ const {
   addToLikeCount,
   addCommentToContent,
   deleteComment,
+  findContentWithSpecifcComment,
 } = require("../controllers/forYouPage");
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.post("/:contentId", getOneContentByContentID);
 router.patch("/likes/:contentId", addToLikeCount);
 router.patch("/comments/:contentId", addCommentToContent);
 router.delete("/comments/:commentId", deleteComment);
+router.get("/find", findContentWithSpecifcComment);
 
 module.exports = router;
