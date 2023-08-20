@@ -9,6 +9,10 @@ const forYouPage = require("./src/routers-abi/forYouPage");
 
 connectDB();
 
+const auth = require("./src/routers_hou/user");
+const content = require("./src/router_cy/content");
+const forYouPage = require("./src/routers-abi/forYouPage");
+
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
