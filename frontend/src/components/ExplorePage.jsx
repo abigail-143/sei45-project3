@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MasonryPkg from "react-responsive-masonry";
 import Masonry from "@mui/lab/Masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
@@ -80,7 +81,7 @@ const ExplorePage = () => {
         <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>
       <section className={styles.explore}>
-        <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
+        {/* <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
           <div className="contentBlock">
             <div className={hover ? "contentHover" : "content"}>
               <img
@@ -99,7 +100,10 @@ const ExplorePage = () => {
               ></img>
             </div>
           </div>
-        </Masonry>
+        </Masonry> */}
+        <MasonryPkg columnsCount={4} gutter="10px">
+          {contentBlocks}
+        </MasonryPkg>
       </section>
     </>
   );
