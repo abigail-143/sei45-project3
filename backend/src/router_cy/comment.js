@@ -7,9 +7,11 @@ const {
   getAllComment,
   seedComments,
 } = require("../controllers/comment");
+const { auth } = require("../middleware/user");
+const { getUser } = require("../controllers/content");
 
 //create new comment by owner user or other user
-router.put("/newComment/:id", newComment);
+router.put("/newComment/:id",newComment);
 
 //delelte user comment
 router.delete("/deleteComment/:id", deleteComment);
@@ -21,5 +23,7 @@ router.patch("/userUpdateComment/:id", updateComment);
 router.get("/getAllComment", getAllComment);
 
 router.get("/seed", seedComments);
+
+
 
 module.exports = router;

@@ -6,7 +6,7 @@ const CommentModel = require("../models/Comment");
 // create new content
 const createNewContent = async (req, res) => {
   try {
-    const userId = await UserModel.findById(req.params.id);
+    const user = await UserModel.findById(req.params.id);
 
     const content = new ContentModel({
       contentPhoto: req.body.contentPhoto,
@@ -14,17 +14,14 @@ const createNewContent = async (req, res) => {
       shopName: req.body.shopName,
       contentReview: req.body.contentReview,
       contentTag: req.body.contentTag,
-      comments: req.body.comments,
-      likeCount: req.body.likeCount,
-      userId: req.params.id,// chceck user id 
-      userID: userId._id,//
+      userId: req.user_id,
     });
 
     await content.save();
-    userId.createdContent.push(content);
-    await userId.save();
+    // userId.createdContent.push(content);
+    // await userId.save();
     // res.json(content);
-    res.json(userId);
+    res.json(content);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -34,14 +31,25 @@ const createNewContent = async (req, res) => {
 //delete user's content
 const deleteContent = async (req, res) => {
   try {
-    await ContentModel.findByIdAndDelete(req.params.id);
+    const content = await ContentModel.findById(req.params.id);
+    const deleteContent = req.params.id;
+    const likedUsers = content.likedUsersId;
 
-    await UserModel.updateOne(
-      {},
-      { $pull: { createdContent: { _id: req.params.id } } }
-    );
+    const users = await UserModel.find({ _id: { $in: likedUsers } });
 
-    res.json({ status: "ok", msg: "Content deleted" });
+    for (const user of users) {
+      const index = user.likedContent.indexOf(deleteContent);
+      //if the content_id need to take out from prticular user detail which no exist will return -1
+      // if index return not -1 will excute the following action splice out the content_id
+      if (index !== -1) {
+        user.likedContent.splice(indexToRemove, 1);
+        await user.save();
+      }
+
+      await ContentModel.findByIdAndDelete(req.params.id);
+
+      res.json({ status: "ok", msg: "Content deleted" });
+    }
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -58,8 +66,6 @@ const getContent = async (req, res) => {
     res.json({ status: "error", msg: error.message });
   }
 };
-
-
 
 //get all the user's content
 const getAllUserContent = async (req, res) => {
@@ -84,15 +90,16 @@ const updateContent = async (req, res) => {
 //get particular content
 const singleContent = async (req, res) => {
   try {
-    const content = await ContentModel.findById(req.body.id);
-    res.json(content);
+    const content = await ContentModel.findById(req.params.id);
+    const user = await UserModel.findById(req.user_id);
+    console.log(user);
+    console.log(content);
+    res.json({ user, content });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
   }
 };
-
-
 
 const createAccount = async (req, res) => {
   try {
@@ -112,15 +119,13 @@ const createAccount = async (req, res) => {
 //get prticular detail
 const getUser = async (req, res) => {
   try {
-    const user = await UserModel.findOne({ username: req.body.username });
+    const user = await UserModel.findById(req.user_id);
     res.json(user);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
   }
 };
-
-
 
 // get comment that attach with particular content
 const getParticularComment = async (req, res) => {
@@ -138,12 +143,15 @@ const addFavouriteContent = async (req, res) => {
   try {
     const content = await ContentModel.findById(req.params.id);
 
-    const favourite = new ContentModel({
-      likedUsers: req.user_id,
-    });
+    const favourite = req.user_id;
 
-    content.likedUsers.push(favourite);
+    content.likedUsersId.push(favourite);
 
+    const user = await UserModel.findById(favourite);
+    user.likedContent.push(req.params.id);
+    await content.save();
+    await user.save();
+    res.json(content);
     res.json({ status: "ok", msg: "favorite content has been saved" });
   } catch (error) {
     console.log(error.message);
@@ -154,15 +162,10 @@ const addFavouriteContent = async (req, res) => {
 // get all the favourite content
 const allFavouriteContent = async (req, res) => {
   try {
-    const content = await ContentModel.find({likedUsers: {$elemMatch: req.user_id}})
-    // const user = await UserModel.findById(req.params.id);
-
-    // const likedContent = user.likedContent;
-    // for (const content of likedContent) {
-    //   const displayContent = await ContentModel.findById(content);
-    //   res.json(displayContent);
-    // }
-    res.json(content)
+    const user = await UserModel.findById(req.params.id);
+    const contentArray = user.likedContent;
+    const content = await ContentModel.find({ _id: { $in: contentArray } });
+    res.json(content);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -232,5 +235,5 @@ module.exports = {
   addFavouriteContent,
   singleContent,
   allFavouriteContent,
+  getUser,
 };
-

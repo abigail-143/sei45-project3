@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
 import styles from "./submitContent.module.css";
-import "./SubmitContent.css";
+// import "./SubmitContent.css";
 
-
-const SubmitContent = () => {
+const SubmitContent = (props) => {
   const [post, setPost] = useState();
   const drinkNameRef = useRef();
   const shopNameRef = useRef();
@@ -82,6 +81,13 @@ const SubmitContent = () => {
   return (
     <>
       <div className={styles.backdrop}>
+        <img
+          src="../picture/Arrow 1.jpg"
+          className={styles.arrow}
+          onClick={() => {
+            props.setSubmitContent(false);
+          }}
+        />
         <div className={styles.modal}>
           <div className="row">
             <div className="col-md-5">
@@ -110,40 +116,40 @@ const SubmitContent = () => {
                 <br />
                 <br />
                 <br />
-                <div className="font">Drink</div>
+                <div className={styles.font}>Drink</div>
                 <input
                   type="text"
                   ref={drinkNameRef}
-                  className="inputBox"
+                  className={styles.inputBox}
                   placeholder="Name of the drink"
                   onChange
                 ></input>
                 <br />
-                <div className="font">Bar</div>
+                <div className={styles.font}>Bar</div>
                 <input
                   type="text"
                   ref={shopNameRef}
-                  className="inputBox"
+                  className={styles.inputBox}
                   placeholder="Name of the bar"
                   onChange
                 ></input>
                 <br />
-                <div className="font">Review</div>
+                <div className={styles.font}>Review</div>
                 <textarea
                   type="text"
                   ref={reviewRef}
-                  className="textBox"
+                  className={styles.textBox}
                   name="Review"
                   rows="5"
                   placeholder="Leave a review"
                   onChange
                 ></textarea>
                 <br />
-                <div className="font">Tgs</div>
+                <div className={styles.font}>Tgs</div>
                 <input
                   type="text"
                   ref={contentTagRef}
-                  className="inputBox"
+                  className={styles.inputBox}
                   placeholder="Start with #hashing"
                   onChange
                 ></input>
@@ -151,7 +157,7 @@ const SubmitContent = () => {
                 <br />
                 <button
                   type="button"
-                  className="button"
+                  className={styles.button}
                   onClick={publishNewPost}
                 >
                   Publish

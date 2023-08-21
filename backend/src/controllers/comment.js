@@ -45,15 +45,19 @@ const seedComments = async (req, res) => {
 // create new comment
 const newComment = async (req, res) => {
   try {
-    await ContentModel.findById(req.params.id);
-
+    //create new comment, save userId tht create this comment
+    // and contentId that comment attach to
     const comment = new CommentModel({
       comment: req.body.comment,
       userId: req.user_id,
       contentId: req.params.id,
     });
-
     await comment.save();
+
+    // find out the content detail and push the commentId into comments properties inside the content
+    const content = await ContentModel.findById(req.params.id);
+    content.comments.push(comment._id);
+    await content.save();
 
     res.json(comment);
   } catch (error) {
@@ -78,9 +82,22 @@ const updateComment = async (req, res) => {
 //delete individual comment
 const deleteComment = async (req, res) => {
   try {
-    await CommentModel.findByIdAndDelete(req.params.id);
+    //line 85 to 94 is to delete out the comment_id from content itself
+    const comment = await CommentModel.findById(req.params.id);
+    const delComment = req.params.id;
+    const contentId = comment.contentId;
 
-    res.json({ status: "ok", msg: "Content deleted" });
+    const content = await ContentModel.findById(contentId);
+
+    const index = content.comments.indexOf(req.params.id);
+    content.comments.splice(index, 1);
+    await content.save();
+
+    // only the content user and comment create user have the right to delete comment 
+    if (comment.userId === req.user_id || content.userId === req.user_id) {
+      return await CommentModel.findByIdAndDelete(req.params.id);
+    }
+    res.json({ status: "ok", msg: "Comment deleted" });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });

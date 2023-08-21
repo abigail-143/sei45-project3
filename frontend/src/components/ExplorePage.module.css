@@ -52,7 +52,7 @@ figure {
   margin: 5px 5px;
   padding: 0;
   position: relative;
-  z-index: -2;
+  z-index: 50;
 }
 
 .imgDisplay {
