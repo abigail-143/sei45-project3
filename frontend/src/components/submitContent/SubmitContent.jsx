@@ -2,8 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./submitContent.module.css";
 // import "./SubmitContent.css";
 
-
-const SubmitContent = () => {
+const SubmitContent = (props) => {
   const [post, setPost] = useState();
   const drinkNameRef = useRef();
   const shopNameRef = useRef();
@@ -82,6 +81,13 @@ const SubmitContent = () => {
   return (
     <>
       <div className={styles.backdrop}>
+        <img
+          src="../picture/Arrow 1.jpg"
+          className={styles.arrow}
+          onClick={() => {
+            props.setSubmitContent(false);
+          }}
+        />
         <div className={styles.modal}>
           <div className="row">
             <div className="col-md-5">
@@ -110,7 +116,7 @@ const SubmitContent = () => {
                 <br />
                 <br />
                 <br />
-                <div className="font">Drink</div>
+                <div className={styles.font}>Drink</div>
                 <input
                   type="text"
                   ref={drinkNameRef}
