@@ -9,6 +9,7 @@ const ContentsSchema = new mongoose.Schema(
     contentReview: { type: String, maxLength: 200 },
     contentTag: { type: String, maxLength: 30 },
     likeCount: { type: Number },
+    likedUsers: {type: [mongoose.Types.ObjectId]},
     userId: { type: mongoose.Types.ObjectId, ref: "User._id" },
   },
   { collection: "Content" }
