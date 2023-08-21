@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import AuthContext from "../context/auth";
 import jwtDecode from "jwt-decode";
-
+import fetchData from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
 
 const LoginOverlay = () => {
@@ -13,24 +13,16 @@ const LoginOverlay = () => {
   const pwdRef = useRef("");
 
   // function to deal with the login button in modal
-  const loginClick = async () => {
-    const res = await fetch(import.meta.env.SERVER + "/landing/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
+  const loginClick = async (props) => {
+    const res = await fetchData("/landing/login", "POST", {
+      username,
+      password,
     });
-    console.log("log in attempt");// tester
-    const data = await res.json();
-
-    
     if (res.ok) {
-      // decoding access token, pulling username and user_id
       auth.setAccessToken(res.data.access);
-      const decoded = jwtDecode(res.data.access);
+      const decode = jwtDecode(res.data.access);
     } else {
-      alert(JSON.stringify(res.data));
+      alert(res.data);
     }
   };
   return (

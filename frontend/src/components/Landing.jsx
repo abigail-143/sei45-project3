@@ -29,7 +29,7 @@ const Landing = (props) => {
   );
   const contentBlock2 = addSpace(
     [contentBlocks[3], contentBlocks[4], contentBlocks[5]],
-    200
+    125
   );
   const contentBlock3 = addSpace(
     [contentBlocks[6], contentBlocks[7], contentBlocks[8]],
@@ -37,7 +37,7 @@ const Landing = (props) => {
   );
   const contentBlock4 = addSpace(
     [contentBlocks[9], contentBlocks[10], contentBlocks[11]],
-    200
+    125
   );
   const contentBlock5 = addSpace(
     [contentBlocks[12], contentBlocks[13], contentBlocks[14]],

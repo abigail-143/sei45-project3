@@ -18,22 +18,23 @@
 .modal {
   position: fixed;
   background: white;
-  top: 10vh;
-  bottom: 10vh;
+  top: 5vh;
+  bottom: 5vh;
   left: 30%;
   width: 40%;
   z-index: 100;
-  overflow: hidden;
+  /* overflow: scroll; */
   border-radius: 30px;
 }
 
 .profPic {
   height: 100px;
   width: 100px;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%);
+  position: relative;
+  top: 8%;
+
+  margin: auto;
+  /* transform: translate(-50%); */
   border-radius: 50%;
   background-color: #d9d9d9;
   display: flex;
@@ -46,7 +47,7 @@
 }
 
 .welcomeText {
-  top: 25%;
+  top: 10%;
   position: relative;
   font-weight: 400;
   font-size: 55px;
@@ -54,7 +55,8 @@
 }
 
 .loginDetails {
-  top: 30%;
+  top: 15%;
+  margin-bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   position: relative;
