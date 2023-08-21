@@ -6,7 +6,7 @@ const CommentModel = require("../models/Comment");
 // create new content
 const createNewContent = async (req, res) => {
   try {
-    const userId = await UserModel.findById(req.params.id);
+    const user = await UserModel.findById(req.params.id);
 
     const content = new ContentModel({
       contentPhoto: req.body.contentPhoto,
@@ -14,17 +14,14 @@ const createNewContent = async (req, res) => {
       shopName: req.body.shopName,
       contentReview: req.body.contentReview,
       contentTag: req.body.contentTag,
-      comments: req.body.comments,
-      likeCount: req.body.likeCount,
-      userId: req.params.id, // chceck user id
-      userID: userId._id, //
+      userId: req.user_id,
     });
 
     await content.save();
-    userId.createdContent.push(content);
-    await userId.save();
+    // userId.createdContent.push(content);
+    // await userId.save();
     // res.json(content);
-    res.json(userId);
+    res.json(content);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -35,11 +32,6 @@ const createNewContent = async (req, res) => {
 const deleteContent = async (req, res) => {
   try {
     await ContentModel.findByIdAndDelete(req.params.id);
-
-    await UserModel.updateOne(
-      {},
-      { $pull: { createdContent: { _id: req.params.id } } }
-    );
 
     res.json({ status: "ok", msg: "Content deleted" });
   } catch (error) {
@@ -135,12 +127,15 @@ const addFavouriteContent = async (req, res) => {
   try {
     const content = await ContentModel.findById(req.params.id);
 
-    const favourite = new ContentModel({
-      likedUsers: req.user_id,
-    });
+    const favourite = req.user_id;
 
-    content.likedUsers.push(favourite);
+    content.likedUsersId.push(favourite);
 
+    const user = await UserModel.findById(favourite);
+    user.likedContent.push(req.params.id);
+    await content.save();
+    await user.save();
+    res.json(content);
     res.json({ status: "ok", msg: "favorite content has been saved" });
   } catch (error) {
     console.log(error.message);
@@ -151,16 +146,9 @@ const addFavouriteContent = async (req, res) => {
 // get all the favourite content
 const allFavouriteContent = async (req, res) => {
   try {
-    const content = await ContentModel.find({
-      likedUsers: { $elemMatch: req.user_id },
-    });
-    // const user = await UserModel.findById(req.params.id);
-
-    // const likedContent = user.likedContent;
-    // for (const content of likedContent) {
-    //   const displayContent = await ContentModel.findById(content);
-    //   res.json(displayContent);
-    // }
+    const user = await UserModel.findById(req.params.id);
+    const contentArray = user.likedContent;
+    const content = await ContentModel.find({ _id: { $in: contentArray } });
     res.json(content);
   } catch (error) {
     console.log(error.message);
@@ -231,5 +219,5 @@ module.exports = {
   addFavouriteContent,
   singleContent,
   allFavouriteContent,
-  getUser
+  getUser,
 };
