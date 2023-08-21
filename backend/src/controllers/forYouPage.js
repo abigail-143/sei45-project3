@@ -33,7 +33,8 @@ const seedContents = async (req, res) => {
     const contents = [
       {
         _id: "64df206ae805e92ed914b43d",
-        contentPhoto: "https://images.unsplash.com/photo-1600111765736-9c59f7afe9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        contentPhoto:
+          "https://images.unsplash.com/photo-1600111765736-9c59f7afe9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
         drinkName: "drink1",
         shopName: "shop1",
         contentReview: "content review 1.0",
@@ -44,7 +45,8 @@ const seedContents = async (req, res) => {
       },
       {
         _id: "64df206ae805e92ed914b43c",
-        contentPhoto: "https://images.unsplash.com/photo-1613904985222-0d534430bdbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        contentPhoto:
+          "https://images.unsplash.com/photo-1613904985222-0d534430bdbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
         drinkName: "drink2",
         shopName: "shop2",
         contentReview: "content review 2.0",
@@ -55,7 +57,8 @@ const seedContents = async (req, res) => {
       },
       {
         _id: "64df206ae805e92ed914b43e",
-        contentPhoto: "https://images.unsplash.com/photo-1620316462488-117e453b398a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        contentPhoto:
+          "https://images.unsplash.com/photo-1620316462488-117e453b398a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
         drinkName: "drink3",
         shopName: "shop3",
         contentReview: "content review 3.0",
@@ -75,9 +78,7 @@ const seedContents = async (req, res) => {
 
     for (let uniqueUser of uniqueUsers) {
       const user = await UserModel.findById({ _id: uniqueUser });
-      console.log(1);
       user.createdContent = [];
-      console.log(2);
 
       for (let content of contents) {
         if (uniqueUser === content.userId) {
@@ -86,7 +87,6 @@ const seedContents = async (req, res) => {
         }
       }
       user.save();
-      console.log(user);
     }
     // =========================================================
     res.json({ status: "ok", msg: "seed content successful" });

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Masonry from "react-responsive-masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
+import useFetch from "./custom_hooks/useFetch";
 
 const ExplorePage = () => {
   const [hide, setHide] = useState(true);
+  const [contentData, setContentData] = useState([]);
+  const fetchData = useFetch()
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
   const hashtags = tags.split(" ");
@@ -16,10 +19,23 @@ const ExplorePage = () => {
     );
   });
 
+  const getData = async () => {
+    const res = await fetchData("/fyp/all-contents");
+    if (res.ok) {
+      setContentData(res.data);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log('res.data', res.data);
+    }
+  };
+
   // fetch collection, and return contentBlock
-  const contentBlocks = testImgs.map((content, index) => {
+  // update with the state that the data is fetched and stored in
+  const contentBlocks = contentData.map((content, index) => {
     return (
-      <figure key={index}>
+      <figure key={index} onClick={() => {
+        console.log("hi")
+      }}>
         <div className={styles.imgDisplay}>
           <img src={content.contentPhoto}></img>
         </div>
@@ -45,6 +61,11 @@ const ExplorePage = () => {
       </figure>
     ); // need to hid the detailDiv, only show on hover and also make the position relative to the imgDiv
   });
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <div className={styles.quickFilter}>
