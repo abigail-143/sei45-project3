@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import ExplorePage from "./components/ExplorePage";
 import UserPage from "./components/UserPage";
+import SubmitContent from "./components/submitContent/SubmitContent"
 
 function App() {
   // const [showRegister, setShowRegister] = useState(false);
@@ -10,7 +11,7 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [showExplorePage, setShowExplorePage] = useState(false);
   const [showUserPage, setShowUserPage] = useState(true);
-  // const [showSubmitContent, setShowSubmisContent] = useState(false);
+  const [showSubmitContent, setShowSubmisContent] = useState(false);
   return (
     <>
       <Header
@@ -25,7 +26,7 @@ function App() {
       {/* {showRegister && <Register></Register>} */}
       {showExplorePage && <ExplorePage></ExplorePage>}
       {showUserPage && <UserPage></UserPage>}
-      {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
+      {showSubmitContent && <SubmitContent></SubmitContent>}
     </>
   );
 }
