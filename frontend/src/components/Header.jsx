@@ -62,7 +62,7 @@ const Header = (props) => {
             className={styles.appLogo}
             onClick={() => {
               console.log("hi");
-              handleClickExplore;
+              handleClickExplore();
               console.log("bye");
             }}
           ></img>
