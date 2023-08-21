@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
@@ -29,11 +30,26 @@ function App() {
       {/* rmb to remove `!showLogin`*/}
       {showUserPage && <UserPage></UserPage>}
       {showSubmitContent && <SubmitContent></SubmitContent>}
+=======
+import React from "react";
+import "./App.css";
+import SubmitContent from "./components/submitContent/SubmitContent";
+import ContentModal from "./components/contentOverlay/ContentModal";
+import Headers from "./components/temp/Headers";
+
+function App() {
+  return (
+    <>
+
+<SubmitContent></SubmitContent>
+
+>>>>>>> Stashed changes
     </>
   );
 }
 
 export default App;
+<<<<<<< Updated upstream
 
 // <Header />
 // <WelcomePage />
@@ -42,3 +58,5 @@ export default App;
 // <ExplorePage /> >> <ExploreContentDisplay />
 // <UserPage /> >> <UserContentDisplay />
 // <SubmitContent />
+=======
+>>>>>>> Stashed changes

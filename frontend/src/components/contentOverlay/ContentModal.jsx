@@ -76,83 +76,81 @@ const ContentModal = (props) => {
   };
 
   const addComment = async (e, id) => {
-    if (e.key === "Enter"){
-    const res = await fetchData("/beer/newComment/" + id, "PUT", {
-      comment: commentRef.current.vlue,
-    });
-    if (res.ok) {
-      getComment();
-    } else {
-      alert(JSON.stringify(res.data));
-      console.log(res.data);
+    if (e.key === "Enter") {
+      const res = await fetchData("/beer/newComment/" + id, "PUT", {
+        comment: commentRef.current.vlue,
+      });
+      if (res.ok) {
+        getComment();
+      } else {
+        alert(JSON.stringify(res.data));
+        console.log(res.data);
+      }
     }
-  }};
+  };
 
   return (
-    <div className={styles.backdrop}>
-      <div className="row">
-        {/* need to add setShowModal to onClick  */}
-        <img src="../picture/Arrow 1.jpg" id="arrow" className="col-md-2" onClick/>
-        <p className="col-md-3" id="foryou">For You</p>
-      </div>
-      <div className={styles.modal}>
-        <div className="row">
-          <div className="col-md-5">
-            {/* get the correct data for content photo */}
-            <div className={styles.contentPhoto}>{content.contentPhoto}</div>
-          </div>
-          <div className="col-md-7">
-            <div className="container">
+    <>
+      <div className={styles.backdrop}>
+        <div className={styles.modal}>
+          <div className="row">
+            <div className="col-md-5">
+              {/* get the correct data for content photo */}
+              <div className={styles.contentPhoto}>{content.contentPhoto}</div>
+            </div>
+            <div className="col-md-7">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-2">
+                    {/* get the correct data for profile photo */}
+                    <p id="profilePhoto">{user.profilePhoto}</p>
+                  </div>
+                  <div className="col-md-8" id="username">
+                    {user.username}
+                  </div>
+                </div>
+              </div>
               <div className="row">
-                <div className="col-md-2">
-                  {/* get the correct data for profile photo */}
-                  <p id="profilePhoto">{user.profilePhoto}</p>
-                </div>
-                <div className="col-md-8" id="username">
-                  {user.username}
-                </div>
+                <p className="drinkName">{content.drinkName}</p>
+                <p className="shopName">{content.shopName}</p>
+                <p id="contentReview" className="col-md-11">
+                  {content.contentReview}
+                </p>
+                <p className="contentTag">{content.contentTag}</p>
               </div>
-            </div>
-            <div className="row">
-              <p className="drinkName">{content.drinkName}</p>
-              <p className="shopName">{content.shopName}</p>
-              <p id="contentReview" className="col-md-11">
-                {content.contentReview}
-              </p>
-              <p className="contentTag">{content.contentTag}</p>
-            </div>
-            <div className="row">
-              <p className="comment">{numComment} Comments</p>
-              {comment.map((item) => {
-                return (
-                  <Comment
-                    key={item._id}
-                    id={item._id}
-                    comment={item.comment}
-                    getComment={getComment}
-                  ></Comment>
-                );
-              })}
-            </div>
-            <br />
-            <div className="row">
-              <div className="col-md-4" id="photo">
-                {user.profilePhoto}
+              <div className="row">
+                <p className="comment">{numComment} Comments</p>
+                {comment.map((item) => {
+                  return (
+                    <Comment
+                      key={item._id}
+                      id={item._id}
+                      comment={item.comment}
+                      getComment={getComment}
+                    ></Comment>
+                  );
+                })}
               </div>
-              <input
-                type="text"
-                className="col-md-7"
-                id="addComment"
-                ref={commentRef}
-                placeholder="comment"
-                onKeyDown={addComment}
-              ></input>
-              <img src="../picture/Favorite.jpg" className={styles.heart} />
+              <br />
+              <div className="row">
+                <div className="col-md-4" id="photo">
+                  {user.profilePhoto}
+                </div>
+                <input
+                  type="text"
+                  className="col-md-7"
+                  id="addComment"
+                  ref={commentRef}
+                  placeholder="comment"
+                  onKeyDown={addComment}
+                ></input>
+                <img src="../picture/Favorite.jpg" className={styles.heart} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
