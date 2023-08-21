@@ -3,32 +3,67 @@ body {
   background-color: whitesmoke;
 }
 
-.container {
-  background-color: pink;
-  width: 270px;
-  height: auto;
-}
+/* Masonry MUI Layout */
 
-.content {
+.contentBlock {
   background-color: blue;
-  width: 270px;
   height: auto;
-  position: absolute;
+  position: relative;
+  margin: 10px 8px !important;
+  z-index: 1;
 }
 
 .content > img {
   width: 100%;
-  height: 100%;
+  border-radius: 20px;
 }
 
 .overlay {
-  background-color: purple;
-  height: auto;
-  position: relative;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
   top: 0;
+  height: 100% !important ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-.overlay > img {
+.src {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.heartImg {
   width: 50px;
   height: 50px;
+  filter: invert(1);
 }
+
+.content {
+  z-index: 20;
+}
+
+.contentHover {
+  z-index: 10;
+}
+
+.overlayHover {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  height: 100% !important ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+/* Masonry MUI Layout */
