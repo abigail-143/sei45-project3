@@ -78,11 +78,11 @@ const seedContents = async (req, res) => {
 
     for (let uniqueUser of uniqueUsers) {
       const user = await UserModel.findById({ _id: uniqueUser });
+
       user.createdContent = [];
 
       for (let content of contents) {
         if (uniqueUser === content.userId) {
-          console.log(content);
           user.createdContent.push(content);
         }
       }

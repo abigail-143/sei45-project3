@@ -1,7 +1,7 @@
 const useFetch = () => {
   const fetchData = async (endpoint, method, body, token) => {
     const res = await fetch(import.meta.env.VITE_SERVER + endpoint, {
-      // pls edit `SERVER` to suit your .env file
+
       method,
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const useFetch = () => {
         returnValue = { ok: false, data: "An error has occurred" };
       }
     }
-
+    console.log(returnValue);
     return returnValue;
   };
 

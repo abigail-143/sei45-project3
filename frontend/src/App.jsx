@@ -4,15 +4,16 @@ import Header from "./components/Header";
 import ExplorePage from "./components/ExplorePage";
 import UserPage from "./components/UserPage";
 import Landing from "./components/Landing";
-import Login from "./components/authenticationOverlay/LoginModal";
+import LoginModal from "./components/authenticationOverlay/LoginModal";
+import RegisterModal from "./components/authenticationOverlay/RegisterModal";
+import AuthContext from "./components/context/auth";
 
 function App() {
-  // const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [accessToken, setAccessToken] = useState("");
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [showExplorePage, setShowExplorePage] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [showExplorePage, setShowExplorePage] = useState(false);
   const [showUserPage, setShowUserPage] = useState(false);
   // const [showSubmitContent, setShowSubmisContent] = useState(false);
 
@@ -23,24 +24,44 @@ function App() {
   }
   return (
     <>
-      <Header
-        showWelcome={showWelcome}
-        showLogin={showLogin}
-        setShowLogin={setShowLogin}
-        showRegister={showRegister}
-        setShowRegister={setShowRegister}
-        showUserPage={showUserPage}
-        showExplorePage={showExplorePage}
-        setShowExplorePage={setShowExplorePage}
-        setShowUserPage={setShowUserPage}
-      ></Header>
-      {showWelcome && <Landing style={{ overflow: "hidden" }}></Landing>}
-      {showLogin && <Login></Login>}
-      {/* {showRegister && <Register></Register>} */}
-      {showExplorePage && !showLogin && <ExplorePage></ExplorePage>}
-      {/* rmb to remove `!showLogin`*/}
-      {showUserPage && <UserPage></UserPage>}
-      {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
+      <AuthContext.Provider value={{ accessToken, setAccessToken }}>
+        <Header
+          showWelcome={showWelcome}
+          showLogin={showLogin}
+          setShowLogin={setShowLogin}
+          showRegister={showRegister}
+          setShowRegister={setShowRegister}
+          showUserPage={showUserPage}
+          showExplorePage={showExplorePage}
+          setShowExplorePage={setShowExplorePage}
+          setShowUserPage={setShowUserPage}
+        ></Header>
+        {showWelcome && (
+          <Landing
+            style={{ overflow: "hidden" }}
+            showLogin={showLogin}
+          ></Landing>
+        )}
+        {showLogin && (
+          <LoginModal
+            setShowLogin={setShowLogin}
+            setShowWelcome={setShowWelcome}
+            setShowExplorePage={setShowExplorePage}
+          ></LoginModal>
+        )}
+        {showRegister && (
+          <RegisterModal
+            setShowRegister={setShowRegister}
+            setShowWelcome={setShowWelcome}
+            setShowExplorePage={setShowExplorePage}
+          ></RegisterModal>
+        )}
+        {/* {showRegister && <Register></Register>} */}
+        {showExplorePage && <ExplorePage></ExplorePage>}
+
+        {showUserPage && <UserPage></UserPage>}
+        {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
+      </AuthContext.Provider>
     </>
   );
 }

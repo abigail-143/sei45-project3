@@ -5,29 +5,32 @@ import jwtDecode from "jwt-decode";
 import useFetch from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
 
-const LoginOverlay = (props) => {
+const RegisterOverlay = (props) => {
   const auth = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
+  const usernameRef = useRef("");
+  const pwdRef = useRef("");
   const fetchData = useFetch();
 
   // function to deal with the login button in modal
-  const loginClick = async () => {
-    const res = await fetchData("/landing/login", "POST", {
+  const RegisterClick = async () => {
+    const res = await fetchData("/landing/register", "PUT", {
       username,
       password,
     });
     if (res.ok) {
       console.log(res);
       auth.setAccessToken(res.data.access);
-      props.setShowLogin(false);
+      props.setShowRegister(false);
       props.setShowWelcome(false);
       props.setShowExplorePage(true);
-      // test this
+
       const decode = jwtDecode(res.data.access);
     } else {
+      console.log(res.data);
       setError1(res.data[0]);
       setError2(res.data[2]);
     }
@@ -38,7 +41,7 @@ const LoginOverlay = (props) => {
         <button
           className={styles.closeButton}
           onClick={() => {
-            props.setShowLogin(false);
+            props.setShowRegister(false);
           }}
         >
           <img src="../../picture/Dell.jpg" />
@@ -49,6 +52,7 @@ const LoginOverlay = (props) => {
           <div>
             <div>Username:</div>
             <input
+              ref={usernameRef}
               type="text"
               onChange={(e) => setUsername(e.target.value)}
             ></input>
@@ -61,6 +65,7 @@ const LoginOverlay = (props) => {
           <div>
             <div>Password:</div>
             <input
+              ref={pwdRef}
               type="text"
               onChange={(e) => setPassword(e.target.value)}
             ></input>
@@ -74,10 +79,10 @@ const LoginOverlay = (props) => {
           <br />
           <button
             onClick={() => {
-              loginClick();
+              RegisterClick();
             }}
           >
-            Log In
+            Register
           </button>
         </div>
       </div>
@@ -85,19 +90,19 @@ const LoginOverlay = (props) => {
   );
 };
 
-const LoginModal = (props) => {
+const RegisterModal = (props) => {
   return (
     <>
       {ReactDOM.createPortal(
-        <LoginOverlay
-          setShowLogin={props.setShowLogin}
+        <RegisterOverlay
+          setShowRegister={props.setShowRegister}
           setShowExplorePage={props.setShowExplorePage}
           setShowWelcome={props.setShowWelcome}
-        ></LoginOverlay>,
+        ></RegisterOverlay>,
         document.querySelector("#auth-root")
       )}
     </>
   );
 };
 
-export default LoginModal;
+export default RegisterModal;
