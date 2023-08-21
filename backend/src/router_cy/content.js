@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const uploadCheck = require('../middleware/uploadCheck')
+// const uploadCheck = require('../middleware/')
 const {
   getContent,
   createNewContent,
@@ -15,7 +15,9 @@ const {
   getAllComment,
   getParticularComment,
   updateProfile,
-  favouriteContent,
+  singleContent,
+  addFavouriteContent,
+  allFavouriteContent,
   // uploadImage,
   // getImage,
 } = require("../controllers/content");
@@ -53,9 +55,14 @@ router.post("/getParticularComment/:id", getParticularComment);
 // update user profile
 router.patch("/updateProfile", updateProfile);
 
-// add favourite content
-router.patch("/addFavourite", favouriteContent);
+// add contentId into user model likedContent
+router.patch("/addFavourite/:id", addFavouriteContent);
 
+// get individual content
+router.post("/singleContent", singleContent);
+
+// get out data that user's favourite content
+router.get("/allFavourite", allFavouriteContent);
 
 // ==============ignore============================
 
@@ -64,7 +71,7 @@ router.patch("/addFavourite", favouriteContent);
 // router.get("/images", getImage);
 
 // //
-// router.put("/user", createAccount);
-// router.get("/alluser", getUser);
+router.put("/user", createAccount);
+router.post("/getuser", getUser);
 
 module.exports = router;
