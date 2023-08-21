@@ -45,8 +45,9 @@ const seedComments = async (req, res) => {
 // create new comment
 const newComment = async (req, res) => {
   try {
-    await ContentModel.findById(req.params.id);
+    const content = await ContentModel.findById(req.params.id);
 
+    console.log(content);
     const comment = new CommentModel({
       comment: req.body.comment,
       userId: req.user_id,
@@ -54,7 +55,7 @@ const newComment = async (req, res) => {
     });
 
     await comment.save();
-
+    console.log(comment);
     res.json(comment);
   } catch (error) {
     console.log(error.message);

@@ -16,8 +16,8 @@ const createNewContent = async (req, res) => {
       contentTag: req.body.contentTag,
       comments: req.body.comments,
       likeCount: req.body.likeCount,
-      userId: req.params.id,// chceck user id 
-      userID: userId._id,//
+      userId: req.params.id, // chceck user id
+      userID: userId._id, //
     });
 
     await content.save();
@@ -59,8 +59,6 @@ const getContent = async (req, res) => {
   }
 };
 
-
-
 //get all the user's content
 const getAllUserContent = async (req, res) => {
   try {
@@ -84,15 +82,16 @@ const updateContent = async (req, res) => {
 //get particular content
 const singleContent = async (req, res) => {
   try {
-    const content = await ContentModel.findById(req.body.id);
-    res.json(content);
+    const content = await ContentModel.findById(req.params.id);
+    const user = await UserModel.findById(req.user_id);
+    console.log(user);
+    console.log(content);
+    res.json({ user, content });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
   }
 };
-
-
 
 const createAccount = async (req, res) => {
   try {
@@ -112,15 +111,13 @@ const createAccount = async (req, res) => {
 //get prticular detail
 const getUser = async (req, res) => {
   try {
-    const user = await UserModel.findOne({ username: req.body.username });
+    const user = await UserModel.findById(req.user_id);
     res.json(user);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
   }
 };
-
-
 
 // get comment that attach with particular content
 const getParticularComment = async (req, res) => {
@@ -154,7 +151,9 @@ const addFavouriteContent = async (req, res) => {
 // get all the favourite content
 const allFavouriteContent = async (req, res) => {
   try {
-    const content = await ContentModel.find({likedUsers: {$elemMatch: req.user_id}})
+    const content = await ContentModel.find({
+      likedUsers: { $elemMatch: req.user_id },
+    });
     // const user = await UserModel.findById(req.params.id);
 
     // const likedContent = user.likedContent;
@@ -162,7 +161,7 @@ const allFavouriteContent = async (req, res) => {
     //   const displayContent = await ContentModel.findById(content);
     //   res.json(displayContent);
     // }
-    res.json(content)
+    res.json(content);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -232,5 +231,5 @@ module.exports = {
   addFavouriteContent,
   singleContent,
   allFavouriteContent,
+  getUser
 };
-
