@@ -5,6 +5,7 @@ const {
   deleteComment,
   updateComment,
   getAllComment,
+  seedComments,
 } = require("../controllers/comment");
 
 //create new comment by owner user or other user
@@ -18,5 +19,7 @@ router.patch("/userUpdateComment/:id", updateComment);
 
 //get out all the comment from comment collection
 router.get("/getAllComment", getAllComment);
+
+router.get("/seed", seedComments);
 
 module.exports = router;
