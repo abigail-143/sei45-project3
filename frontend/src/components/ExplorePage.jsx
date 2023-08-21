@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MasonryPkg from "react-responsive-masonry";
 import Masonry from "@mui/lab/Masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
@@ -7,6 +8,7 @@ import useFetch from "./custom_hooks/useFetch";
 const ExplorePage = () => {
   const [hide, setHide] = useState(true);
   const [contentData, setContentData] = useState([]);
+  const [hover, setHover] = useState(false);
   const fetchData = useFetch();
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
@@ -18,6 +20,10 @@ const ExplorePage = () => {
       </li>
     );
   });
+
+  const handleMouseOver = () => {
+    setHover(true);
+  };
 
   const getData = async () => {
     const res = await fetchData("/fyp/all-contents");
@@ -75,18 +81,29 @@ const ExplorePage = () => {
         <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>
       <section className={styles.explore}>
-        <Masonry columns={4} spacing={2}>
-          {/* {contentBlocks} */}
-          <div className="container">
-            <div className="content">
-              <img src="https://images.unsplash.com/photo-1600111765736-9c59f7afe9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"></img>
+        {/* <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
+          <div className="contentBlock">
+            <div className={hover ? "contentHover" : "content"}>
+              <img
+                src={`${"https://images.unsplash.com/photo-1600111765736-9c59f7afe9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"}`}
+                className="contentImg"
+              ></img>
             </div>
-            <div className="overlay">
-              <a>@username</a>
-              <img src="/heart.png"></img>
+            <div className={hover ? "overlay" : "overlayHover"}>
+              <a className="src">@username</a>
+              <img
+                src="/heart.png"
+                className="heartImg"
+                onClick={() => {
+                  console.log("hi");
+                }}
+              ></img>
             </div>
           </div>
-        </Masonry>
+        </Masonry> */}
+        <MasonryPkg columnsCount={4} gutter="10px">
+          {contentBlocks}
+        </MasonryPkg>
       </section>
     </>
   );
