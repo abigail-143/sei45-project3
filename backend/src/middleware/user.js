@@ -11,6 +11,7 @@ const auth = (req, res, next) => {
   // const token = req.headers["authorization"].replace("Bearer ", testToken);
   const token = testToken;
 
+
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
@@ -18,6 +19,8 @@ const auth = (req, res, next) => {
       req.user_id = decoded.user_id;
       // may be useful for the for you page if we want to render a `Hi ${username}!` kind of stuff
       req.username = decoded.username;
+      req.profilePhoto = decoded.profilePhoto;
+      req.likedContent = decoded.likedContent;
       next();
     } catch (error) {
       return res.status(401).json({ status: error, msg: "unauthorised" });
