@@ -6,10 +6,6 @@ const {
   deleteContent,
   updateContent,
   getAllUserContent,
-  newComment,
-  deleteComment,
-  updateComment,
-  getAllComment,
   getParticularComment,
   updateProfile,
   singleContent,
@@ -33,18 +29,6 @@ router.patch("/updateContent/:id", updateContent);
 
 //get out all the content inside content collection
 router.get("/getAllUserContent", getAllUserContent);
-
-//create new comment by owner user or other user
-router.put("/newComment/:id", newComment);
-
-//delelte user comment
-router.delete("/deleteComment/:id", deleteComment);
-
-//edit user comment
-router.patch("/userUpdateComment/:id", updateComment);
-
-//get out all the comment from comment collection
-router.get("/getAllComment", getAllComment);
 
 // get the particulr content's comment
 router.post("/getParticularComment/:id", getParticularComment);

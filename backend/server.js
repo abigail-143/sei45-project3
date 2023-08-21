@@ -11,6 +11,7 @@ connectDB();
 const auth = require("./src/routers_hou/user");
 const content = require("./src/router_cy/content");
 const forYouPage = require("./src/routers-abi/forYouPage");
+const comment = require('./src/router_cy/comment')
 
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -30,6 +31,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/landing", auth);
 app.use("/beer", content);
 app.use("/fyp", forYouPage);
+app.use("/beer/comment", comment);
+
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
