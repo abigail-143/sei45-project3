@@ -4,11 +4,11 @@ import Header from "./components/Header";
 import ExplorePage from "./components/ExplorePage";
 import UserPage from "./components/UserPage";
 import Landing from "./components/Landing";
-import Login from "./components/authenticationOverlay/LoginModal";
+import LoginModal from "./components/authenticationOverlay/LoginModal";
+import RegisterModal from "./components/authenticationOverlay/RegisterModal";
 import AuthContext from "./components/context/auth";
 
 function App() {
-  // const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [accessToken, setAccessToken] = useState("");
@@ -43,14 +43,22 @@ function App() {
           ></Landing>
         )}
         {showLogin && (
-          <Login
+          <LoginModal
             setShowLogin={setShowLogin}
+            setShowWelcome={setShowWelcome}
+            setShowExplorePage={setShowExplorePage}
+          ></LoginModal>
+        )}
+        {showRegister && (
+          <RegisterModal
             setShowRegister={setShowRegister}
-          ></Login>
+            setShowWelcome={setShowWelcome}
+            setShowExplorePage={setShowExplorePage}
+          ></RegisterModal>
         )}
         {/* {showRegister && <Register></Register>} */}
-        {showExplorePage && !showLogin && <ExplorePage></ExplorePage>}
-        {/* rmb to remove `!showLogin`*/}
+        {showExplorePage && <ExplorePage></ExplorePage>}
+
         {showUserPage && <UserPage></UserPage>}
         {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
       </AuthContext.Provider>
