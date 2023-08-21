@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Masonry from "react-responsive-masonry";
+import Masonry from "@mui/lab/Masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
@@ -7,7 +7,7 @@ import useFetch from "./custom_hooks/useFetch";
 const ExplorePage = () => {
   const [hide, setHide] = useState(true);
   const [contentData, setContentData] = useState([]);
-  const fetchData = useFetch()
+  const fetchData = useFetch();
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
   const hashtags = tags.split(" ");
@@ -25,7 +25,7 @@ const ExplorePage = () => {
       setContentData(res.data);
     } else {
       alert(JSON.stringify(res.data));
-      console.log('res.data', res.data);
+      console.log("res.data", res.data);
     }
   };
 
@@ -33,9 +33,12 @@ const ExplorePage = () => {
   // update with the state that the data is fetched and stored in
   const contentBlocks = contentData.map((content, index) => {
     return (
-      <figure key={index} onClick={() => {
-        console.log("hi")
-      }}>
+      <figure
+        key={index}
+        onClick={() => {
+          console.log("hi");
+        }}
+      >
         <div className={styles.imgDisplay}>
           <img src={content.contentPhoto}></img>
         </div>
@@ -72,8 +75,17 @@ const ExplorePage = () => {
         <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>
       <section className={styles.explore}>
-        <Masonry columnsCount={4} gutter="10px">
-          {contentBlocks}
+        <Masonry columns={4} spacing={2}>
+          {/* {contentBlocks} */}
+          <div className="container">
+            <div className="content">
+              <img src="https://images.unsplash.com/photo-1600111765736-9c59f7afe9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"></img>
+            </div>
+            <div className="overlay">
+              <a>@username</a>
+              <img src="/heart.png"></img>
+            </div>
+          </div>
         </Masonry>
       </section>
     </>
