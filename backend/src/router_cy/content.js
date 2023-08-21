@@ -44,7 +44,7 @@ router.patch("/updateProfile", updateProfile);
 router.patch("/addFavourite/:id", addFavouriteContent);
 
 // get individual content
-router.post("/singleContent/:id",auth, singleContent);
+router.post("/singleContent/:id", singleContent);
 
 // get out data that user's favourite content
 router.get("/allFavourite", allFavouriteContent);

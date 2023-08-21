@@ -11,7 +11,7 @@ const { auth } = require("../middleware/user");
 const { getUser } = require("../controllers/content");
 
 //create new comment by owner user or other user
-router.put("/newComment/:id",auth ,newComment);
+router.put("/newComment/:id",newComment);
 
 //delelte user comment
 router.delete("/deleteComment/:id", deleteComment);
