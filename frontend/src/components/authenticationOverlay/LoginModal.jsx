@@ -2,25 +2,28 @@ import React, { useContext, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import AuthContext from "../context/auth";
 import jwtDecode from "jwt-decode";
-import fetchData from "../custom_hooks/useFetch";
+import useFetch from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
 
-const LoginOverlay = () => {
+const LoginOverlay = (props) => {
   const auth = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const usernameRef = useRef("");
   const pwdRef = useRef("");
+  const fetchData = useFetch();
 
   // function to deal with the login button in modal
-  const loginClick = async (props) => {
+  const loginClick = async () => {
     const res = await fetchData("/landing/login", "POST", {
       username,
       password,
     });
     if (res.ok) {
+      console.log(res);
       auth.setAccessToken(res.data.access);
       const decode = jwtDecode(res.data.access);
+      props.setShowLogin(false);
     } else {
       alert(res.data);
     }
