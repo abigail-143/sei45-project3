@@ -4,7 +4,10 @@ import testImgs from "./testImgArray";
 import styles from "./Landing.module.css";
 
 const Landing = (props) => {
+  
+
   // fetch collection, and return contentBlock
+
   const contentBlocks = testImgs.map((content, index) => {
     return (
       <figure key={index}>
@@ -45,22 +48,24 @@ const Landing = (props) => {
   );
   return (
     <>
-      <div className={styles.titleParent}>
-        <div className={styles.title} style={{ textAlign: "center" }}>
-          Find your next
-          <br />
-          <span className={styles.appName}>Better Time, Beer Time</span>
+      <div id={styles.landing}>
+        <div className={styles.titleParent}>
+          <div className={styles.title} style={{ textAlign: "center" }}>
+            Find your next
+            <br />
+            <span className={styles.appName}>Better Time, Beer Time</span>
+          </div>
         </div>
+        <section className={styles.explore}>
+          <Masonry columnsCount={5} gutter="10px" alignItems="center">
+            {contentBlock1}
+            {contentBlock2}
+            {contentBlock3}
+            {contentBlock4}
+            {contentBlock5}
+          </Masonry>
+        </section>
       </div>
-      <section className={styles.explore}>
-        <Masonry columnsCount={5} gutter="10px" alignItems="center">
-          {contentBlock1}
-          {contentBlock2}
-          {contentBlock3}
-          {contentBlock4}
-          {contentBlock5}
-        </Masonry>
-      </section>
     </>
   );
 };
