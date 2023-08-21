@@ -3,11 +3,12 @@ import styles from "./submitContent.module.css";
 // import "./SubmitContent.css";
 
 const SubmitContent = (props) => {
-  const [post, setPost] = useState();
+  const [image, setImage] = useState({contentPhoto: ""});
   const drinkNameRef = useRef();
   const shopNameRef = useRef();
   const reviewRef = useRef();
   const contentTagRef = useRef();
+  const [showImage, setShowImage] =useState(true)
   //   const fetchData = useFetch();
 
   //should get user detail from the start and useContext send to here
@@ -66,6 +67,7 @@ const SubmitContent = (props) => {
 
   // convert file into base64 and standby for upload
   const handleFileUpload = async (e) => {
+    setShowImage(false)
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     setImage({ ...image, contentPhoto: base64 });
@@ -74,7 +76,7 @@ const SubmitContent = (props) => {
   // upload to data based and keep at state
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(image);
+    publishNewPost(image);
     console.log(image);
   };
 
@@ -93,23 +95,21 @@ const SubmitContent = (props) => {
             <div className="col-md-5">
               <form onSubmit={handleSubmit}>
                 <label htmlFor="file-upload">
-                  {/* <img src={image.contentPhoto} alt="" /> */}
+                  {showImage && <img src={"../picture/upload-image-icon (1).png"} className={styles.uploadphoto} alt="" />}
+                  <img src={image.contentPhoto} className={styles.contentphoto}/>
                 </label>
                 <input
                   type="file"
                   label="Image"
                   name="contentPhoto"
+                  className={styles.upload}
                   id="file-upload"
                   accept=".jpeg, .png, .jpg"
                   onChange={(e) => handleFileUpload(e)}
                 ></input>
-
-                <button type="submit">submit</button>
               </form>
 
-              {/* <img src={image.contentPhoto} alt="" /> */}
 
-              <div className={styles.photo}>displayPhoto</div>
             </div>
             <div className="col-md-7">
               <div className="container">
