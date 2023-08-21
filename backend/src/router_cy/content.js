@@ -51,8 +51,6 @@ router.get("/allFavourite", allFavouriteContent);
 
 // router.get("/images", getImage);
 
-// //
-// router.put("/user", createAccount);
-// router.post("/getuser", getUser);
+
 
 module.exports = router;

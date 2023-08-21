@@ -29,3 +29,28 @@
     background-color :lightgray 50% ;
     margin: 7% 18%;
   }
+
+  .inputBox {
+    width: 80%;
+    height: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(51, 54, 63, 0.7);
+    background: rgba(217, 217, 217, 0.5);
+  }
+
+  .textBox {
+    width: 80%;
+    height: 6rem;
+    border-radius: 15px;
+    border: 1px solid rgba(51, 54, 63, 0.7);
+    background: rgba(217, 217, 217, 0.5);
+  }
+
+  .button {
+    width: 103px;
+    height: 32px;
+    border-radius: 30px;
+    background: #a4907c;
+    position: relative;
+    left: 60%;
+  }

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import styles from "./contentOverlayModal.module.css";
 import Comment from "./Comment";
 import "./content.css";
+// import useFetch from "./"
 
 const ContentModal = (props) => {
   //   const [user, setUser] = useState("");
@@ -77,7 +78,7 @@ const ContentModal = (props) => {
 
   const addComment = async (e, id) => {
     if (e.key === "Enter") {
-      const res = await fetchData("/beer/newComment/" + id, "PUT", {
+      const res = await fetchData("/beer/comment/newComment/" + id, "PUT", {
         comment: commentRef.current.vlue,
       });
       if (res.ok) {
@@ -105,7 +106,7 @@ const ContentModal = (props) => {
                     {/* get the correct data for profile photo */}
                     <p id="profilePhoto">{user.profilePhoto}</p>
                   </div>
-                  <div className="col-md-8" id="username">
+                  <div className={`col-md-8 ${styles.username}`}>
                     {user.username}
                   </div>
                 </div>

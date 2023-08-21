@@ -32,7 +32,7 @@ function App() {
       {showExplorePage && !showLogin && <ExplorePage></ExplorePage>}
       {/* rmb to remove `!showLogin`*/}
       {showUserPage && <UserPage></UserPage>}
-      {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
+      {showSubmitContent && <SubmitContent></SubmitContent>}
     </>
   );
 }
