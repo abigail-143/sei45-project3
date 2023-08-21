@@ -80,6 +80,7 @@ const UserPage = () => {
           }
           onClick={() => {
             setShowCreated(false);
+            console.log("hi")
           }}
         >
           Favourites
