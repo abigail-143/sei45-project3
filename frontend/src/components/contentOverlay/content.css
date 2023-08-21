@@ -84,9 +84,8 @@
   fill: #8d7b68;
   stroke-width: 4px;
   stroke: #8d7b68;
-  position: relative;
-  padding-top: 10%;
-  left: 1%;
+  position: absolute;
+  top: 30%;
 }
 
 #foryou {
@@ -96,7 +95,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  position: relative;
-  padding-top: 10.2%;
-
+  position: absolute;
+  top: 29%;
+  left: 3%;
 }
