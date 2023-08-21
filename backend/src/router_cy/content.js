@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
-// const uploadCheck = require('../middleware/')
 const {
   getContent,
   createNewContent,
   deleteContent,
-  createAccount,
-  getUser,
   updateContent,
   getAllUserContent,
   newComment,

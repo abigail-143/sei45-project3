@@ -5,7 +5,6 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const connectDB = require("./src/database/database");
-const forYouPage = require("./src/routers-abi/forYouPage");
 
 connectDB();
 

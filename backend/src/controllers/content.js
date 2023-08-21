@@ -11,7 +11,7 @@ var path = require("path");
 // create new content
 const createNewContent = async (req, res) => {
   try {
-    const user = await UserModel.findById(req.params.id);
+    const userId = await UserModel.findById(req.params.id);
 
     const content = new ContentModel({
       contentPhoto: req.body.contentPhoto,
@@ -21,11 +21,15 @@ const createNewContent = async (req, res) => {
       contentTag: req.body.contentTag,
       comments: req.body.comments,
       likeCount: req.body.likeCount,
-      userId: req.params.id,
+      userId: req.params.id,// chceck user id 
+      userID: userId._id,//
     });
-    await content.save();
 
-    res.json(content);
+    await content.save();
+    userId.createdContent.push(content);
+    await userId.save();
+    // res.json(content);
+    res.json(userId);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -36,6 +40,11 @@ const createNewContent = async (req, res) => {
 const deleteContent = async (req, res) => {
   try {
     await ContentModel.findByIdAndDelete(req.params.id);
+
+    await UserModel.updateOne(
+      {},
+      { $pull: { createdContent: { _id: req.params.id } } }
+    );
 
     res.json({ status: "ok", msg: "Content deleted" });
   } catch (error) {
@@ -89,16 +98,6 @@ const getAllUserContent = async (req, res) => {
 //update user's content
 const updateContent = async (req, res) => {
   try {
-    await ContentModel.findByIdAndUpdate(req.params.id, {
-      contentPhoto: req.body.contentPhoto,
-      drinkName: req.body.drinkName,
-      shopName: req.body.shopName,
-      contentReview: req.body.contentReview,
-      contentTag: req.body.contentTag,
-      likeCount: req.body.likeCount,
-    });
-
-    res.json({ status: "ok" });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
@@ -281,8 +280,6 @@ module.exports = {
   getContent,
   createNewContent,
   deleteContent,
-  createAccount,
-  getUser,
   updateContent,
   getAllUserContent,
   newComment,

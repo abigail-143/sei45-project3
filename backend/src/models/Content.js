@@ -8,9 +8,9 @@ const ContentsSchema = new mongoose.Schema(
     shopName: { type: String, maxLength: 30 },
     contentReview: { type: String, maxLength: 200 },
     contentTag: { type: String, maxLength: 30 },
-    likeCount: { type: Number },
-    likedUsers: {type: [mongoose.Types.ObjectId]},
     userId: { type: mongoose.Types.ObjectId, ref: "User._id" },
+    likedUsersId: { type: Array }, // user _ids
+    comments: { type: Array }, // comment _ids
   },
   { collection: "Content" }
 );
