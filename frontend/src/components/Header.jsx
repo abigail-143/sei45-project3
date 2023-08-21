@@ -5,6 +5,21 @@ import React from "react";
 import styles from "./Header.module.css";
 
 const Header = (props) => {
+  const handleClickExplore = () => {
+    if (props.showUserPage) {
+      props.setShowUserPage(false);
+      props.setShowExplorePage(true);
+      console.log("handleClickExplore");
+    }
+  };
+
+  const handleClickUser = () => {
+    if (props.showExplorePage) {
+      props.setShowExplorePage(false);
+      props.setShowUserPage(true);
+      console.log("handleClickUser");
+    }
+  };
   return (
     <>
       {props.showWelcome && (
@@ -45,8 +60,13 @@ const Header = (props) => {
             width="50"
             height="50"
             className={styles.appLogo}
+            onClick={() => {
+              console.log("hi");
+              handleClickExplore;
+              console.log("bye");
+            }}
           ></img>
-          <div className={styles.appName}>
+          <div className={styles.appName} onClick={handleClickExplore}>
             <p>Better Time, Beer Time</p>
           </div>
           <input className={styles.searchBar} placeholder="hello"></input>
@@ -61,6 +81,7 @@ const Header = (props) => {
             width="40"
             height="40"
             className={styles.profilePic}
+            onClick={handleClickUser}
           ></img>
         </div>
       )}
