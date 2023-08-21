@@ -9,6 +9,7 @@ const useFetch = () => {
       },
       body: JSON.stringify(body),
     });
+    console.log(res)
     const data = await res.json();
 
     let returnValue = {};

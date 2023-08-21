@@ -8,7 +8,9 @@ const auth = (req, res, next) => {
   const testToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIzIiwidXNlcl9pZCI6IjY0ZGVlN2Q3ZTcxMzUyN2FlZThjNzViZSIsImlhdCI6MTY5MjU5OTg0OSwiZXhwIjoxNjk1MTkxODQ5LCJqdGkiOiI4OTRiNWZiOC1mZjFlLTRhMmUtYWQ5Ny0wZTc4NWM2NmU2YzcifQ.e9HR6dHnMYBLt0haspdH1sM2EzP2KKfEkZLti2_CYyo";
 
-  const token = req.headers["authorization"].replace("Bearer ", testToken);
+  // const token = req.headers["authorization"].replace("Bearer ", testToken);
+  const token = testToken;
+
 
   if (token) {
     try {
