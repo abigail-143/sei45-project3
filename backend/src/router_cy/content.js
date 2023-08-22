@@ -45,7 +45,7 @@ router.patch("/addFavourite/:id", addFavouriteContent);
 router.post("/singleContent/:id", singleContent);
 
 // get out data that user's favourite content
-router.get("/allFavourite", allFavouriteContent);
+router.get("/allFavourite/:id", allFavouriteContent);
 
 // ==============ignore============================
 
