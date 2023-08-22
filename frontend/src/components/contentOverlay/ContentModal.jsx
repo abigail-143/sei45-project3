@@ -147,7 +147,7 @@ const ContentModal = (props) => {
           props.setShowContentOverlay(false);
         }}
       >
-        <img src="/arrow.png"></img>
+        <img src="/left-chevron.png"></img>
         <p>For You</p>
       </div>
       <div className="contentModal">
@@ -173,7 +173,21 @@ const ContentModal = (props) => {
             </p>
             <small className="tags">#tag #tag #tag</small>
           </div>
-          <div className="comments"></div>
+          <div className="commentsContainer">
+          <div className="commentsCount">3 Comments</div>
+          <div className="comments">
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment this is a comment this is a comment this is a comment</div>
+            <div className="indivComment"><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+          </div>
+
+          </div>
           <div className="addComments">
             <img
               className="userCommentPic"

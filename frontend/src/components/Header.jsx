@@ -38,8 +38,7 @@ const Header = (props) => {
           ></img>
           <div className={styles.appName}>
             <p>
-              Better Time,
-              <br /> <span>Beer Time</span>
+              <span>Better Time, Beer Time</span>
             </p>
           </div>
           <button
@@ -75,8 +74,7 @@ const Header = (props) => {
           ></img>
           <div className={styles.appName} onClick={handleClickExplore}>
             <p>
-              Better Time,
-              <br /> <span>Beer Time</span>
+              <span>Better Time, Beer Time</span>
             </p>
           </div>
           <input className={styles.searchBar} placeholder="hello"></input>
