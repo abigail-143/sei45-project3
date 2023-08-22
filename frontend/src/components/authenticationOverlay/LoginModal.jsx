@@ -29,6 +29,7 @@ const LoginOverlay = (props) => {
       // test this
       const decode = jwtDecode(res.data.access);
     } else {
+      console.log(res.data);
       setError1(res.data[0]);
       setError2(res.data[2]);
     }
