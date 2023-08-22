@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from "react";
 // import Masonry from "react-responsive-masonry";
 
@@ -8,14 +7,14 @@ import Masonry from "@mui/lab/Masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
-import AuthContext from "./context/auth";// add this
+import AuthContext from "./context/auth"; // add this
 
 const ExplorePage = () => {
   const [hide, setHide] = useState(true);
   const [contentData, setContentData] = useState([]);
   const [hover, setHover] = useState(false);
   const fetchData = useFetch();
-  const auth = useContext(AuthContext);// add this 
+  const auth = useContext(AuthContext); // add this
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
   const hashtags = tags.split(" ");
@@ -92,7 +91,7 @@ const ExplorePage = () => {
         <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>
       <section className={styles.explore}>
-        {/* <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
+        <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
           <div className="contentBlock">
             <div className={hover ? "contentHover" : "content"}>
               <img
@@ -100,7 +99,8 @@ const ExplorePage = () => {
                 className="contentImg"
               ></img>
             </div>
-            <div className={hover ? "overlay" : "overlayHover"}>
+            {/* <div className={hover ? "overlay" : "overlayHover"}> */}
+            <div className="overlayHover">
               <a className="src">@username</a>
               <img
                 src="/heart.png"
@@ -111,7 +111,7 @@ const ExplorePage = () => {
               ></img>
             </div>
           </div>
-        </Masonry> */}
+        </Masonry>
         <MasonryPkg columnsCount={4} gutter="10px">
           {contentBlocks}
         </MasonryPkg>
