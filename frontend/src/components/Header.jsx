@@ -67,13 +67,14 @@ const Header = (props) => {
             height="50"
             className={styles.appLogo}
             onClick={() => {
-              console.log("hi");
               handleClickExplore();
-              console.log("bye");
             }}
           ></img>
           <div className={styles.appName} onClick={handleClickExplore}>
-            <p>Better Time, Beer Time</p>
+            <p>
+              Better Time,
+              <br /> <span>Beer Time</span>
+            </p>
           </div>
           <input className={styles.searchBar} placeholder="hello"></input>
           <img
@@ -81,6 +82,7 @@ const Header = (props) => {
             width="40"
             height="40"
             className={styles.likesIcon}
+            onClick={handleClickUser}
           ></img>
           <img
             src={props.user.photo}

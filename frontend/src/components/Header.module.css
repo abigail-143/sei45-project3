@@ -1,31 +1,39 @@
 .header {
-  border: 1px solid black;
-  background-color: lightblue;
+  background-color: burlywood;
   width: 100vw;
   height: 70px;
   display: flex;
 }
 
 .appLogo {
-  border: 1px solid green;
   border-radius: 50%;
   position: absolute;
   top: 10px;
   left: 20px;
+  cursor: pointer;
 }
 
 .appName {
-  border: 1px solid pink;
-  background-color: lightcoral;
   height: 50px;
   width: auto;
+  max-width: 170px;
   position: absolute;
   top: 10px;
   left: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  cursor: pointer;
 }
 
 .appName > p {
-  background-color: lightgreen;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+span {
+  font-size: 1.2rem;
 }
 
 .registerBtn {
@@ -51,8 +59,6 @@
 }
 
 .searchBar {
-  border: 1px solid purple;
-  background-color: lightsalmon;
   position: absolute;
   height: 30px;
   width: 50vw;
@@ -60,12 +66,16 @@
   top: 20px;
   border-radius: 20px;
   text-indent: 15px;
+  border: none;
+  outline-color: rgba(255, 255, 255, 0.7);
 }
 
 .likesIcon {
   position: absolute;
   right: 80px;
   top: 15px;
+  filter: invert(1);
+  cursor: pointer;
 }
 
 .profilePic {
@@ -73,4 +83,5 @@
   position: absolute;
   right: 20px;
   top: 15px;
+  cursor: pointer;
 }
