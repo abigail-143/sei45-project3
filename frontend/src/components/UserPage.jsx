@@ -120,7 +120,8 @@ const UserPage = (props) => {
       {updateUser && (
         <UpdateOverlay
           setUpdateUser={setUpdateUser}
-          userInfo={props.user}
+          user={props.user}
+          setUser={props.setUser}
         ></UpdateOverlay>
       )}
       {/* this div just pulls user's profilepic and username */}

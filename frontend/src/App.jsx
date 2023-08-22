@@ -68,6 +68,7 @@ function App() {
         {showUserPage && (
           <UserPage
             user={user}
+            setUser={setUser}
             showCreated={showCreated}
             setShowCreated={setShowCreated}
           ></UserPage>
