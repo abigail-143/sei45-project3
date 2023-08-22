@@ -1,10 +1,17 @@
 // 2 types of headers - one for register/login/welcome pages, one for user/explore/submit pages
 // will use the showXXPage boolean indicators to toggle between the headers
 
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.css";
+import useFetch from "./custom_hooks/useFetch";
+import AuthContext from "./context/auth";
+import { PopoverPaper } from "@mui/material";
 
 const Header = (props) => {
+  const fetchData = useFetch();
+  const auth = useContext(AuthContext);
+  const [user, setUser] = useState([]);
+
   const handleClickExplore = () => {
     if (props.showUserPage) {
       props.setShowUserPage(false);
@@ -20,6 +27,31 @@ const Header = (props) => {
       console.log("handleClickUser");
     }
   };
+
+  const getUser = async () => {
+    console.log(1);
+    const res = await fetchData(
+      "/beer/getUser",
+      "POST",
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setUser(res.data.data);
+      console.log(user);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data:", res.data);
+    }
+  };
+
+  useEffect(() => {
+    if (!props.showWelcome) {
+      getUser();
+    }
+  }, []);
+
   return (
     <>
       {props.showWelcome && (
@@ -71,13 +103,13 @@ const Header = (props) => {
           </div>
           <input className={styles.searchBar} placeholder="hello"></input>
           <img
-            src="https://picsum.photos/200"
+            src="/heart.png"
             width="40"
             height="40"
             className={styles.likesIcon}
           ></img>
           <img
-            src="https://picsum.photos/200"
+            src={user.profilePhoto}
             width="40"
             height="40"
             className={styles.profilePic}
