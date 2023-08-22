@@ -85,7 +85,6 @@ const deleteComment = async (req, res) => {
   try {
     //line 85 to 94 is to delete out the comment_id from content itself
     const comment = await CommentModel.findById(req.params.id);
-    const delComment = req.params.id;
     const contentId = comment.contentId;
 
     const content = await ContentModel.findById(contentId);
