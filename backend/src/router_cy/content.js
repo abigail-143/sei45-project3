@@ -22,7 +22,7 @@ const { validateAddContentData } = require("../validators/validateContent");
 router.get("/getCreatedContent/:id", getContent);
 
 //user create new content
-router.put("/putNewContent" , auth ,createNewContent);
+router.put("/putNewContent" , validateAddContentData, auth ,createNewContent);
 
 //user delete his own content
 router.delete("/delContent", auth , deleteContent);
