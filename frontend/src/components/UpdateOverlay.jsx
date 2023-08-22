@@ -28,6 +28,7 @@ const UpdateOverlay = (props) => {
       alert(JSON.stringify(res.data));
       console.log(res.data);
     }
+    props.setUpdateUser(false);
   };
   return (
     <div className={styles.backdrop}>
