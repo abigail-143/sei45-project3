@@ -11,7 +11,6 @@ const ContentModal = (props) => {
   //   const fetchData = useFetch();
   const commentRef = useRef();
 
-
   // const comment = [
   //   {
   //     _id: "64df9b5e287c74940aaac930",
@@ -142,27 +141,44 @@ const ContentModal = (props) => {
     // </>
 
     <div className="backdrop">
-      <div className="backBtn">
+      <div
+        className="backBtn"
+        onClick={() => {
+          props.setShowContentOverlay(false);
+        }}
+      >
         <img src="/arrow.png"></img>
         <p>For You</p>
       </div>
       <div className="contentModal">
-        <img className="contentPhoto" src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60">
-        </img>
+        <img
+          className="contentPhoto"
+          src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        ></img>
         <div className="contentDetails">
           <div className="userInfo">
-            <img className="userProfilePhoto" src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"></img>
+            <img
+              className="userProfilePhoto"
+              src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            ></img>
             <p className="userName">@username</p>
           </div>
           <div className="contentInfo">
             <p className="drinkName">drink</p>
             <p className="shopName">shop</p>
-            <p className="review">this is a review this is a review this is a review this is a review this is a review this is a review this is a review this is a review this is a review this is a review</p>
+            <p className="review">
+              this is a review this is a review this is a review this is a
+              review this is a review this is a review this is a review this is
+              a review this is a review this is a review
+            </p>
             <small className="tags">#tag #tag #tag</small>
           </div>
           <div className="comments"></div>
           <div className="addComments">
-            <img className="userCommentPic" src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"></img>
+            <img
+              className="userCommentPic"
+              src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            ></img>
             <input className="newComment" placeholder="add a comment"></input>
             <img className="heartIcon" src="/heart.png"></img>
           </div>
