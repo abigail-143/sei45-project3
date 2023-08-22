@@ -176,9 +176,9 @@ const allFavouriteContent = async (req, res) => {
 //update user profile
 const updateProfile = async (req, res) => {
   try {
-    await UserModel.findByIdAndUpdate(req.params.id, {
+    await UserModel.findByIdAndUpdate(req.body.id, {
       username: req.body.username,
-      profilePhoto: req.body.profilePhoto,
+      // profilePhoto: req.body.profilePhoto,
     });
     res.json({ status: "ok", msg: "Profile has been updated" });
   } catch (error) {
