@@ -15,6 +15,7 @@ const createNewContent = async (req, res) => {
       contentReview: req.body.contentReview,
       contentTag: req.body.contentTag,
       userId: req.user_id,
+      username: req.username,
     });
 
     await content.save();
