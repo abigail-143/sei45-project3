@@ -17,8 +17,6 @@ const {
 } = require("../controllers/content");
 const { auth } = require("../middleware/user");
 
-
-
 //get out all the content that user created
 router.get("/getCreatedContent/:id", auth, getContent);
 
@@ -47,7 +45,7 @@ router.patch("/addFavourite/:id", addFavouriteContent);
 router.post("/singleContent/:id", singleContent);
 
 // get out data that user's favourite content
-router.get("/allFavourite", allFavouriteContent);
+router.get("/allFavourite/:id", allFavouriteContent);
 
 // ==============ignore============================
 
@@ -55,8 +53,6 @@ router.get("/allFavourite", allFavouriteContent);
 
 // router.get("/images", getImage);
 
-router.post('/getUser', getUser)
-
-
+router.post("/getUser", auth, getUser);
 
 module.exports = router;

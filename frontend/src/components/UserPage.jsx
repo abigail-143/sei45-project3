@@ -1,33 +1,74 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import testImgs from "./testImgArray";
 import styles from "./UserPage.module.css";
 import ContentOverlay from "./contentOverlay/ContentModal";
 import SubmitContent from "./submitContent/SubmitContent";
 import UpdateOverlay from "./UpdateOverlay";
+import useFetch from "./custom_hooks/useFetch";
+import AuthContext from "./context/auth";
 
-const UserPage = () => {
-  // this state will determine if display is showing created content or liked content. use the tabs buttons to toggle this state
-  const [showCreated, setShowCreated] = useState(false);
+const UserPage = (props) => {
   const [showContentOverlay, setShowContentOverlay] = useState(false);
   const [submitContent, setSubmitContent] = useState(false);
   const [updateUser, setUpdateUser] = useState(false);
+  const [createdContent, setCreatedContent] = useState([]);
+  const [likedContent, setLikedContent] = useState([]);
+  const fetchData = useFetch();
+  const auth = useContext(AuthContext);
 
-  const userInfo = {
-    username: "@cat",
-    profilePic:
-      "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+  const getCreatedContent = async () => {
+    const res = await fetchData(
+      "/beer/getCreatedContent/" + props.user.user_id,
+      undefined,
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setCreatedContent(res.data);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data: ", res.data);
+    }
   };
+
+  const getLikedContent = async () => {
+    const res = await fetchData(
+      "/beer/allFavourite/" + props.user.user_id,
+      undefined,
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setLikedContent(res.data);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data: ", res.data);
+    }
+  };
+
+  useEffect(() => {
+    if (props.showCreated) {
+      getCreatedContent();
+    } else {
+      getLikedContent();
+    }
+  }, [props.showCreated]);
+
   // this is to pull the user's created content
-  const createdContentBlocks = testImgs.map((content, index) => {
+  const createdContentBlocks = createdContent.map((content, index) => {
     return (
       <div key={index} className={styles.contentDisplay}>
         <div className={styles.contentImg}>
           <img className={styles.imgDisplay} src={content.contentPhoto}></img>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.icon} src="../public/heart.png"></img>
-          <label className={styles.numLabel}>{content.likeCount}</label>
-          <img className={styles.icon} src="../public/comment.png"></img>
+          <img className={styles.icon} src="/heart.png"></img>
+          <label className={styles.numLabel}>
+            {content.likedUsersId.length}
+          </label>
+          <img className={styles.icon} src="/comment.png"></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
           <button className={styles.deleteBtn}>Delete</button>
         </div>
@@ -36,7 +77,7 @@ const UserPage = () => {
   });
 
   // this is to pull the user's liked content
-  const likedContentBlocks = testImgs.map((content, index) => {
+  const likedContentBlocks = likedContent.map((content, index) => {
     return (
       <div
         key={index}
@@ -52,10 +93,12 @@ const UserPage = () => {
           <p>{content.username}</p>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.favIcon} src="../public/heart.png"></img>
-          <label className={styles.favNumLabel}>{content.likeCount}</label>
+          <img className={styles.favIcon} src="/heart.png"></img>
+          <label className={styles.favNumLabel}>
+            {content.likedUsersId.length}
+          </label>
           <div className={styles.divider}></div>
-          <img className={styles.favIcon} src="../public/comment.png"></img>
+          <img className={styles.favIcon} src="/comment.png"></img>
           <label className={styles.favNumLabel}>
             {content.comments.length}
           </label>
@@ -77,13 +120,13 @@ const UserPage = () => {
       {updateUser && (
         <UpdateOverlay
           setUpdateUser={setUpdateUser}
-          userInfo={userInfo}
+          userInfo={props.user}
         ></UpdateOverlay>
       )}
       {/* this div just pulls user's profilepic and username */}
       <div className={styles.userInfo}>
-        <img src={userInfo.profilePic}></img>
-        <p>{userInfo.username}</p>
+        <img src={props.user.photo}></img>
+        <p>{props.user.username}</p>
       </div>
       {/* this div are for the patch, edit user's info, and put, add content. */}
       <div className={styles.userBtn}>
@@ -108,20 +151,24 @@ const UserPage = () => {
       <div className={styles.tabs}>
         <button
           className={
-            showCreated ? `${styles.tabBtn} ${styles.highlight}` : styles.tabBtn
+            props.showCreated
+              ? `${styles.tabBtn} ${styles.highlight}`
+              : styles.tabBtn
           }
           onClick={() => {
-            setShowCreated(true);
+            props.setShowCreated(true);
           }}
         >
           Created
         </button>
         <button
           className={
-            showCreated ? styles.tabBtn : `${styles.tabBtn} ${styles.highlight}`
+            props.showCreated
+              ? styles.tabBtn
+              : `${styles.tabBtn} ${styles.highlight}`
           }
           onClick={() => {
-            setShowCreated(false);
+            props.setShowCreated(false);
             console.log("hi");
           }}
         >
@@ -131,7 +178,7 @@ const UserPage = () => {
       {/* this div is to display created content */}
       <div className={styles.displayContainer}>
         <div className={styles.display}>
-          {showCreated ? createdContentBlocks : likedContentBlocks}
+          {props.showCreated ? createdContentBlocks : likedContentBlocks}
         </div>
       </div>
     </>

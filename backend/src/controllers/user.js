@@ -91,6 +91,7 @@ const login = async (req, res) => {
       const payload = {
         username: user.username,
         user_id: user._id,
+        photo: user.profilePhoto,
       };
 
       const access = jwt.sign(payload, process.env.ACCESS_SECRET, {
@@ -98,7 +99,7 @@ const login = async (req, res) => {
         jwtid: uuidv4(),
       });
 
-      res.json({ access });
+      res.json({ access, payload });
     } else {
       // if entered password is wrong
       console.log("result = ", result);

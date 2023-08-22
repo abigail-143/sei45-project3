@@ -7,13 +7,11 @@ import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
 
 const ExplorePage = () => {
-  const [hide, setHide] = useState(true);
   const [contentData, setContentData] = useState([]);
-  const [hover, setHover] = useState(false);
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
-  const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
+  const tags = "#beer #scotchale #pilsner #draft #carlsberg";
   const hashtags = tags.split(" ");
   const hashtagItems = hashtags.map((hashtag, index) => {
     return (
@@ -22,10 +20,6 @@ const ExplorePage = () => {
       </li>
     );
   });
-
-  const handleMouseOver = () => {
-    setHover(true);
-  };
 
   const getData = async () => {
     const res = await fetchData(

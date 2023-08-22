@@ -1,10 +1,15 @@
 // 2 types of headers - one for register/login/welcome pages, one for user/explore/submit pages
 // will use the showXXPage boolean indicators to toggle between the headers
 
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.css";
+import useFetch from "./custom_hooks/useFetch";
+import AuthContext from "./context/auth";
 
 const Header = (props) => {
+  const fetchData = useFetch();
+  const auth = useContext(AuthContext);
+
   const handleClickExplore = () => {
     if (props.showUserPage) {
       props.setShowUserPage(false);
@@ -20,6 +25,7 @@ const Header = (props) => {
       console.log("handleClickUser");
     }
   };
+
   return (
     <>
       {props.showWelcome && (
@@ -31,7 +37,10 @@ const Header = (props) => {
             className={styles.appLogo}
           ></img>
           <div className={styles.appName}>
-            <p>Better Time, Beer Time</p>
+            <p>
+              Better Time,
+              <br /> <span>Beer Time</span>
+            </p>
           </div>
           <button
             className={styles.registerBtn}
@@ -61,27 +70,35 @@ const Header = (props) => {
             height="50"
             className={styles.appLogo}
             onClick={() => {
-              console.log("hi");
               handleClickExplore();
-              console.log("bye");
             }}
           ></img>
           <div className={styles.appName} onClick={handleClickExplore}>
-            <p>Better Time, Beer Time</p>
+            <p>
+              Better Time,
+              <br /> <span>Beer Time</span>
+            </p>
           </div>
           <input className={styles.searchBar} placeholder="hello"></input>
           <img
-            src="https://picsum.photos/200"
+            src="/heart.png"
             width="40"
             height="40"
             className={styles.likesIcon}
+            onClick={() => {
+              handleClickUser();
+              props.setShowCreated(false);
+            }}
           ></img>
           <img
-            src="https://picsum.photos/200"
+            src={props.user.photo}
             width="40"
             height="40"
             className={styles.profilePic}
-            onClick={handleClickUser}
+            onClick={() => {
+              handleClickUser();
+              props.setShowCreated(true);
+            }}
           ></img>
         </div>
       )}

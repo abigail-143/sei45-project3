@@ -15,6 +15,8 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showExplorePage, setShowExplorePage] = useState(false);
   const [showUserPage, setShowUserPage] = useState(false);
+  const [user, setUser] = useState([]);
+  const [showCreated, setShowCreated] = useState(false);
   // const [showSubmitContent, setShowSubmisContent] = useState(false);
 
   if (showWelcome) {
@@ -35,6 +37,9 @@ function App() {
           showExplorePage={showExplorePage}
           setShowExplorePage={setShowExplorePage}
           setShowUserPage={setShowUserPage}
+          user={user}
+          showCreated={showCreated}
+          setShowCreated={setShowCreated}
         ></Header>
         {showWelcome && (
           <Landing
@@ -47,6 +52,7 @@ function App() {
             setShowLogin={setShowLogin}
             setShowWelcome={setShowWelcome}
             setShowExplorePage={setShowExplorePage}
+            setUser={setUser}
           ></LoginModal>
         )}
         {showRegister && (
@@ -59,7 +65,13 @@ function App() {
         {/* {showRegister && <Register></Register>} */}
         {showExplorePage && <ExplorePage></ExplorePage>}
 
-        {showUserPage && <UserPage></UserPage>}
+        {showUserPage && (
+          <UserPage
+            user={user}
+            showCreated={showCreated}
+            setShowCreated={setShowCreated}
+          ></UserPage>
+        )}
         {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
       </AuthContext.Provider>
     </>
