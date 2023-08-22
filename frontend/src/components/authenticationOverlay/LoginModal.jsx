@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import AuthContext from "../context/auth";
 import jwtDecode from "jwt-decode";
@@ -25,6 +25,7 @@ const LoginOverlay = (props) => {
       props.setShowLogin(false);
       props.setShowWelcome(false);
       props.setShowExplorePage(true);
+      auth.setAccessToken(accessToken);
       // test this
       const decode = jwtDecode(res.data.access);
     } else {

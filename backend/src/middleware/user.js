@@ -21,10 +21,10 @@ const auth = (req, res, next) => {
       req.likedContent = decoded.likedContent;
       next();
     } catch (error) {
-      return res.status(401).json({ status: error, msg: "unauthorised" });
+      return res.status(401).json({ status: error, msg: "unauthorised error(1)" });
     }
   } else {
-    return res.status(403).send({ status: "error", msg: "forbidden" });
+    return res.status(403).send({ status: "error", msg: "forbidden error(1)" });
   }
 };
 

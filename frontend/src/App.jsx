@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import ExplorePage from "./components/ExplorePage";

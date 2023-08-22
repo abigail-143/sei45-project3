@@ -9,7 +9,7 @@ const useFetch = () => {
       },
       body: JSON.stringify(body),
     });
-    console.log(res)
+    // console.log(res)
     const data = await res.json();
 
     let returnValue = {};
@@ -30,7 +30,7 @@ const useFetch = () => {
         returnValue = { ok: false, data: "An error has occurred" };
       }
     }
-    console.log(returnValue);
+    // console.log(returnValue);
     return returnValue;
   };
 
