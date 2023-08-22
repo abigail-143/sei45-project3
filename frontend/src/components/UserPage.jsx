@@ -26,7 +26,22 @@ const UserPage = (props) => {
 
     if (res.ok) {
       setCreatedContent(res.data);
-      console.log(createdContent);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data: ", res.data);
+    }
+  };
+
+  const getLikedContent = async () => {
+    const res = await fetchData(
+      "/beer/allFavourite/" + props.user.user_id,
+      undefined,
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setLikedContent(res.data);
     } else {
       alert(JSON.stringify(res.data));
       console.log("res.data: ", res.data);
@@ -36,8 +51,10 @@ const UserPage = (props) => {
   useEffect(() => {
     if (props.showCreated) {
       getCreatedContent();
+    } else {
+      getLikedContent();
     }
-  }, []);
+  }, [props.showCreated]);
 
   // this is to pull the user's created content
   const createdContentBlocks = createdContent.map((content, index) => {
@@ -48,7 +65,9 @@ const UserPage = (props) => {
         </div>
         <div className={styles.contentDetail}>
           <img className={styles.icon} src="/heart.png"></img>
-          <label className={styles.numLabel}>{content.likedUsersId.length}</label>
+          <label className={styles.numLabel}>
+            {content.likedUsersId.length}
+          </label>
           <img className={styles.icon} src="/comment.png"></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
           <button className={styles.deleteBtn}>Delete</button>
@@ -58,7 +77,7 @@ const UserPage = (props) => {
   });
 
   // this is to pull the user's liked content
-  const likedContentBlocks = testImgs.map((content, index) => {
+  const likedContentBlocks = likedContent.map((content, index) => {
     return (
       <div
         key={index}
@@ -75,7 +94,9 @@ const UserPage = (props) => {
         </div>
         <div className={styles.contentDetail}>
           <img className={styles.favIcon} src="/heart.png"></img>
-          <label className={styles.favNumLabel}>{content.likeCount}</label>
+          <label className={styles.favNumLabel}>
+            {content.likedUsersId.length}
+          </label>
           <div className={styles.divider}></div>
           <img className={styles.favIcon} src="/comment.png"></img>
           <label className={styles.favNumLabel}>
