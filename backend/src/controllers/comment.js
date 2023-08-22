@@ -104,7 +104,7 @@ const deleteComment = async (req, res) => {
   }
 };
 
-//get all the comment from collection
+//get all the comment from collection (done)
 const getAllComment = async (req, res) => {
   try {
     const comment = await CommentModel.findOne({contentId: req.params.id});
