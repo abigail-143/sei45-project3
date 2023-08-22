@@ -85,14 +85,20 @@ const Header = (props) => {
             width="40"
             height="40"
             className={styles.likesIcon}
-            onClick={handleClickUser}
+            onClick={() => {
+              handleClickUser();
+              props.setShowCreated(false);
+            }}
           ></img>
           <img
             src={props.user.photo}
             width="40"
             height="40"
             className={styles.profilePic}
-            onClick={handleClickUser}
+            onClick={() => {
+              handleClickUser();
+              props.setShowCreated(true);
+            }}
           ></img>
         </div>
       )}
