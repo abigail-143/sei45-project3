@@ -3,10 +3,10 @@ const ContentModel = require("../models/Content");
 const UserModel = require("../models/User");
 const CommentModel = require("../models/Comment");
 
-// create new content
+// create new content (done)
 const createNewContent = async (req, res) => {
   try {
-    // const user = await UserModel.findById(req.user_id); //check with team 
+    // const user = await UserModel.findById(req.user_id); //check with team
 
     const content = new ContentModel({
       contentPhoto: req.body.contentPhoto,
@@ -29,10 +29,10 @@ const createNewContent = async (req, res) => {
   }
 };
 
-//delete user's content
+//delete user's content (done)
 const deleteContent = async (req, res) => {
   try {
-    const content = await ContentModel.findOne({userId: req.user_id});
+    const content = await ContentModel.findOne({ userId: req.user_id });
     const deleteContentId = content._id;
     const likedUsers = content.likedUsersId;
 
@@ -68,7 +68,7 @@ const getContent = async (req, res) => {
   }
 };
 
-//get all the content inside collection 
+//get all the content inside collection (done)
 const getAllUserContent = async (req, res) => {
   try {
     const content = await ContentModel.find();
@@ -79,17 +79,25 @@ const getAllUserContent = async (req, res) => {
   }
 };
 
-//update user's content
+//update user's content (done)
 const updateContent = async (req, res) => {
   try {
+    const updateData = {};
+    if ("drinkName" in req.body) updateBook.drinkName = req.body.drinkName;
+    if ("shopName" in req.body) updateBook.shopName = req.body.shopName;
+    if ("contentReview" in req.body)
+      updateBook.contentReview = req.body.contentReview;
+    if ("contentTag" in req.body) updateBook.contentTag = req.body.contentTag;
+    if ("contentTag" in req.body) updateBook.contentTag = req.body.contentTag;
 
+    await ContentModel.findByIdAndUpdate(req.params.id, updateData);
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
   }
 };
 
-//get particular content for content overlay
+//get particular content for content overlay (done)
 const singleContent = async (req, res) => {
   try {
     const content = await ContentModel.findById(req.params.id);
@@ -103,22 +111,7 @@ const singleContent = async (req, res) => {
   }
 };
 
-const createAccount = async (req, res) => {
-  try {
-    const account = new UserModel({
-      username: req.body.username,
-      hashPWD: req.body.hashPWD,
-    });
-
-    await account.save();
-    res.json(account);
-  } catch (error) {
-    console.log(error.message);
-    res.json({ status: "error", msg: error.message });
-  }
-};
-
-//get prticular detail
+//get particular detail (done)
 const getUser = async (req, res) => {
   try {
     const user = await UserModel.findById(req.user_id);
@@ -129,7 +122,7 @@ const getUser = async (req, res) => {
   }
 };
 
-// get comment that attach with particular content
+// get comment that attach with particular content (done)
 const getParticularComment = async (req, res) => {
   try {
     const comment = await CommentModel.find({ contentId: req.params.id });
@@ -140,7 +133,8 @@ const getParticularComment = async (req, res) => {
   }
 };
 
-// add favourite content attach to my
+// store content._id into login user's liked content
+// store login user id into content's liked users id   (done)
 const addFavouriteContent = async (req, res) => {
   try {
     const content = await ContentModel.findById(req.params.id);
@@ -174,7 +168,7 @@ const allFavouriteContent = async (req, res) => {
   }
 };
 
-//update user profile
+//update user profile (done)
 const updateProfile = async (req, res) => {
   try {
     await UserModel.findByIdAndUpdate(req.body.id, {
