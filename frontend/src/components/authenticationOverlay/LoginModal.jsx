@@ -20,12 +20,12 @@ const LoginOverlay = (props) => {
       password,
     });
     if (res.ok) {
-      console.log(res);
+      console.log(res.data);
       auth.setAccessToken(res.data.access);
       props.setShowLogin(false);
       props.setShowWelcome(false);
       props.setShowExplorePage(true);
-      auth.setAccessToken(accessToken);
+      props.setUser(res.data.payload);
       // test this
       const decode = jwtDecode(res.data.access);
     } else {
@@ -94,6 +94,7 @@ const LoginModal = (props) => {
           setShowLogin={props.setShowLogin}
           setShowExplorePage={props.setShowExplorePage}
           setShowWelcome={props.setShowWelcome}
+          setUser={props.setUser}
         ></LoginOverlay>,
         document.querySelector("#auth-root")
       )}

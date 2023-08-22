@@ -15,6 +15,7 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showExplorePage, setShowExplorePage] = useState(false);
   const [showUserPage, setShowUserPage] = useState(false);
+  const [user, setUser] = useState([])
   // const [showSubmitContent, setShowSubmisContent] = useState(false);
 
   if (showWelcome) {
@@ -35,6 +36,7 @@ function App() {
           showExplorePage={showExplorePage}
           setShowExplorePage={setShowExplorePage}
           setShowUserPage={setShowUserPage}
+          user={user}
         ></Header>
         {showWelcome && (
           <Landing
@@ -47,6 +49,7 @@ function App() {
             setShowLogin={setShowLogin}
             setShowWelcome={setShowWelcome}
             setShowExplorePage={setShowExplorePage}
+            setUser={setUser}
           ></LoginModal>
         )}
         {showRegister && (
