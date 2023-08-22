@@ -121,7 +121,7 @@ const createAccount = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const user = await UserModel.findById(req.user_id);
-    res.json(user);
+    res.json({ status: "ok", data: user });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
