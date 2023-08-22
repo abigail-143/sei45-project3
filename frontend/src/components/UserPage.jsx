@@ -8,7 +8,7 @@ import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth";
 
 const UserPage = (props) => {
-  const [showContentOverlay, setShowContentOverlay] = useState(false);
+  const [showContentOverlay, setShowContentOverlay] = useState(true);
   const [submitContent, setSubmitContent] = useState(false);
   const [updateUser, setUpdateUser] = useState(false);
   const [createdContent, setCreatedContent] = useState([]);

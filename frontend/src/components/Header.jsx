@@ -31,7 +31,7 @@ const Header = (props) => {
       {props.showWelcome && (
         <div className={styles.header}>
           <img
-            src="https://picsum.photos/200"
+            src="/beer.png"
             width="50"
             height="50"
             className={styles.appLogo}
@@ -65,7 +65,7 @@ const Header = (props) => {
       {!props.showWelcome && (
         <div className={styles.header}>
           <img
-            src="https://picsum.photos/200"
+            src="/beer.png"
             width="50"
             height="50"
             className={styles.appLogo}
