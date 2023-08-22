@@ -9,9 +9,10 @@ const {
 } = require("../controllers/comment");
 const { auth } = require("../middleware/user");
 const { getUser } = require("../controllers/content");
+const { validateAddCommentData } = require("../validators/validataComment");
 
 //create new comment by owner user or other user
-router.put("/newComment/:id", auth, newComment);
+router.put("/newComment/:id", auth, validateAddCommentData ,newComment);
 
 //delete user comment
 router.delete("/deleteComment/:id", auth, deleteComment);

@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./contentOverlayModal.module.css";
 import "./content.css";
+import useFetch from "../custom_hooks/useFetch.jsx"
 
 const Comment = (props) => {
-  const deleteComment = async () => {
+const fetchData = useFetch()
+
+  const deleteComment = async (id) => {
     const res = await fetchData(
       "/beer/deleteComment/" + id,
       "DELETE",

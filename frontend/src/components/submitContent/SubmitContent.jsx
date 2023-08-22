@@ -1,33 +1,21 @@
 import React, { useRef, useState } from "react";
 import styles from "./submitContent.module.css";
-// import "./SubmitContent.css";
+import "./SubmitContent.css";
+import useFetch from "../custom_hooks/useFetch.jsx";
 
 const SubmitContent = (props) => {
-  const [image, setImage] = useState({contentPhoto: ""});
+  const [image, setImage] = useState("");
   const drinkNameRef = useRef();
   const shopNameRef = useRef();
   const reviewRef = useRef();
   const contentTagRef = useRef();
-  const [showImage, setShowImage] =useState(true)
-  //   const fetchData = useFetch();
+  const [uploadPhoto, setUploadPhoto] = useState(true);
+  const [displayPhoto, setDisplayPhoto] = useState(false);
+  const fetchData = useFetch();
 
-  //should get user detail from the start and useContext send to here
-  // const getUser = async () => {
-  //   const decoded = userCtx.accessToken;
-  //   const res = await fetchData("/beer/getuser", "POST", {
-  //     username: decoded.username,
-  //   });
-  //   if (res.ok) {
-  //     setUser(res.data);
-  //   } else {
-  //     alert(JSON.stringify(res.data));
-  //     console.log(res.data);
-  //   }
-  // };
-
-  const publishNewPost = async (newImage) => {
-    const res = await fetchData("/putNewContent/" + user.userId, "PUT", {
-      contentPhoto: newImage,
+  const publishNewPost = async () => {
+    const res = await fetchData("/beer/putNewContent", "PUT", {
+      contentPhoto: image,
       drinkName: drinkNameRef.current.value,
       shopName: shopNameRef.current.value,
       contentReview: reviewRef.current.value,
@@ -67,10 +55,11 @@ const SubmitContent = (props) => {
 
   // convert file into base64 and standby for upload
   const handleFileUpload = async (e) => {
-    setShowImage(false)
+    setUploadPhoto(false);
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    setImage({ ...image, contentPhoto: base64 });
+    setDisplayPhoto(true)
+    setImage(base64);
   };
 
   // upload to data based and keep at state
@@ -81,93 +70,82 @@ const SubmitContent = (props) => {
   };
 
   return (
-    <>
-      <div className={styles.backdrop}>
-        <img
-          src="../picture/Arrow 1.jpg"
-          className={styles.arrow}
-          onClick={() => {
-            props.setSubmitContent(false);
-          }}
-        />
-        <div className={styles.modal}>
-          <div className="row">
-            <div className="col-md-5">
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="file-upload">
-                  {showImage && <img src={"../picture/upload-image-icon (1).png"} className={styles.uploadphoto} alt="" />}
-                  <img src={image.contentPhoto} className={styles.contentphoto}/>
-                </label>
-                <input
-                  type="file"
-                  label="Image"
-                  name="contentPhoto"
-                  className={styles.upload}
-                  id="file-upload"
-                  accept=".jpeg, .png, .jpg"
-                  onChange={(e) => handleFileUpload(e)}
-                ></input>
-              </form>
+    <div className="backdrop1">
+      <div className="backBtn1" onClick={() => props.setSubmitContent(false)}>
+        <img src="/arrow.png" />
+        <p>For You</p>
+      </div>
+      <div className="contentModal1">
+        <div className="column1">
+          <label className="form" htmlFor="file-upload">
+            {uploadPhoto && (
+              <img
+                className="uploadPhoto"
+                src="../picture/upload-image-icon (1).png"
+              />
+            )}
 
+            <input
+              type="file"
+              label="Image"
+              id="file-upload"
+              className="inputPhoto"
+              accept=".jpeg, .png, .jpg"
+              onChange={(e) => handleFileUpload(e)}
+            ></input>
+          </label>
+          {displayPhoto && (
+            <img
+              className="displayPhoto"
+              src={image}
+            />
+          )}
+        </div>
+        <div className="column2">
+          <div className="inputDetails">
+            <div className="font">Drink</div>
+            <input
+              type="text"
+              ref={drinkNameRef}
+              className="inputBox"
+              placeholder="Name of the drink"
 
-            </div>
-            <div className="col-md-7">
-              <div className="container">
-                <br />
-                <br />
-                <br />
-                <div className={styles.font}>Drink</div>
-                <input
-                  type="text"
-                  ref={drinkNameRef}
-                  className={styles.inputBox}
-                  placeholder="Name of the drink"
-                  onChange
-                ></input>
-                <br />
-                <div className={styles.font}>Bar</div>
-                <input
-                  type="text"
-                  ref={shopNameRef}
-                  className={styles.inputBox}
-                  placeholder="Name of the bar"
-                  onChange
-                ></input>
-                <br />
-                <div className={styles.font}>Review</div>
-                <textarea
-                  type="text"
-                  ref={reviewRef}
-                  className={styles.textBox}
-                  name="Review"
-                  rows="5"
-                  placeholder="Leave a review"
-                  onChange
-                ></textarea>
-                <br />
-                <div className={styles.font}>Tgs</div>
-                <input
-                  type="text"
-                  ref={contentTagRef}
-                  className={styles.inputBox}
-                  placeholder="Start with #hashing"
-                  onChange
-                ></input>
-                <br />
-                <br />
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={publishNewPost}
-                >
-                  Publish
-                </button>
-              </div>
-            </div>
+            ></input>
+            <div className="font">Bar</div>
+            <input
+              type="text"
+              ref={shopNameRef}
+              className="inputBox"
+              placeholder="Name of the bar"
+            
+            ></input>
+            <br />
+            <div className="font">Review</div>
+            <textarea
+              type="text"
+              ref={reviewRef}
+              className="textBox"
+              name="Review"
+              rows="5"
+              placeholder="Leave a review"
+
+            ></textarea>
+            <br />
+            <div className="font">Tags</div>
+            <input
+              type="text"
+              ref={contentTagRef}
+              className="inputBox"
+              placeholder="Start with #hashing"
+
+            ></input>
+            <button type="button" className="button" onClick={publishNewPost}>
+              Publish
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

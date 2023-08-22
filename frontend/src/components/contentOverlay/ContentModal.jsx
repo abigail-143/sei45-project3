@@ -55,10 +55,11 @@ const ContentModal = (props) => {
     }
   };
 
-  const addComment = async (e, id) => {
+  const addComment = async (e) => {
     if (e.key === "Enter") {
-      const res = await fetchData("/beer/comment/newComment/" + id, "PUT", {
+      const res = await fetchData("/beer/comment/newComment/", "PUT", {
         comment: commentRef.current.vlue,
+        contentId: props.id,
       });
       if (res.ok) {
         getComment();
