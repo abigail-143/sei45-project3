@@ -13,13 +13,13 @@ const { getUser } = require("../controllers/content");
 //create new comment by owner user or other user
 router.put("/newComment/:id", auth, newComment);
 
-//delelte user comment
-router.delete("/deleteComment/:id", deleteComment);
+//delete user comment
+router.delete("/deleteComment/:id", auth, deleteComment);
 
 //edit user comment
-router.patch("/userUpdateComment/:id", updateComment);
+router.patch("/userUpdateComment/:id", auth, updateComment);
 
-//get out all the comment from comment collection
+//get out all the comment from teh content
 router.get("/getAllComment", getAllComment);
 
 router.get("/seed", seedComments);
