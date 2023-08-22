@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Masonry from "@mui/lab/Masonry";
+import React, { useEffect, useState, useContext } from "react";
+import Masonry from "react-responsive-masonry";
 import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
+import AuthContext from "./context/auth";// add this
 
 const ExplorePage = () => {
   const [hide, setHide] = useState(true);
   const [contentData, setContentData] = useState([]);
   const fetchData = useFetch();
+  const auth = useContext(AuthContext);// add this 
   const tags = "#beer #scotchale #pilsner #draft #carlsberg";
 
   const hashtags = tags.split(" ");
@@ -20,7 +22,12 @@ const ExplorePage = () => {
   });
 
   const getData = async () => {
-    const res = await fetchData("/fyp/all-contents");
+    const res = await fetchData(
+      "/fyp/all-contents",
+      undefined,
+      undefined,
+      auth.accessToken // add these
+    );
     if (res.ok) {
       setContentData(res.data);
     } else {
