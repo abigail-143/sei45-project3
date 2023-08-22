@@ -15,7 +15,7 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showExplorePage, setShowExplorePage] = useState(false);
   const [showUserPage, setShowUserPage] = useState(false);
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState([]);
   // const [showSubmitContent, setShowSubmisContent] = useState(false);
 
   if (showWelcome) {
@@ -62,7 +62,7 @@ function App() {
         {/* {showRegister && <Register></Register>} */}
         {showExplorePage && <ExplorePage></ExplorePage>}
 
-        {showUserPage && <UserPage></UserPage>}
+        {showUserPage && <UserPage user={user}></UserPage>}
         {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
       </AuthContext.Provider>
     </>

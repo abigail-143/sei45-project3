@@ -5,7 +5,7 @@ import ContentOverlay from "./contentOverlay/ContentModal";
 import SubmitContent from "./submitContent/SubmitContent";
 import UpdateOverlay from "./UpdateOverlay";
 
-const UserPage = () => {
+const UserPage = (props) => {
   // this state will determine if display is showing created content or liked content. use the tabs buttons to toggle this state
   const [showCreated, setShowCreated] = useState(false);
   const [showContentOverlay, setShowContentOverlay] = useState(false);
@@ -25,9 +25,9 @@ const UserPage = () => {
           <img className={styles.imgDisplay} src={content.contentPhoto}></img>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.icon} src="../public/heart.png"></img>
+          <img className={styles.icon} src="/heart.png"></img>
           <label className={styles.numLabel}>{content.likeCount}</label>
-          <img className={styles.icon} src="../public/comment.png"></img>
+          <img className={styles.icon} src="/comment.png"></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
           <button className={styles.deleteBtn}>Delete</button>
         </div>
@@ -52,10 +52,10 @@ const UserPage = () => {
           <p>{content.username}</p>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.favIcon} src="../public/heart.png"></img>
+          <img className={styles.favIcon} src="/heart.png"></img>
           <label className={styles.favNumLabel}>{content.likeCount}</label>
           <div className={styles.divider}></div>
-          <img className={styles.favIcon} src="../public/comment.png"></img>
+          <img className={styles.favIcon} src="/comment.png"></img>
           <label className={styles.favNumLabel}>
             {content.comments.length}
           </label>
@@ -77,13 +77,13 @@ const UserPage = () => {
       {updateUser && (
         <UpdateOverlay
           setUpdateUser={setUpdateUser}
-          userInfo={userInfo}
+          userInfo={props.user}
         ></UpdateOverlay>
       )}
       {/* this div just pulls user's profilepic and username */}
       <div className={styles.userInfo}>
-        <img src={userInfo.profilePic}></img>
-        <p>{userInfo.username}</p>
+        <img src={props.user.photo}></img>
+        <p>{props.user.username}</p>
       </div>
       {/* this div are for the patch, edit user's info, and put, add content. */}
       <div className={styles.userBtn}>

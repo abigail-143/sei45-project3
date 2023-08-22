@@ -14,7 +14,7 @@ const UpdateOverlay = (props) => {
         ></img>
         <img
           className={styles.updateProfilePic}
-          src={props.userInfo.profilePic}
+          src={props.userInfo.photo}
         ></img>
         <input
           className={styles.updateUsername}
