@@ -16,12 +16,13 @@ const {
   // getImage,
 } = require("../controllers/content");
 const { auth } = require("../middleware/user");
+const { validateAddContentData } = require("../validators/validateContent");
 
 //get out all the content that user created
-router.get("/getCreatedContent/:id", auth, getContent);
+router.get("/getCreatedContent/:id", getContent);
 
 //user create new content
-router.put("/putNewContent/:id", createNewContent);
+router.put("/putNewContent/:id",validateAddContentData ,createNewContent);
 
 //user delete his own content
 router.delete("/delContent/:id", deleteContent);

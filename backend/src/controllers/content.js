@@ -6,7 +6,7 @@ const CommentModel = require("../models/Comment");
 // create new content
 const createNewContent = async (req, res) => {
   try {
-    const user = await UserModel.findById(req.params.id);
+    // const user = await UserModel.findById(req.user_id); //check with team 
 
     const content = new ContentModel({
       contentPhoto: req.body.contentPhoto,
@@ -32,14 +32,14 @@ const createNewContent = async (req, res) => {
 //delete user's content
 const deleteContent = async (req, res) => {
   try {
-    const content = await ContentModel.findById(req.params.id);
-    const deleteContent = req.params.id;
+    const content = await ContentModel.findOne({userId: req.user_id});
+    const deleteContentId = content._id;
     const likedUsers = content.likedUsersId;
 
     const users = await UserModel.find({ _id: { $in: likedUsers } });
 
     for (const user of users) {
-      const index = user.likedContent.indexOf(deleteContent);
+      const index = user.likedContent.indexOf(deleteContentId);
       //if the content_id need to take out from prticular user detail which no exist will return -1
       // if index return not -1 will excute the following action splice out the content_id
       if (index !== -1) {
@@ -47,7 +47,7 @@ const deleteContent = async (req, res) => {
         await user.save();
       }
 
-      await ContentModel.findByIdAndDelete(req.params.id);
+      await ContentModel.findByIdAndDelete(deleteContentId);
 
       res.json({ status: "ok", msg: "Content deleted" });
     }
@@ -57,7 +57,7 @@ const deleteContent = async (req, res) => {
   }
 };
 
-//get all the user's content
+//get all the user's content  (done)
 const getContent = async (req, res) => {
   try {
     const content = await ContentModel.find({ userId: req.params.id });
@@ -68,7 +68,7 @@ const getContent = async (req, res) => {
   }
 };
 
-//get all the user's content
+//get all the content inside collection 
 const getAllUserContent = async (req, res) => {
   try {
     const content = await ContentModel.find();
@@ -82,13 +82,14 @@ const getAllUserContent = async (req, res) => {
 //update user's content
 const updateContent = async (req, res) => {
   try {
+
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
   }
 };
 
-//get particular content
+//get particular content for content overlay
 const singleContent = async (req, res) => {
   try {
     const content = await ContentModel.findById(req.params.id);
@@ -160,7 +161,7 @@ const addFavouriteContent = async (req, res) => {
   }
 };
 
-// get all the favourite content
+// get all the favourite content (done)
 const allFavouriteContent = async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
