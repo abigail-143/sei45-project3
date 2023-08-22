@@ -5,12 +5,10 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth";
-import { PopoverPaper } from "@mui/material";
 
 const Header = (props) => {
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
-  const [user, setUser] = useState([]);
 
   const handleClickExplore = () => {
     if (props.showUserPage) {
@@ -27,30 +25,6 @@ const Header = (props) => {
       console.log("handleClickUser");
     }
   };
-
-  const getUser = async () => {
-    console.log(1);
-    const res = await fetchData(
-      "/beer/getUser",
-      "POST",
-      undefined,
-      auth.accessToken
-    );
-
-    if (res.ok) {
-      setUser(res.data.data);
-      console.log(user);
-    } else {
-      alert(JSON.stringify(res.data));
-      console.log("res.data:", res.data);
-    }
-  };
-
-  useEffect(() => {
-    if (!props.showWelcome) {
-      getUser();
-    }
-  }, []);
 
   return (
     <>
@@ -109,7 +83,7 @@ const Header = (props) => {
             className={styles.likesIcon}
           ></img>
           <img
-            src={user.profilePhoto}
+            src={props.user.photo}
             width="40"
             height="40"
             className={styles.profilePic}
