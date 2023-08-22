@@ -47,7 +47,7 @@ const ContentModal = (props) => {
   };
 
   const getComment = async (id) => {
-    const res = await fetchData("/beer/getParticularComment/" + id);
+    const res = await fetchData("/beer/comment/getAllComment" + id);
     if (res.ok) {
       setComment(res.data);
     } else {
