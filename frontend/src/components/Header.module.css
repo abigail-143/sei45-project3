@@ -37,8 +37,7 @@ span {
 }
 
 .registerBtn {
-  border: 1px solid yellow;
-  background-color: lightcyan;
+  border: none;
   height: 30px;
   width: 100px;
   position: absolute;
@@ -47,15 +46,24 @@ span {
   border-radius: 30px;
 }
 
+.registerBtn:hover {
+  background-color: burlywood;
+  color: whitesmoke;
+}
+
 .loginBtn {
-  border: 1px solid yellowgreen;
-  background-color: lightgoldenrodyellow;
+  border: none;
   height: 30px;
   width: 100px;
   position: absolute;
   right: 20px;
   top: 20px;
   border-radius: 30px;
+}
+
+.loginBtn:hover {
+  background-color: burlywood;
+  color: whitesmoke;
 }
 
 .searchBar {

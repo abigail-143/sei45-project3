@@ -37,7 +37,10 @@ const Header = (props) => {
             className={styles.appLogo}
           ></img>
           <div className={styles.appName}>
-            <p>Better Time, Beer Time</p>
+            <p>
+              Better Time,
+              <br /> <span>Beer Time</span>
+            </p>
           </div>
           <button
             className={styles.registerBtn}
