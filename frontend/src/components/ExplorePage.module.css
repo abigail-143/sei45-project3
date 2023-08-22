@@ -19,7 +19,7 @@
 
 .quickFilterItem {
   display: inline-block;
-  background-color: burlywood;
+  background-color: rgba(164, 144, 124, 0.5);
   margin: 5px 10px;
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(158, 159, 165, 0.8);
@@ -27,6 +27,7 @@
 
 .quickFilterItem:hover {
   padding: 2px;
+  background-color: rgba(141, 123, 104, 0.7);
   transition: 0.2s;
   transition-timing-function: ease;
 }
@@ -75,7 +76,7 @@
 
 .overlayHover {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(66, 63, 62, 0.5);
   position: absolute;
   top: 0;
   height: 100% !important ;
@@ -89,7 +90,7 @@
 
 .contentBlock:hover .overlayHover {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(66, 63, 62, 0.5);
   position: absolute;
   top: 0;
   height: 100% !important ;
@@ -99,4 +100,9 @@
   justify-content: center;
   align-items: center;
   z-index: 50;
+}
+
+.heartImg:hover {
+  filter: invert(81%) sepia(5%) saturate(1360%) hue-rotate(315deg)
+    brightness(107%) contrast(91%);
 }
