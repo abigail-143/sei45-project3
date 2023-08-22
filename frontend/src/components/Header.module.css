@@ -59,11 +59,7 @@
   left: 260px;
   top: 20px;
   border-radius: 20px;
-}
-
-.searchBar::placeholder {
-  position: absolute;
-  left: 20px;
+  text-indent: 15px;
 }
 
 .likesIcon {

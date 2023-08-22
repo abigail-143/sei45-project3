@@ -3,32 +3,134 @@ body {
   background-color: whitesmoke;
 }
 
-.container {
-  background-color: pink;
-  width: 270px;
-  height: auto;
-}
+/* Masonry MUI Layout */
 
-.content {
+/* .contentBlock {
   background-color: blue;
-  width: 270px;
   height: auto;
-  position: absolute;
+  position: relative;
+  margin: 10px 8px !important;
+  z-index: 1;
 }
 
 .content > img {
   width: 100%;
-  height: 100%;
+  border-radius: 20px;
 }
 
 .overlay {
-  background-color: purple;
-  height: auto;
-  position: relative;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
   top: 0;
+  height: 100% !important ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-.overlay > img {
+.src {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.heartImg {
   width: 50px;
   height: 50px;
+  filter: invert(1);
+}
+
+.content {
+  z-index: 20;
+}
+
+.contentHover {
+  z-index: 10;
+}
+
+.overlayHover {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  height: 100% !important ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+} */
+
+/* Masonry MUI Layout */
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+}
+
+.updateModal {
+  background-color: whitesmoke;
+  width: 30vw;
+  height: 41.5vh;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateProfilePic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.updateUsername {
+  border: none;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-align: center;
+  outline-color: burlywood;
+}
+
+.updateUsername::placeholder {
+  text-align: center;
+}
+
+.updateBtn {
+  border-radius: 20px;
+  margin-top: 60px;
+  border: none;
+  background-color: rgb(222,184,135, 0.7);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 5px 15px;
+}
+
+.updateBtn:hover {
+  background-color: rgba(222,184,135, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close:hover {
+  filter: invert(0.5);
 }
