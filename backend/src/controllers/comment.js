@@ -51,6 +51,7 @@ const newComment = async (req, res) => {
       comment: req.body.comment,
       userId: req.user_id,
       contentId: req.params.id,
+      username: req.username,
     });
     await comment.save();
 
@@ -93,7 +94,7 @@ const deleteComment = async (req, res) => {
     content.comments.splice(index, 1);
     await content.save();
 
-    // only the content user and comment create user have the right to delete comment 
+    // only the content user and comment create user have the right to delete comment
     if (comment.userId === req.user_id || content.userId === req.user_id) {
       return await CommentModel.findByIdAndDelete(req.params.id);
     }

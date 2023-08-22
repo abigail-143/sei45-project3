@@ -1,7 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-// import Masonry from "react-responsive-masonry";
-
-import MasonryPkg from "react-responsive-masonry";
 import Masonry from "@mui/lab/Masonry";
 
 import testImgs from "./testImgArray";
@@ -49,35 +46,21 @@ const ExplorePage = () => {
   // update with the state that the data is fetched and stored in
   const contentBlocks = contentData.map((content, index) => {
     return (
-      <figure
-        key={index}
-        onClick={() => {
-          console.log("hi");
-        }}
-      >
-        <div className={styles.imgDisplay}>
-          <img src={content.contentPhoto}></img>
+      <div key={index} className={styles.contentBlock}>
+        <div className={styles.content}>
+          <img src={content.contentPhoto} className={styles.contentImg}></img>
         </div>
-        <div
-          className={styles.detailDisplay}
-          onClick={() => {
-            setHide(false);
-          }}
-        >
-          <a
-            href="https://www.google.com"
-            target="_blank"
-            className={styles.usernameLink}
-          >
-            {content.username}
-          </a>
-
+        <div className={styles.overlayHover}>
+          <a className={styles.username}>@{content.username}</a>
           <img
-            className={styles.likeBtn}
-            src={hide ? "../public/heart.png" : "../public/comment.png"}
+            src="/heart.png"
+            className={styles.heartImg}
+            onClick={() => {
+              console.log("hi");
+            }}
           ></img>
         </div>
-      </figure>
+      </div>
     ); // need to hid the detailDiv, only show on hover and also make the position relative to the imgDiv
   });
 
@@ -92,29 +75,11 @@ const ExplorePage = () => {
       </div>
       <section className={styles.explore}>
         <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
-          <div className="contentBlock">
-            <div className={hover ? "contentHover" : "content"}>
-              <img
-                src={`${"https://images.unsplash.com/photo-1600111765736-9c59f7afe9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"}`}
-                className="contentImg"
-              ></img>
-            </div>
-            {/* <div className={hover ? "overlay" : "overlayHover"}> */}
-            <div className="overlayHover">
-              <a className="src">@username</a>
-              <img
-                src="/heart.png"
-                className="heartImg"
-                onClick={() => {
-                  console.log("hi");
-                }}
-              ></img>
-            </div>
-          </div>
-        </Masonry>
-        <MasonryPkg columnsCount={4} gutter="10px">
           {contentBlocks}
-        </MasonryPkg>
+          {contentBlocks}
+          {contentBlocks}
+          {contentBlocks}
+        </Masonry>
       </section>
     </>
   );

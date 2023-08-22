@@ -1,22 +1,26 @@
 import React from "react";
+import styles from "./UpdateOverlay.module.css";
 
 const UpdateOverlay = (props) => {
   return (
-    <div className="backdrop">
-      <div className="updateModal">
+    <div className={styles.backdrop}>
+      <div className={styles.updateModal}>
         <img
-          className="close"
+          className={styles.close}
           src="/close.png"
           onClick={() => {
             props.setUpdateUser(false);
           }}
         ></img>
-        <img className="updateProfilePic" src={props.userInfo.profilePic}></img>
+        <img
+          className={styles.updateProfilePic}
+          src={props.userInfo.profilePic}
+        ></img>
         <input
-          className="updateUsername"
+          className={styles.updateUsername}
           placeholder={props.userInfo.username}
         ></input>
-        <button className="updateBtn">update</button>
+        <button className={styles.updateBtn}>update</button>
       </div>
     </div>
   );
