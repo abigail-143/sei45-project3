@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import styles from "./submitContent.module.css";
 import "./SubmitContent.css";
 import useFetch from "../custom_hooks/useFetch.jsx";
+import AuthContext from "../context/auth"; // add this
 
 const SubmitContent = (props) => {
   const [image, setImage] = useState("");
@@ -12,17 +13,24 @@ const SubmitContent = (props) => {
   const [uploadPhoto, setUploadPhoto] = useState(true);
   const [displayPhoto, setDisplayPhoto] = useState(false);
   const fetchData = useFetch();
+  const auth = useContext(AuthContext); // add this
 
   const publishNewPost = async () => {
-    const res = await fetchData("/beer/putNewContent", "PUT", {
-      contentPhoto: image,
-      drinkName: drinkNameRef.current.value,
-      shopName: shopNameRef.current.value,
-      contentReview: reviewRef.current.value,
-      contentTag: contentTagRef.current.value,
-    });
+    const res = await fetchData(
+      "/beer/putNewContent",
+      "PUT",
+      {
+        contentPhoto: image,
+        drinkName: drinkNameRef.current.value,
+        shopName: shopNameRef.current.value,
+        contentReview: reviewRef.current.value,
+        contentTag: contentTagRef.current.value,
+      },
+      auth.accessToken // add these
+    );
     if (res.ok) {
-      setUser(res.data);
+      props.setUser(res.data);
+      props.setSubmitContent(false)
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
@@ -58,7 +66,7 @@ const SubmitContent = (props) => {
     setUploadPhoto(false);
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    setDisplayPhoto(true)
+    setDisplayPhoto(true);
     setImage(base64);
   };
 
@@ -93,13 +101,8 @@ const SubmitContent = (props) => {
               accept=".jpeg, .png, .jpg"
               onChange={(e) => handleFileUpload(e)}
             ></input>
+            {displayPhoto && <img className="displayPhoto" src={image} />}
           </label>
-          {displayPhoto && (
-            <img
-              className="displayPhoto"
-              src={image}
-            />
-          )}
         </div>
         <div className="column2">
           <div className="inputDetails">
@@ -109,7 +112,6 @@ const SubmitContent = (props) => {
               ref={drinkNameRef}
               className="inputBox"
               placeholder="Name of the drink"
-
             ></input>
             <div className="font">Bar</div>
             <input
@@ -117,7 +119,6 @@ const SubmitContent = (props) => {
               ref={shopNameRef}
               className="inputBox"
               placeholder="Name of the bar"
-            
             ></input>
             <br />
             <div className="font">Review</div>
@@ -128,7 +129,6 @@ const SubmitContent = (props) => {
               name="Review"
               rows="5"
               placeholder="Leave a review"
-
             ></textarea>
             <br />
             <div className="font">Tags</div>
@@ -137,7 +137,6 @@ const SubmitContent = (props) => {
               ref={contentTagRef}
               className="inputBox"
               placeholder="Start with #hashing"
-
             ></input>
             <button type="button" className="button" onClick={publishNewPost}>
               Publish

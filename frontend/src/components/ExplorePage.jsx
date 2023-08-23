@@ -5,8 +5,12 @@ import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
+import ContentOverlay from "./contentOverlay/ContentModal";
 
 const ExplorePage = (props) => {
+  const [showDetails, setShowDetails] = useState([]);
+  const [showContentOverlay, setShowContentOverlay] = useState(false);
+
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
   const [search, setSearch] = useState("");
@@ -61,11 +65,53 @@ const ExplorePage = (props) => {
     }
   };
 
+  const getIndividualContent = async (id) => {
+    const res = await fetchData(
+      "/beer/singleContent/" + id,
+      "POST",
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setShowDetails(res.data);
+      setShowContentOverlay(true);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data:", res.data);
+    }
+  };
+
+  const handleLikeClick = async (id) => {
+    const res = await fetchData(
+      "/beer/addFavourite/" + id,
+      "PATCH",
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      console.log("content liked");
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data: ", res.data);
+    }
+    setShowContentOverlay(false);
+  };
+
   // fetch collection, and return contentBlock
   // update with the state that the data is fetched and stored in
   const contentBlocks = props.contentData.map((content, index) => {
     return (
-      <div key={index} className={styles.contentBlock}>
+      // need to add on click to showoverlay
+      <div
+        key={index}
+        id={content._id}
+        className={styles.contentBlock}
+        onClick={() => {
+          getIndividualContent(content._id);
+        }}
+      >
         <div className={styles.content}>
           <img src={content.contentPhoto} className={styles.contentImg}></img>
         </div>
@@ -76,6 +122,7 @@ const ExplorePage = (props) => {
             className={styles.heartImg}
             onClick={() => {
               console.log("hi");
+              handleLikeClick(content._id);
             }}
           ></img>
         </div>
@@ -93,6 +140,12 @@ const ExplorePage = (props) => {
 
   return (
     <>
+      {showContentOverlay && (
+        <ContentOverlay
+          setShowContentOverlay={setShowContentOverlay}
+          showDetails={showDetails}
+        ></ContentOverlay>
+      )}
       <div className={styles.quickFilter}>
         <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>

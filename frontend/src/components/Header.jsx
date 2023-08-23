@@ -20,6 +20,21 @@ const Header = (props) => {
     }
   };
 
+  const getData = async () => {
+    const res = await fetchData(
+      "/fyp/all-contents",
+      undefined,
+      undefined,
+      auth.accessToken // add these
+    );
+    if (res.ok) {
+      props.setContentData(res.data);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data", res.data);
+    }
+  };
+
   const handleClickUser = () => {
     if (props.showExplorePage) {
       props.setShowExplorePage(false);
@@ -111,6 +126,12 @@ const Header = (props) => {
                     console.log("enter");
                   }
                 });
+              // test
+              if (searchRef.current.value.length === 0) {
+                getData();
+              }
+
+              //
             }}
             // {...document
             //   .getElementById("searchBar")
