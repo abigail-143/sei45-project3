@@ -1,12 +1,14 @@
 // 2 types of headers - one for register/login/welcome pages, one for user/explore/submit pages
 // will use the showXXPage boolean indicators to toggle between the headers
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import styles from "./Header.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth";
 
 const Header = (props) => {
+  const searchRef = useRef("");
+  const searchResultRef = useRef([]);
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
 
@@ -23,6 +25,20 @@ const Header = (props) => {
       props.setShowExplorePage(false);
       props.setShowUserPage(true);
       console.log("handleClickUser");
+    }
+  };
+
+  const handleSearch = async () => {
+    const res = await fetchData("/search/search", "POST", {
+      searchString: searchRef.current.value,
+    });
+    console.log(res);
+    if (res.ok) {
+      searchResultRef.current = res.data;
+      props.setContentData(searchResultRef.current);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
     }
   };
 
@@ -77,7 +93,34 @@ const Header = (props) => {
               <span>Better Time, Beer Time</span>
             </p>
           </div>
-          <input className={styles.searchBar} placeholder="hello"></input>
+          {/* here */}
+          <input
+            id={"searchBar"}
+            className={styles.searchBar}
+            placeholder="hello"
+            type="text"
+            ref={searchRef}
+            onChange={(e) => {
+              searchRef.current.value = e.target.value;
+              console.log(searchRef.current.value);
+              document
+                .getElementById("searchBar")
+                .addEventListener("keypress", (event) => {
+                  if (event.key === "Enter") {
+                    handleSearch();
+                    console.log("enter");
+                  }
+                });
+            }}
+            // {...document
+            //   .getElementById("searchBar")
+            //   .addEventListener("keypress", (event) => {
+            //     if (event.key === "Enter") {
+            //       handleSearch();
+            //       console.log("enter");
+            //     }
+            //   })}
+          ></input>
           <img
             src="/heart.png"
             width="40"
