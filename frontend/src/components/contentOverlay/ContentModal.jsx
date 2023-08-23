@@ -41,6 +41,7 @@ const ContentModal = (props) => {
     );
     if (res.ok) {
       getComments();
+      commentRef.current.value = "";
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
@@ -67,15 +68,20 @@ const ContentModal = (props) => {
   //================================================
   const allContentComments = comment.map((comment, index) => {
     return (
-      <div
-        key={index}
-        onClick={() => {
-          // console.log(comment);
-          delComment(comment._id);
-        }}
-      >
-        <span className={styles.commentUser}>@{comment.username}</span>{" "}
-        {comment.comment}
+      <div className={styles.oneComment}>
+        <div key={index} className={styles.oneCommentWords}>
+          <span className={styles.commentUser}>@{comment.username}</span>{" "}
+          {comment.comment}
+        </div>
+        <button
+          className={styles.delBtn}
+          onClick={() => {
+            // console.log(comment);
+            delComment(comment._id);
+          }}
+        >
+          delete
+        </button>
       </div>
     );
   });
