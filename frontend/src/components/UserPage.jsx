@@ -14,6 +14,7 @@ const UserPage = (props) => {
   const [updateUser, setUpdateUser] = useState(false);
   const [createdContent, setCreatedContent] = useState([]);
   const [likedContent, setLikedContent] = useState([]);
+  const [createrPhoto, setCreaterPhoto] = useState("");
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
 
@@ -75,6 +76,7 @@ const UserPage = (props) => {
     );
 
     if (res.ok) {
+      setCreaterPhoto(res.data.user.profilePhoto);
       setShowDetails(res.data);
       setShowContentOverlay(true);
     } else {
@@ -171,6 +173,7 @@ const UserPage = (props) => {
         <ContentOverlay
           setShowContentOverlay={setShowContentOverlay}
           showDetails={showDetails}
+          createrPhoto={createrPhoto}
           user={props.user}
         ></ContentOverlay>
       )}
