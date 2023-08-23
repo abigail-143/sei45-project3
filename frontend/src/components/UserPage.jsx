@@ -49,6 +49,22 @@ const UserPage = (props) => {
     }
   };
 
+
+  const deleteContent = async (id) => {
+    console.log("del button activate ");
+    const res = await fetchData(
+      "/beer/delContent/" + id ,
+      "DELETE",
+      undefined,
+      auth.accessToken
+    );
+    if (res.ok) {
+      console.log("delete done2");
+      getCreatedContent();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data: ", res.data);
+
   const getIndividualContent = async (id) => {
     const res = await fetchData(
       "/beer/singleContent/" + id,
@@ -63,6 +79,7 @@ const UserPage = (props) => {
     } else {
       alert(JSON.stringify(res.data));
       console.log("res.data:", res.data);
+
     }
   };
 
@@ -105,7 +122,9 @@ const UserPage = (props) => {
             }}
           ></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
-          <button className={styles.deleteBtn}>Delete</button>
+          <button className={styles.deleteBtn} onClick={()=>{deleteContent(content._id)}}>
+            Delete
+          </button>
         </div>
       </div>
     );

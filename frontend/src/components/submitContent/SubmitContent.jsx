@@ -30,7 +30,7 @@ const SubmitContent = (props) => {
     );
     if (res.ok) {
       props.setUser(res.data);
-      props.setSubmitContent(false)
+      props.setSubmitContent(false);
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
@@ -70,12 +70,12 @@ const SubmitContent = (props) => {
     setImage(base64);
   };
 
-  // upload to data based and keep at state
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    publishNewPost(image);
-    console.log(image);
-  };
+  // // upload to data based and keep at state
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   publishNewPost(image);
+  //   console.log(image);
+  // };
 
   return (
     <div className="backdrop1">
@@ -92,7 +92,6 @@ const SubmitContent = (props) => {
                 src="../picture/upload-image-icon (1).png"
               />
             )}
-
             <input
               type="file"
               label="Image"
