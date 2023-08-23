@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import styles from "./contentOverlayModal.module.css";
 import Comment from "./Comment";
 import "./content.css";
+import testComments from "../testingComments";
 // import useFetch from "./"
 
 const ContentModal = (props) => {
@@ -70,77 +71,16 @@ const ContentModal = (props) => {
     }
   };
 
-  return (
-    // <>
-    //   <div className={styles.backdrop}>
-    //     <img
-    //       src="../picture/Arrow 1.jpg"
-    //       className={styles.arrow}
-    //       onClick={() => {
-    //         props.setShowContentOverlay(false);
-    //       }}
-    //     />
-    //     <div className={styles.modal}>
-    //       <div className="row">
-    //         <div className="col-md-5">
-    //           {/* get the correct data for content photo */}
-    //           <img
-    //             src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
-    //             className={styles.contentPhoto}
-    //           />
-    //         </div>
-    //         <div className="col-md-7">
-    //           <div className="container">
-    //             <div className="row">
-    //               <div className="col-md-2">
-    //                 {/* get the correct data for profile photo */}
-    //                 <img src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" id="profilePhoto" />
-    //               </div>
-    //               <div className={`col-md-8 ${styles.username}`}>
-    //                 @username
-    //               </div>
-    //             </div>
-    //           </div>
-    //           <div className="row">
-    //             <p className="drinkName">drink</p>
-    //             <p className="shopName">shop</p>
-    //             <p id="contentReview" className="col-md-11">
-    //               This is the review.
-    //             </p>
-    //             <p className="contentTag">#beer #pilsner #draft</p>
-    //           </div>
-    //           <div className="row">
-    //             <p className="comment">12 Comments</p>
-    //             {comment.map((item) => {
-    //               return (
-    //                 <Comment
-    //                   key={item._id}
-    //                   id={item._id}
-    //                   comment={item.comment}
-    //                   getComment={getComment}
-    //                 ></Comment>
-    //               );
-    //             })}
-    //           </div>
-    //           <br />
-    //           <div className="row">
-    //             <img src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" className="col-md-4" id="photo" />
-    //             <input
-    //               type="text"
-    //               className="col-md-7"
-    //               id="addComment"
-    //               ref={commentRef}
-    //               placeholder="comment"
-    //               onKeyDown={addComment}
-    //             ></input>
-    //             <img src="../picture/Favorite.jpg" className={styles.heart} />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
+  const allContentComments = testComments.map((comment, index) => {
+    return (
+      <div key={index}>
+        <span className="commentUser">@{comment.username}</span>{" "}
+        {comment.comment}
+      </div>
+    );
+  });
 
+  return (
     <div className="backdrop">
       <div
         className="backBtn"
@@ -175,19 +115,10 @@ const ContentModal = (props) => {
             <small className="tags">#tag #tag #tag</small>
           </div>
           <div className="commentsContainer">
-          <div className="commentsCount">3 Comments</div>
-          <div className="comments">
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment this is a comment this is a comment this is a comment</div>
-            <div className="indivComment"><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
-          </div>
-
+            <div className="commentsCount">{testComments.length} Comments</div>
+            <div className="comments">
+            {allContentComments}
+            </div>
           </div>
           <div className="addComments">
             <img
