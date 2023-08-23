@@ -1,6 +1,4 @@
 .quickFilter {
-  /* background-color: lemonchiffon;
-    border: 1px solid blanchedalmond; */
   width: 100vw;
   height: 70px;
   display: flex;
@@ -21,7 +19,7 @@
 
 .quickFilterItem {
   display: inline-block;
-  background-color: burlywood;
+  background-color: rgba(164, 144, 124, 0.5);
   margin: 5px 10px;
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(158, 159, 165, 0.8);
@@ -29,78 +27,86 @@
 
 .quickFilterItem:hover {
   padding: 2px;
+  background-color: rgba(141, 123, 104, 0.7);
   transition: 0.2s;
   transition-timing-function: ease;
 }
 
-.quickFilterItem > a {
-  display: block;
+.quickFilterItem > button {
+  /* display: block; */
   color: whitesmoke;
+  background-color: inherit;
   text-align: center;
   padding: 5px 15px;
   text-decoration: none;
+  border: inherit;
+  height: inherit;
+  border-radius: inherit;
 }
 
 .explore {
-  width: 75vw;
+  width: 80vw;
+  height: auto;
   margin: auto;
 }
 
-figure {
-  max-width: 270px;
+.contentBlock {
   height: auto;
-  margin: 5px 5px;
-  padding: 0;
   position: relative;
-  z-index: -2;
-}
-
-.imgDisplay {
-  margin: 0;
-  padding: 0;
-  border-radius: 20px;
+  margin: 10px 8px !important;
   z-index: 1;
 }
 
-.imgDisplay > img {
-  height: 100%;
+.contentImg {
   width: 100%;
-  object-fit: contain;
   border-radius: 20px;
-  padding: 0;
-  margin: 0;
 }
 
-.detailDisplay {
+.username {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  top: 0;
-  width: 100%;
-  height: 98.8%;
-  border-radius: 20px;
-  color: white;
-}
-
-.usernameLink {
+  top: 15px;
+  left: 25px;
   text-decoration: none;
   color: white;
-  position: relative;
-  top: 15px;
-  left: 15px;
+  font-size: 1.2rem;
+  max-width: 100px;
 }
 
-.likeBtn {
-  margin: 0;
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  top: 44%;
-  left: inherit;
-  border: none;
+.heartImg {
+  width: 50px;
+  height: 50px;
   filter: invert(1);
 }
 
-.hide {
+.overlayHover {
+  width: 100%;
+  background-color: rgba(66, 63, 62, 0.5);
+  position: absolute;
+  top: 0;
+  height: 100% !important ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   display: none;
+}
+
+.contentBlock:hover .overlayHover {
+  width: 100%;
+  background-color: rgba(66, 63, 62, 0.5);
+  position: absolute;
+  top: 0;
+  height: 100% !important ;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.heartImg:hover {
+  filter: invert(81%) sepia(5%) saturate(1360%) hue-rotate(315deg)
+    brightness(107%) contrast(91%);
 }

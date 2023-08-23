@@ -1,33 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const uploadCheck = require('../middleware/uploadCheck')
 const {
   getContent,
   createNewContent,
   deleteContent,
-  createAccount,
-  getUser,
   updateContent,
   getAllUserContent,
-  newComment,
-  deleteComment,
-  updateComment,
-  getAllComment,
   getParticularComment,
   updateProfile,
-  favouriteContent,
+  singleContent,
+  addFavouriteContent,
+  allFavouriteContent,
+  getUser,
   // uploadImage,
   // getImage,
 } = require("../controllers/content");
+const { auth } = require("../middleware/user");
+const { validateAddContentData } = require("../validators/validateContent");
 
 //get out all the content that user created
 router.get("/getCreatedContent/:id", getContent);
 
 //user create new content
-router.put("/putNewContent/:id", createNewContent);
+router.put("/putNewContent", validateAddContentData, auth, createNewContent);
 
 //user delete his own content
-router.delete("/delContent/:id", deleteContent);
+router.delete("/delContent", auth, deleteContent);
 
 //user update his own content
 router.patch("/updateContent/:id", updateContent);
@@ -35,27 +33,20 @@ router.patch("/updateContent/:id", updateContent);
 //get out all the content inside content collection
 router.get("/getAllUserContent", getAllUserContent);
 
-//create new comment by owner user or other user
-router.put("/newComment/:id", newComment);
-
-//delelte user comment
-router.delete("/deleteComment/:id", deleteComment);
-
-//edit user comment
-router.patch("/userUpdateComment/:id", updateComment);
-
-//get out all the comment from comment collection
-router.get("/getAllComment", getAllComment);
-
 // get the particulr content's comment
 router.post("/getParticularComment/:id", getParticularComment);
 
 // update user profile
 router.patch("/updateProfile", updateProfile);
 
-// add favourite content
-router.patch("/addFavourite", favouriteContent);
+// add contentId into user model likedContent
+router.patch("/addFavourite/:id", auth, addFavouriteContent);
 
+// get individual content
+router.post("/singleContent/:id", auth, singleContent);
+
+// get out data that user's favourite content
+router.get("/allFavourite/:id", allFavouriteContent);
 
 // ==============ignore============================
 
@@ -63,8 +54,6 @@ router.patch("/addFavourite", favouriteContent);
 
 // router.get("/images", getImage);
 
-// //
-// router.put("/user", createAccount);
-// router.get("/alluser", getUser);
+router.post("/getUser", auth, getUser);
 
 module.exports = router;

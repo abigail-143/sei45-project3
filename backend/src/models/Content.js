@@ -7,9 +7,11 @@ const ContentsSchema = new mongoose.Schema(
     drinkName: { type: String, required: true, maxLength: 30 },
     shopName: { type: String, maxLength: 30 },
     contentReview: { type: String, maxLength: 200 },
-    contentTag: { type: String, maxLength: 30 },
-    likeCount: { type: Number },
+    contentTag: { type: String, maxLength: 100 },
     userId: { type: mongoose.Types.ObjectId, ref: "User._id" },
+    username: { type: String },
+    likedUsersId: { type: Array }, // user _ids
+    comments: { type: Array }, // comment _ids
   },
   { collection: "Content" }
 );

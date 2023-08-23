@@ -13,19 +13,26 @@ const seedUsers = async (req, res) => {
         _id: "64dee7d7e713527aee8c75bc",
         username: "user1",
         hashPWD: await bcrypt.hash("password1", 12),
-        profilePhoto: "string1",
+        profilePhoto: "https://picsum.photos/200",
+        likedContent: ["64df206ae805e92ed914b43e"],
       },
       {
         _id: "64dee7d7e713527aee8c75bd",
         username: "user2",
         hashPWD: await bcrypt.hash("password2", 12),
-        profilePhoto: "string2",
+        profilePhoto: "https://picsum.photos/200",
+        likedContent: ["64df206ae805e92ed914b43d", "64df206ae805e92ed914b43c"],
       },
       {
         _id: "64dee7d7e713527aee8c75be",
         username: "user3",
         hashPWD: await bcrypt.hash("password3", 12),
-        profilePhoto: "string3",
+        profilePhoto: "https://picsum.photos/200",
+        likedContent: [
+          "64df206ae805e92ed914b43d",
+          "64df206ae805e92ed914b43c",
+          "64df206ae805e92ed914b43e",
+        ],
       }
     );
     res.json({ status: "ok", msg: "seed users successful" });
@@ -83,7 +90,8 @@ const login = async (req, res) => {
     if (result) {
       const payload = {
         username: user.username,
-        user_id: user._id
+        user_id: user._id,
+        photo: user.profilePhoto,
       };
 
       const access = jwt.sign(payload, process.env.ACCESS_SECRET, {
@@ -91,7 +99,7 @@ const login = async (req, res) => {
         jwtid: uuidv4(),
       });
 
-      res.json({ access });
+      res.json({ access, payload });
     } else {
       // if entered password is wrong
       console.log("result = ", result);

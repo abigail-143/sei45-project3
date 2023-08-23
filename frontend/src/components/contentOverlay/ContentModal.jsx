@@ -1,72 +1,25 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import styles from "./contentOverlayModal.module.css";
 import Comment from "./Comment";
 import "./content.css";
+import testComments from "../testingComments";
+import AuthContext from "../context/auth";
+import useFetch from "../custom_hooks/useFetch";
 
 const ContentModal = (props) => {
-  //   const [user, setUser] = useState("");
-  //   const [content, setContent] = useState("");
-  //   const [comment, setComment] = useState("");
-  //   const fetchData = useFetch();
+  const [comment, setComment] = useState([]);
+  const fetchData = useFetch();
   const commentRef = useRef();
+  const auth = useContext(AuthContext);
+  const data = props.showDetails;
 
-  const content = {
-    __id: "64df9822c83eb09196523536",
-    contentPhoto: "photo",
-    drinkName: "mojito",
-    shopName: "timbre",
-    contentReview:
-      "Check their website for Live band performances. They have different groups and theme(music genre/style) and locations. They have dressing code, so ensure not to wear slippers nor shorts. Love their pizzas🤤 Environment is good. I love the night view while having dinner at peace and some entertainment from their mini live bands. ",
-    contentTag: "#timbre",
-    comments: Array(1),
-    userId: "64df980bc83eb09196523532",
-  };
-
-  const user = {
-    _id: "64df980bc83eb09196523532",
-    username: "yChun",
-    hashPWD: "123456",
-    profilePhoto: "userPhoto",
-  };
-
-  const comment = [
-    {
-      _id: "64df9b5e287c74940aaac930",
-      comment: "This is first comment",
-      userId: "64df980bc83eb09196523532",
-      contentId: "64df9822c83eb09196523536",
-    },
-  ];
-  const numComment = comment.length;
-
-  //should get user detail from the start and useContext send to here
-  // const getUser = async () => {
-  //   const decoded = userCtx.accessToken;
-  //   const res = await fetchData("/getuser", "POST", {
-  //     username: decoded.username,
-  //   });
-  //   if (res.ok) {
-  //     setUser(res.data);
-  //   } else {
-  //     alert(JSON.stringify(res.data));
-  //     console.log(res.data);
-  //   }
-  // };
-
-  const singleContent = async () => {
-    const res = await fetchData("/beer/singleContent", "POST", {
-      userId: req.body.id,
-    });
-    if (res.ok) {
-      setContent(res.data);
-    } else {
-      alert(JSON.stringify(res.data));
-      console.log(res.data);
-    }
-  };
-
-  const getComment = async (id) => {
-    const res = await fetchData("/beer/getParticularComment/" + id);
+  const getComments = async () => {
+    const res = await fetchData(
+      "/beer/getParticularComment/" + data.content._id,
+      "POST",
+      undefined,
+      auth.accessToken
+    );
     if (res.ok) {
       setComment(res.data);
     } else {
@@ -75,80 +28,69 @@ const ContentModal = (props) => {
     }
   };
 
-  const addComment = async (e, id) => {
-    if (e.key === "Enter"){
-    const res = await fetchData("/beer/newComment/" + id, "PUT", {
-      comment: commentRef.current.vlue,
-    });
-    if (res.ok) {
-      getComment();
-    } else {
-      alert(JSON.stringify(res.data));
-      console.log(res.data);
+  const addComment = async (e) => {
+    if (e.key === "Enter") {
+      const res = await fetchData("/beer/comment/newComment/", "PUT", {
+        comment: commentRef.current.vlue,
+        contentId: props.id,
+      });
+      if (res.ok) {
+        getComment();
+      } else {
+        alert(JSON.stringify(res.data));
+        console.log(res.data);
+      }
     }
-  }};
+  };
+
+  const allContentComments = comment.map((comment, index) => {
+    return (
+      <div key={index}>
+        <span className="commentUser">@{comment.username}</span>{" "}
+        {comment.comment}
+      </div>
+    );
+  });
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   return (
-    <div className={styles.backdrop}>
-      <div className="row">
-        {/* need to add setShowModal to onClick  */}
-        <img src="../picture/Arrow 1.jpg" id="arrow" className="col-md-2" onClick/>
-        <p className="col-md-3" id="foryou">For You</p>
+    <div className="backdrop">
+      <div
+        className="backBtn"
+        onClick={() => {
+          props.setShowContentOverlay(false);
+        }}
+      >
+        <img src="/left-chevron.png"></img>
+        <p>For You</p>
       </div>
-      <div className={styles.modal}>
-        <div className="row">
-          <div className="col-md-5">
-            {/* get the correct data for content photo */}
-            <div className={styles.contentPhoto}>{content.contentPhoto}</div>
+      <div className="contentModal">
+        <img className="contentPhoto" src={data.content.contentPhoto}></img>
+        <div className="contentDetails">
+          <div className="userInfo">
+            <img
+              className="userProfilePhoto"
+              src={data.user.profilePhoto}
+            ></img>
+            <p className="userName">@{data.user.username}</p>
           </div>
-          <div className="col-md-7">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-2">
-                  {/* get the correct data for profile photo */}
-                  <p id="profilePhoto">{user.profilePhoto}</p>
-                </div>
-                <div className="col-md-8" id="username">
-                  {user.username}
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <p className="drinkName">{content.drinkName}</p>
-              <p className="shopName">{content.shopName}</p>
-              <p id="contentReview" className="col-md-11">
-                {content.contentReview}
-              </p>
-              <p className="contentTag">{content.contentTag}</p>
-            </div>
-            <div className="row">
-              <p className="comment">{numComment} Comments</p>
-              {comment.map((item) => {
-                return (
-                  <Comment
-                    key={item._id}
-                    id={item._id}
-                    comment={item.comment}
-                    getComment={getComment}
-                  ></Comment>
-                );
-              })}
-            </div>
-            <br />
-            <div className="row">
-              <div className="col-md-4" id="photo">
-                {user.profilePhoto}
-              </div>
-              <input
-                type="text"
-                className="col-md-7"
-                id="addComment"
-                ref={commentRef}
-                placeholder="comment"
-                onKeyDown={addComment}
-              ></input>
-              <img src="../picture/Favorite.jpg" className={styles.heart} />
-            </div>
+          <div className="contentInfo">
+            <p className="drinkName">{data.content.drinkName}</p>
+            <p className="shopName">{data.content.shopName}</p>
+            <p className="review">{data.content.contentReview}</p>
+            <small className="tags">{data.content.contentTag}</small>
+          </div>
+          <div className="commentsContainer">
+            <div className="commentsCount">{comment.length} Comments</div>
+            <div className="comments">{allContentComments}</div>
+          </div>
+          <div className="addComments">
+            <img className="userCommentPic" src={data.user.profilePhoto}></img>
+            <input className="newComment" placeholder="add a comment"></input>
+            <img className="heartIcon" src="/heart.png"></img>
           </div>
         </div>
       </div>
