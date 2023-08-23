@@ -104,9 +104,9 @@ const ContentModal = (props) => {
           <div className={styles.userInfo}>
             <img
               className={styles.userProfilePhoto}
-              src={data.user.profilePhoto}
+              src={props.createrPhoto} // change to content
             ></img>
-            <p className={styles.userName}>@{data.user.username}</p>
+            <p className={styles.userName}>@{data.content.username}</p>
           </div>
           <div className={styles.contentInfo}>
             <p className={styles.drinkName}>{data.content.drinkName}</p>

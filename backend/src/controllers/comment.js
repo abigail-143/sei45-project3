@@ -119,9 +119,9 @@ const deleteComment = async (req, res) => {
 
     await CommentModel.findByIdAndDelete(req.params.id);
     // only the content user and comment create user have the right to delete comment
-    // if (comment.userId === req.user_id || content.userId === req.user_id) {
-    //   return await CommentModel.findByIdAndDelete(req.params.id);
-    // }
+    if (comment.userId === req.user_id || content.userId === req.user_id) {
+      return await CommentModel.findByIdAndDelete(req.params.id);
+    }
     res.json({ status: "ok", msg: "Comment deleted" });
   } catch (error) {
     console.log(error.message);
