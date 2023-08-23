@@ -25,6 +25,7 @@ router.get("/getCreatedContent/:id", getContent);
 router.put("/putNewContent", validateAddContentData, auth, createNewContent);
 
 //user delete his own content
+
 router.delete("/delContent/:id", deleteContent);
 
 //user update his own content
