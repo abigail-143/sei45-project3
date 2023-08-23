@@ -158,9 +158,6 @@ const ExplorePage = (props) => {
       <section className={styles.explore}>
         <Masonry columns={4} spacing={2} sx={{ margin: 0 }}>
           {contentBlocks}
-          {contentBlocks}
-          {contentBlocks}
-          {contentBlocks}
         </Masonry>
       </section>
     </>
