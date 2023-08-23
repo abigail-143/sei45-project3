@@ -5,9 +5,12 @@ import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
+import ContentOverlay from "./contentOverlay/ContentModal";
 
 const ExplorePage = () => {
   const [contentData, setContentData] = useState([]);
+  const [showDetails, setShowDetails] = useState([]);
+  const [showContentOverlay, setShowContentOverlay] = useState(false);
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
 
@@ -36,11 +39,29 @@ const ExplorePage = () => {
     }
   };
 
+  const getIndividualContent = async (id) => {
+    const res = await fetchData(
+      "beer/singleContent",
+      "POST",
+      { userId: id },
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setShowDetails(res.data);
+      setShowContentOverlay(true);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data:", res.data);
+    }
+  };
+
   // fetch collection, and return contentBlock
   // update with the state that the data is fetched and stored in
   const contentBlocks = contentData.map((content, index) => {
     return (
-      <div key={index} className={styles.contentBlock}>
+      // need to add on click to showoverlay
+      <div key={index} id={content._id} className={styles.contentBlock}>
         <div className={styles.content}>
           <img src={content.contentPhoto} className={styles.contentImg}></img>
         </div>
@@ -64,6 +85,11 @@ const ExplorePage = () => {
 
   return (
     <>
+      {showContentOverlay && (
+        <ContentOverlay
+          setShowContentOverlay={setShowContentOverlay}
+        ></ContentOverlay>
+      )}
       <div className={styles.quickFilter}>
         <ul className={styles.quickFilterBar}>{hashtagItems}</ul>
       </div>
