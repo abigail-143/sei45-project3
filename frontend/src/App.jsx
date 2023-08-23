@@ -63,6 +63,7 @@ function App() {
             setShowRegister={setShowRegister}
             setShowWelcome={setShowWelcome}
             setShowExplorePage={setShowExplorePage}
+            setShowLogin={setShowLogin}
           ></RegisterModal>
         )}
         {/* {showRegister && <Register></Register>} */}

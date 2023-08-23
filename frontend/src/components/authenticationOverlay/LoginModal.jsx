@@ -27,7 +27,7 @@ const LoginOverlay = (props) => {
       props.setShowExplorePage(true);
       props.setUser(res.data.payload);
       // test this
-      const decode = jwtDecode(res.data.access);
+      // const decode = jwtDecode(res.data.access);
     } else {
       console.log(res.data);
       setError1(res.data[0]);

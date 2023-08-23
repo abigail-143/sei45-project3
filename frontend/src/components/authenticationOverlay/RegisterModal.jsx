@@ -25,10 +25,10 @@ const RegisterOverlay = (props) => {
       console.log(res);
       auth.setAccessToken(res.data.access);
       props.setShowRegister(false);
-      props.setShowWelcome(false);
-      props.setShowExplorePage(true);
+      props.setShowWelcome(true);
+      props.setShowLogin(true);
 
-      const decode = jwtDecode(res.data.access);
+      // const decode = jwtDecode(res.data.access);
     } else {
       console.log(res.data);
       setError1(res.data[0]);
@@ -98,6 +98,7 @@ const RegisterModal = (props) => {
           setShowRegister={props.setShowRegister}
           setShowExplorePage={props.setShowExplorePage}
           setShowWelcome={props.setShowWelcome}
+          setShowLogin={props.setShowLogin}
         ></RegisterOverlay>,
         document.querySelector("#auth-root")
       )}
