@@ -79,8 +79,6 @@ const seedContents = async (req, res) => {
         contentTag: "#beer #paleale",
         userId: "64dee7d7e713527aee8c75bc",
         username: "user1",
-        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
-        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
       },
       {
         contentPhoto:
@@ -91,8 +89,6 @@ const seedContents = async (req, res) => {
         contentTag: "#draught #pilsner",
         userId: "64dee7d7e713527aee8c75bc",
         username: "user1",
-        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
-        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
       },
       {
         contentPhoto:
@@ -103,8 +99,6 @@ const seedContents = async (req, res) => {
         contentTag: "#beer #draught",
         userId: "64dee7d7e713527aee8c75bc",
         username: "user1",
-        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
-        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
       },
       {
         contentPhoto:
@@ -115,8 +109,6 @@ const seedContents = async (req, res) => {
         contentTag: "#scotchale #paleale",
         userId: "64dee7d7e713527aee8c75bc",
         username: "user1",
-        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
-        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
       },
       {
         contentPhoto:
@@ -127,8 +119,6 @@ const seedContents = async (req, res) => {
         contentTag: "#scotchale #pilsner",
         userId: "64dee7d7e713527aee8c75bc",
         username: "user1",
-        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
-        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
       },
       {
         contentPhoto:
@@ -139,8 +129,6 @@ const seedContents = async (req, res) => {
         contentTag: "#ipa #paleale",
         userId: "64dee7d7e713527aee8c75bc",
         username: "user1",
-        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
-        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
       },
     ];
 
