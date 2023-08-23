@@ -18,13 +18,9 @@ const searchFunction = async (req, res) => {
         $or: searchArray.map((term) => ({
           $or: [
             { drinkName: { $regex: `${term}`, $options: "i" } },
-            // { drinkName: { $regex: `$${term}`, $options: "i" } },
             { shopName: { $regex: `${term}`, $options: "i" } },
-            // { shopName: { $regex: `$${term}`, $options: "i" } },
             { contentReview: { $regex: `${term}`, $options: "i" } },
-            // { contentReview: { $regex: `$${term}`, $options: "i" } },
             { contentTag: { $regex: `${term}`, $options: "i" } },
-            // { contentTag: { $regex: `$${term}`, $options: "i" } },
           ],
         })),
       };
