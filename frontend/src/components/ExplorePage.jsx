@@ -149,6 +149,7 @@ const ExplorePage = (props) => {
           setShowContentOverlay={setShowContentOverlay}
           showDetails={showDetails}
           createrPhoto={createrPhoto}
+          user={props.user}
         ></ContentOverlay>
       )}
       <div className={styles.quickFilter}>

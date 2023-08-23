@@ -71,6 +71,7 @@ function App() {
           <ExplorePage
             contentData={contentData}
             setContentData={setContentData}
+            user={user}
           ></ExplorePage>
         )}
 

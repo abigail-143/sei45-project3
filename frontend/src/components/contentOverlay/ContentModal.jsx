@@ -121,10 +121,7 @@ const ContentModal = (props) => {
             <div className={styles.comments}>{allContentComments}</div>
           </div>
           <div className={styles.addComments}>
-            <img
-              className={styles.userCommentPic}
-              src={data.user.profilePhoto}
-            ></img>
+            <img className={styles.userCommentPic} src={props.user.photo}></img>
             <input
               className={styles.newComment}
               placeholder="add a comment"

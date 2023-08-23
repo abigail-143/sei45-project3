@@ -85,7 +85,6 @@ const UserPage = (props) => {
 
   useEffect(() => {
     if (props.showCreated) {
-      
       getCreatedContent(props.user.user_id);
     } else {
       getLikedContent();
@@ -172,6 +171,7 @@ const UserPage = (props) => {
         <ContentOverlay
           setShowContentOverlay={setShowContentOverlay}
           showDetails={showDetails}
+          user={props.user}
         ></ContentOverlay>
       )}
       {submitContent && (
