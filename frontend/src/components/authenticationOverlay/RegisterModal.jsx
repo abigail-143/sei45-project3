@@ -11,9 +11,11 @@ const RegisterOverlay = (props) => {
   const [password, setPassword] = useState("");
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
+
   const [uploadPic, setUploadPic] = useState(true);
   const [photo, setPhoto] = useState("");
   const [displayPic, setDisplayPic] = useState(false);
+
   const usernameRef = useRef("");
   const pwdRef = useRef("");
   const fetchData = useFetch();
@@ -30,6 +32,7 @@ const RegisterOverlay = (props) => {
       props.setShowRegister(false);
       props.setShowWelcome(true);
       props.setShowLogin(true);
+      alert("User created!");
 
       // const decode = jwtDecode(res.data.access);
     } else {

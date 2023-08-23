@@ -30,7 +30,7 @@ const SubmitContent = (props) => {
     );
     if (res.ok) {
       props.setUser(res.data);
-      props.setSubmitContent(false)
+      props.setSubmitContent(false);
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
