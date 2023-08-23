@@ -28,8 +28,6 @@ router.put("/putNewContent", validateAddContentData, auth, createNewContent);
 
 router.delete("/delContent/:id", deleteContent);
 
-
-
 //user update his own content
 router.patch("/updateContent/:id", updateContent);
 
