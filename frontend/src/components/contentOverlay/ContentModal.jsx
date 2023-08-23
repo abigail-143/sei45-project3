@@ -66,12 +66,11 @@ const ContentModal = (props) => {
     }
   };
 
-  const enabledButton =
-    comment.userId === props.user.user_id ||
-    props.showDetails.content.userId === props.user.user_id;
-
   //================================================
   const allContentComments = comment.map((comment, index) => {
+    const enabledButton =
+      comment.userId === props.user.user_id ||
+      props.showDetails.content.userId === props.user.user_id;
     return (
       <div className={styles.oneComment}>
         <div key={index} className={styles.oneCommentWords}>
