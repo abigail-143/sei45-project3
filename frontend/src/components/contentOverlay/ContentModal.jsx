@@ -100,7 +100,7 @@ const ContentModal = (props) => {
               className={styles.newComment}
               placeholder="add a comment"
             ></input>
-            <img className={styles.heartIcon} src="/heart.png"></img>
+            <img className={styles.heartIcon} src="/login.png"></img>
           </div>
         </div>
       </div>
