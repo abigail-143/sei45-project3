@@ -13,7 +13,9 @@ const RegisterOverlay = (props) => {
   const [error2, setError2] = useState("");
 
   const [uploadPic, setUploadPic] = useState(true);
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState(
+    "https://images.unsplash.com/photo-1552944150-6dd1180e5999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80"
+  );
   const [displayPic, setDisplayPic] = useState(false);
 
   const usernameRef = useRef("");
@@ -23,6 +25,7 @@ const RegisterOverlay = (props) => {
   // function to deal with the login button in modal
   const RegisterClick = async () => {
     const res = await fetchData("/landing/register", "PUT", {
+      photo,
       username,
       password,
     });
