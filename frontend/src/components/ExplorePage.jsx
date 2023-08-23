@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import Masonry from "@mui/lab/Masonry";
 
 import testImgs from "./testImgArray";
@@ -10,7 +10,6 @@ import ContentOverlay from "./contentOverlay/ContentModal";
 const ExplorePage = (props) => {
   const [showDetails, setShowDetails] = useState([]);
   const [showContentOverlay, setShowContentOverlay] = useState(false);
-
 
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
@@ -57,6 +56,23 @@ const ExplorePage = (props) => {
     }
   };
 
+  const handleLikeClick = async (id) => {
+    const res = await fetchData(
+      "/beer/addFavourite/" + id,
+      "PATCH",
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      console.log("content liked");
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data: ", res.data);
+    }
+    setShowContentOverlay(false);
+  };
+
   // fetch collection, and return contentBlock
   // update with the state that the data is fetched and stored in
   const contentBlocks = props.contentData.map((content, index) => {
@@ -80,6 +96,7 @@ const ExplorePage = (props) => {
             className={styles.heartImg}
             onClick={() => {
               console.log("hi");
+              handleLikeClick(content._id);
             }}
           ></img>
         </div>
@@ -96,6 +113,7 @@ const ExplorePage = (props) => {
       {showContentOverlay && (
         <ContentOverlay
           setShowContentOverlay={setShowContentOverlay}
+          showDetails={showDetails}
         ></ContentOverlay>
       )}
       <div className={styles.quickFilter}>

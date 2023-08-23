@@ -147,8 +147,11 @@ const addFavouriteContent = async (req, res) => {
     user.likedContent.push(req.params.id);
     await content.save();
     await user.save();
-    res.json(content);
-    res.json({ status: "ok", msg: "favorite content has been saved" });
+    res.json({
+      status: "ok",
+      msg: "favorite content has been saved",
+      data: content,
+    });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
