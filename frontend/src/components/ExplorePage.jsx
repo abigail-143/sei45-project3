@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import Masonry from "@mui/lab/Masonry";
 
 import testImgs from "./testImgArray";
@@ -7,16 +7,33 @@ import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
 
 const ExplorePage = (props) => {
-
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
+  const searchRef = useRef("");
+  const searchResult = useRef("");
 
-  const tags = "#beer #scotchale #pilsner #draft #carlsberg";
+  const handleSearch = async () => {
+    const res = await fetchData("/search/search", "POST", {
+      searchString: searchRef.current.value,
+    });
+    console.log(res);
+    if (res.ok) {
+      searchResultRef.current = res.data;
+      props.setContentData(searchResultRef.current);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
+    }
+  };
+
+  const tags = "#beer #scotchale #pilsner #draft #carlsberg #stout #paleale";
   const hashtags = tags.split(" ");
   const hashtagItems = hashtags.map((hashtag, index) => {
     return (
       <li key={index} className={styles.quickFilterItem}>
-        <a href="/">{hashtag}</a>
+        <a href="/" ref={searchRef}>
+          {hashtag}
+        </a>
       </li>
     );
   });

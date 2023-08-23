@@ -9,7 +9,10 @@ const searchFunction = async (req, res) => {
     // output of this searchFunction
     const searchResults = [];
     // split the string into individual words
-    const searchArray = searchString.split(" ");
+    const searchArray = [];
+    if (searchString) {
+      searchArray.push(searchString.split(" "));
+    }
 
     // search within ContentModel
     const searchContent = async () => {
