@@ -106,9 +106,10 @@ const ContentModal = (props) => {
               ref={commentRef}
               type="text"
             ></input>
+
             <img
               className={styles.heartIcon}
-              src="/heart.png"
+              src="/login.png"
               onClick={() => {
                 // console.log(props.showDetails.content._id);
                 addComment(props.showDetails.content._id);
