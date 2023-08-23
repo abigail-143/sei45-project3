@@ -10,17 +10,25 @@
   justify-content: center;
 }
 
+.closeBtn {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
 .backBtn {
   width: 150px;
   height: 10%;
   z-index: 100;
   margin-top: 56px;
   margin-right: 10px;
-  align-self: flex-start;
+  /* align-self: flex-start; */
   justify-content: space-evenly;
-  /* position: absolute;
-    top: 50px;
-    left: 50px; */
+  position: absolute;
+  top: 10px;
+  left: 10px;
   display: flex;
   color: white;
   cursor: pointer;
@@ -48,7 +56,7 @@
   align-items: center;
   border-radius: 20px;
   padding: 25px 50px;
-  /* position: fixed; */
+  position: absolute;
 }
 
 .contentPhoto {
@@ -104,6 +112,7 @@ p {
   font-size: 2.5rem;
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .shopName {
@@ -111,6 +120,7 @@ p {
   font-size: 2rem;
   display: flex;
   align-items: center;
+  margin-top: 15px;
 }
 
 .review {
