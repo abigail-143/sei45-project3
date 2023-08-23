@@ -17,9 +17,9 @@ const UserPage = (props) => {
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
 
-  const getCreatedContent = async () => {
+  const getCreatedContent = async (id) => {
     const res = await fetchData(
-      "/beer/getCreatedContent/" + props.user.user_id,
+      "/beer/getCreatedContent/" + id,
       undefined,
       undefined,
       auth.accessToken
@@ -68,11 +68,13 @@ const UserPage = (props) => {
 
   useEffect(() => {
     if (props.showCreated) {
-      getCreatedContent();
+      console.log(props.user);
+      getCreatedContent(props.user.user_id);
     } else {
       getLikedContent();
+      console.log(props.user);
     }
-  }, [props.showCreated]);
+  }, [submitContent]);
 
   // this is to pull the user's created content
   const createdContentBlocks = createdContent.map((content, index) => {

@@ -59,13 +59,13 @@
 }
 
 .form {
-  background-color: blue;
+  /* background-color: blue; */
   width: 100%;
   height: 100%;
 }
 
 .uploadPhoto {
-  background-color: aquamarine; 
+  /* background-color: aquamarine;  */
   position: relative;
   height: 30%;
   left: 35%;
