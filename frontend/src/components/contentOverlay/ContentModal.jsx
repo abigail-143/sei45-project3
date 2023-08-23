@@ -65,6 +65,11 @@ const ContentModal = (props) => {
       console.log(res.data);
     }
   };
+
+  const enabledButton =
+      comment.userId === props.user.user_id ||
+      (props.showDetails.content.userId === props.user.user_id);
+
   //================================================
   const allContentComments = comment.map((comment, index) => {
     return (
@@ -75,6 +80,7 @@ const ContentModal = (props) => {
         </div>
         <button
           className={styles.delBtn}
+          disabled={!enabledButton}
           onClick={() => {
             // console.log(comment);
             delComment(comment._id);
@@ -85,6 +91,10 @@ const ContentModal = (props) => {
       </div>
     );
   });
+
+
+
+
 
   useEffect(() => {
     getComments();
