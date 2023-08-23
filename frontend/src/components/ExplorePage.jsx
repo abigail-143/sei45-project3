@@ -38,7 +38,10 @@ const ExplorePage = (props) => {
       <li key={index} className={styles.quickFilterItem}>
         <button
           onClick={() => {
+            console.log(`${hashtag} clicked`);
             setSearch(hashtag);
+            console.log(`search state: ${search}`);
+            handleSearch();
           }}
         >
           {hashtag}
@@ -130,12 +133,9 @@ const ExplorePage = (props) => {
   useEffect(() => {
     getData();
   }, []);
-
   useEffect(() => {
-    if (search.length != 0) {
-      handleSearch();
-    }
     searchResultRef.current = "";
+
   }, [search]);
 
   return (
