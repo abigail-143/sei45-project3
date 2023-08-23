@@ -67,8 +67,8 @@ const ContentModal = (props) => {
   };
 
   const enabledButton =
-      comment.userId === props.user.user_id ||
-      (props.showDetails.content.userId === props.user.user_id);
+    comment.userId === props.user.user_id ||
+    props.showDetails.content.userId === props.user.user_id;
 
   //================================================
   const allContentComments = comment.map((comment, index) => {
@@ -92,17 +92,13 @@ const ContentModal = (props) => {
     );
   });
 
-
-
-
-
   useEffect(() => {
     getComments();
   }, [remove]);
 
   return (
     <div className={styles.backdrop}>
-      <div
+      {/* <div
         className={styles.backBtn}
         onClick={() => {
           props.setShowContentOverlay(false);
@@ -110,8 +106,15 @@ const ContentModal = (props) => {
       >
         <img src="/left-chevron.png"></img>
         <p>For You</p>
-      </div>
+      </div> */}
       <div className={styles.contentModal}>
+        <img
+          className={styles.closeBtn}
+          src="/close.png"
+          onClick={() => {
+            props.setShowContentOverlay(false);
+          }}
+        ></img>
         <img
           className={styles.contentPhoto}
           src={data.content.contentPhoto}
