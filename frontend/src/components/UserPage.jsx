@@ -85,13 +85,13 @@ const UserPage = (props) => {
 
   useEffect(() => {
     if (props.showCreated) {
-      console.log(props.user);
+      
       getCreatedContent(props.user.user_id);
     } else {
       getLikedContent();
-      console.log(props.user);
+      // console.log(props.user);
     }
-  }, [submitContent]);
+  }, [submitContent, showContentOverlay]);
 
   // this is to pull the user's created content
   const createdContentBlocks = createdContent.map((content, index) => {
