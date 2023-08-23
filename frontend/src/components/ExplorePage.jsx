@@ -13,36 +13,13 @@ const ExplorePage = (props) => {
 
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
-  const [search, setSearch] = useState("");
-  const searchResultRef = useRef("");
 
-  const handleSearch = async () => {
-    const res = await fetchData("/search/search", "POST", {
-      searchString: search,
-    });
-    console.log("handleSearch called");
-    console.log(res);
-    if (res.ok) {
-      searchResultRef.current = res.data;
-      props.setContentData(searchResultRef.current);
-    } else {
-      alert(JSON.stringify(res.data));
-      console.log(res.data);
-    }
-  };
-
-  const tags = "#beer #scotchale #pilsner #draft #carlsberg #stout #paleale";
+  const tags = "#beer #scotchale #pilsner #draft #carlsberg";
   const hashtags = tags.split(" ");
   const hashtagItems = hashtags.map((hashtag, index) => {
     return (
       <li key={index} className={styles.quickFilterItem}>
-        <button
-          onClick={() => {
-            setSearch(hashtag);
-          }}
-        >
-          {hashtag}
-        </button>
+        <a href="/">{hashtag}</a>
       </li>
     );
   });
@@ -130,13 +107,6 @@ const ExplorePage = (props) => {
   useEffect(() => {
     getData();
   }, []);
-
-  useEffect(() => {
-    if (search.length != 0) {
-      handleSearch();
-    }
-    searchResultRef.current = "";
-  }, [search]);
 
   return (
     <>

@@ -32,16 +32,12 @@
   transition-timing-function: ease;
 }
 
-.quickFilterItem > button {
-  /* display: block; */
+.quickFilterItem > a {
+  display: block;
   color: whitesmoke;
-  background-color: inherit;
   text-align: center;
   padding: 5px 15px;
   text-decoration: none;
-  border: inherit;
-  height: inherit;
-  border-radius: inherit;
 }
 
 .explore {

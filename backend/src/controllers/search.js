@@ -5,17 +5,11 @@ const CommentModel = require("../models/Comment");
 const searchFunction = async (req, res) => {
   try {
     // store the search in a variable
-    let searchString;
-    if (req.body.searchString.length > 0) {
-      searchString = req.body.searchString;
-    }
+    const searchString = req.body.searchString;
     // output of this searchFunction
     const searchResults = [];
     // split the string into individual words
-    const searchArray = [];
-    if (searchString) {
-      searchArray.push(searchString.split(" "));
-    }
+    const searchArray = searchString.split(" ");
 
     // search within ContentModel
     const searchContent = async () => {
