@@ -19,7 +19,16 @@ const ExplorePage = (props) => {
   const hashtagItems = hashtags.map((hashtag, index) => {
     return (
       <li key={index} className={styles.quickFilterItem}>
-        <a href="/">{hashtag}</a>
+        <button
+          onClick={() => {
+            console.log(`${hashtag} clicked`);
+            setSearch(hashtag);
+            console.log(`search state: ${search}`);
+            handleSearch();
+          }}
+        >
+          {hashtag}
+        </button>
       </li>
     );
   });
@@ -107,6 +116,10 @@ const ExplorePage = (props) => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    searchResultRef.current = "";
+
+  }, [search]);
 
   return (
     <>
