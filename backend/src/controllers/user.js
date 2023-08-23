@@ -63,6 +63,7 @@ const register = async (req, res) => {
     await UserModel.create({
       username: req.body.username,
       hashPWD,
+      profilePhoto: req.body.photo
     });
 
     res.json({ status: "ok", msg: "user created" });

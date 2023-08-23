@@ -91,7 +91,9 @@ const UserPage = (props) => {
       getLikedContent();
       console.log(props.user);
     }
+
   }, [submitContent]);
+
 
   // this is to pull the user's created content
   const createdContentBlocks = createdContent.map((content, index) => {
