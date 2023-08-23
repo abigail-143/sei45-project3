@@ -41,9 +41,9 @@ const ExplorePage = () => {
 
   const getIndividualContent = async (id) => {
     const res = await fetchData(
-      "beer/singleContent",
+      "/beer/singleContent/" + id,
       "POST",
-      { userId: id },
+      undefined,
       auth.accessToken
     );
 
@@ -61,7 +61,14 @@ const ExplorePage = () => {
   const contentBlocks = contentData.map((content, index) => {
     return (
       // need to add on click to showoverlay
-      <div key={index} id={content._id} className={styles.contentBlock}>
+      <div
+        key={index}
+        id={content._id}
+        className={styles.contentBlock}
+        onClick={() => {
+          getIndividualContent(content._id);
+        }}
+      >
         <div className={styles.content}>
           <img src={content.contentPhoto} className={styles.contentImg}></img>
         </div>
