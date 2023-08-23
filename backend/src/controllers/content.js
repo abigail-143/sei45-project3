@@ -32,8 +32,9 @@ const createNewContent = async (req, res) => {
 //delete user's content (done)
 const deleteContent = async (req, res) => {
   try {
-    const content = await ContentModel.findOne({ userId: req.user_id });
-    const deleteContentId = content._id;
+    const content = await ContentModel.findById(req.params.id);
+
+    const deleteContentId = content.id;
     const likedUsers = content.likedUsersId;
 
     const users = await UserModel.find({ _id: { $in: likedUsers } });
@@ -43,14 +44,13 @@ const deleteContent = async (req, res) => {
       //if the content_id need to take out from prticular user detail which no exist will return -1
       // if index return not -1 will excute the following action splice out the content_id
       if (index !== -1) {
-        user.likedContent.splice(indexToRemove, 1);
+        user.likedContent.splice(index, 1);
         await user.save();
       }
-
-      await ContentModel.findByIdAndDelete(deleteContentId);
-
-      res.json({ status: "ok", msg: "Content deleted" });
     }
+    await ContentModel.findByIdAndDelete(req.params.id);
+
+    res.json({ status: "ok", msg: "Content deleted" });
   } catch (error) {
     console.log(error.message);
     res.json({ status: "error", msg: error.message });
