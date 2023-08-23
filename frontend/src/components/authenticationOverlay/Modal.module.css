@@ -34,27 +34,47 @@
   border: none;
   background-color: white;
 }
+
+.form {
+  /* background-color: aqua; */
+  top: 60%;
+  left: 42.5%;
+  width: 100px;
+  height: 100px;
+  margin: 10% 43% 0 43%;
+}
 .profPic {
   height: 100px;
   width: 100px;
   position: relative;
-  top: 8%;
-
-  margin: auto;
+  /* top: 45%;
+  left: 42.5%; */
+  /* margin: 20% 35%; */
   /* transform: translate(-50%); */
   border-radius: 50%;
-  background-color: #d9d9d9;
-  display: flex;
-  flex-direction: column;
+  /* background-color: #d9d9d9; */
+  /* display: flex; */
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   /* text styling */
-  font-family: "Kristi";
-  font-size: 40px;
+  /* font-family: "Kristi";
+  font-size: 40px; */
+}
+
+.displayPic{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.inputProfilePic {
+  display: none;
 }
 
 .welcomeText {
-  top: 10%;
+  top: 8%;
   position: relative;
   font-weight: 400;
   font-size: 55px;
@@ -62,7 +82,7 @@
 }
 
 .loginDetails {
-  top: 12%;
+  top: 4%;
   margin-bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
