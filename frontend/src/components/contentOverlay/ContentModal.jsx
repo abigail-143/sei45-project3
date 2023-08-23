@@ -7,6 +7,7 @@ import styles from "./ContentModal.module.css";
 
 const ContentModal = (props) => {
   const [comment, setComment] = useState([]);
+  const [remove, setRemove] = useState(true);
   const fetchData = useFetch();
   const commentRef = useRef();
   const auth = useContext(AuthContext);
@@ -46,9 +47,33 @@ const ContentModal = (props) => {
     }
   };
 
+  const delComment = async (id) => {
+    const res = await fetchData(
+      "/beer/comment/deleteComment/" + id,
+      "DELETE",
+      undefined,
+      auth.accessToken
+    );
+    if (res.ok) {
+      setRemove(!remove);
+      console.log(remove);
+      console.log("comment deleted");
+      getComments();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
+    }
+  };
+  //================================================
   const allContentComments = comment.map((comment, index) => {
     return (
-      <div key={index}>
+      <div
+        key={index}
+        onClick={() => {
+          // console.log(comment);
+          delComment(comment._id);
+        }}
+      >
         <span className={styles.commentUser}>@{comment.username}</span>{" "}
         {comment.comment}
       </div>
@@ -57,7 +82,7 @@ const ContentModal = (props) => {
 
   useEffect(() => {
     getComments();
-  }, []);
+  }, [remove]);
 
   return (
     <div className={styles.backdrop}>
