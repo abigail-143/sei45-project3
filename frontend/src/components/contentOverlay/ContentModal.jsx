@@ -1,10 +1,9 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
-import styles from "./contentOverlayModal.module.css";
-import Comment from "./Comment";
 import "./content.css";
 import testComments from "../testingComments";
 import AuthContext from "../context/auth";
 import useFetch from "../custom_hooks/useFetch";
+import styles from "./ContentModal.module.css";
 
 const ContentModal = (props) => {
   const [comment, setComment] = useState([]);
@@ -46,7 +45,7 @@ const ContentModal = (props) => {
   const allContentComments = comment.map((comment, index) => {
     return (
       <div key={index}>
-        <span className="commentUser">@{comment.username}</span>{" "}
+        <span className={styles.commentUser}>@{comment.username}</span>{" "}
         {comment.comment}
       </div>
     );
@@ -57,9 +56,9 @@ const ContentModal = (props) => {
   }, []);
 
   return (
-    <div className="backdrop">
+    <div className={styles.backdrop}>
       <div
-        className="backBtn"
+        className={styles.backBtn}
         onClick={() => {
           props.setShowContentOverlay(false);
         }}
@@ -67,30 +66,41 @@ const ContentModal = (props) => {
         <img src="/left-chevron.png"></img>
         <p>For You</p>
       </div>
-      <div className="contentModal">
-        <img className="contentPhoto" src={data.content.contentPhoto}></img>
-        <div className="contentDetails">
-          <div className="userInfo">
+      <div className={styles.contentModal}>
+        <img
+          className={styles.contentPhoto}
+          src={data.content.contentPhoto}
+        ></img>
+        <div className={styles.contentDetails}>
+          <div className={styles.userInfo}>
             <img
-              className="userProfilePhoto"
+              className={styles.userProfilePhoto}
               src={data.user.profilePhoto}
             ></img>
-            <p className="userName">@{data.user.username}</p>
+            <p className={styles.userName}>@{data.user.username}</p>
           </div>
-          <div className="contentInfo">
-            <p className="drinkName">{data.content.drinkName}</p>
-            <p className="shopName">{data.content.shopName}</p>
-            <p className="review">{data.content.contentReview}</p>
-            <small className="tags">{data.content.contentTag}</small>
+          <div className={styles.contentInfo}>
+            <p className={styles.drinkName}>{data.content.drinkName}</p>
+            <p className={styles.shopName}>{data.content.shopName}</p>
+            <p className={styles.review}>{data.content.contentReview}</p>
+            <small className={styles.tags}>{data.content.contentTag}</small>
           </div>
-          <div className="commentsContainer">
-            <div className="commentsCount">{comment.length} Comments</div>
-            <div className="comments">{allContentComments}</div>
+          <div className={styles.commentsContainer}>
+            <div className={styles.commentsCount}>
+              {comment.length} Comments
+            </div>
+            <div className={styles.comments}>{allContentComments}</div>
           </div>
-          <div className="addComments">
-            <img className="userCommentPic" src={data.user.profilePhoto}></img>
-            <input className="newComment" placeholder="add a comment"></input>
-            <img className="heartIcon" src="/heart.png"></img>
+          <div className={styles.addComments}>
+            <img
+              className={styles.userCommentPic}
+              src={data.user.profilePhoto}
+            ></img>
+            <input
+              className={styles.newComment}
+              placeholder="add a comment"
+            ></input>
+            <img className={styles.heartIcon} src="/heart.png"></img>
           </div>
         </div>
       </div>
