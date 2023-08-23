@@ -57,6 +57,7 @@
   width: 45%;
   border-radius: 35px;
   margin: 20px;
+  object-fit: cover;
 }
 
 .contentDetails {
