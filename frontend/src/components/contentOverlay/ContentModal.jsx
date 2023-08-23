@@ -98,15 +98,6 @@ const ContentModal = (props) => {
 
   return (
     <div className={styles.backdrop}>
-      {/* <div
-        className={styles.backBtn}
-        onClick={() => {
-          props.setShowContentOverlay(false);
-        }}
-      >
-        <img src="/left-chevron.png"></img>
-        <p>For You</p>
-      </div> */}
       <div className={styles.contentModal}>
         <img
           className={styles.closeBtn}
