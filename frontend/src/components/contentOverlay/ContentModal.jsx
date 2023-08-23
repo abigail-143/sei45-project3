@@ -27,18 +27,22 @@ const ContentModal = (props) => {
     }
   };
 
-  const addComment = async (e) => {
-    if (e.key === "Enter") {
-      const res = await fetchData("/beer/comment/newComment/", "PUT", {
-        comment: commentRef.current.vlue,
-        contentId: props.id,
-      });
-      if (res.ok) {
-        getComment();
-      } else {
-        alert(JSON.stringify(res.data));
-        console.log(res.data);
-      }
+  const addComment = async (id) => {
+    const res = await fetchData(
+      "/beer/comment/newComment/" + id,
+      "PUT",
+      {
+        comment: commentRef.current.value,
+        // contentId: props.showDetails._id,
+        // username: props.user.username,
+      },
+      auth.accessToken
+    );
+    if (res.ok) {
+      getComments();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
     }
   };
 
@@ -99,8 +103,17 @@ const ContentModal = (props) => {
             <input
               className={styles.newComment}
               placeholder="add a comment"
+              ref={commentRef}
+              type="text"
             ></input>
-            <img className={styles.heartIcon} src="/heart.png"></img>
+            <img
+              className={styles.heartIcon}
+              src="/heart.png"
+              onClick={() => {
+                // console.log(props.showDetails.content._id);
+                addComment(props.showDetails.content._id);
+              }}
+            ></img>
           </div>
         </div>
       </div>
