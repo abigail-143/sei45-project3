@@ -7,8 +7,8 @@ import styles from "./Modal.module.css";
 
 const LoginOverlay = (props) => {
   const auth = useContext(AuthContext);
-  const [username, setUsername] = useState("user1");
-  const [password, setPassword] = useState("password1");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
   const fetchData = useFetch();
@@ -30,8 +30,12 @@ const LoginOverlay = (props) => {
       // const decode = jwtDecode(res.data.access);
     } else {
       console.log(res.data);
-      setError1(res.data[0]);
-      setError2(res.data[2]);
+      if (Array.isArray(res.data) && res.data.length >= 2) {
+        setError1(res.data[0]);
+        setError2(res.data[2]);
+      } else {
+        setError2(res.data);
+      }
     }
   };
   return (
@@ -52,7 +56,11 @@ const LoginOverlay = (props) => {
             <div>Username:</div>
             <input
               type="text"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                setError1("");
+                setError2("");
+              }}
             ></input>
             {error1 ? (
               <p style={{ color: "red", margin: "0" }}>{error1}</p>
@@ -64,7 +72,11 @@ const LoginOverlay = (props) => {
             <div>Password:</div>
             <input
               type="text"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError1("");
+                setError2("");
+              }}
             ></input>
             {error2 ? (
               <p style={{ color: "red", margin: "0" }}>{error2}</p>
