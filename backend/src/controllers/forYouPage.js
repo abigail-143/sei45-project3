@@ -70,6 +70,78 @@ const seedContents = async (req, res) => {
         likedUsersId: ["64dee7d7e713527aee8c75bc", "64dee7d7e713527aee8c75be"],
         comments: ["64e2fefb143f00c81f42f4a8"],
       },
+      {
+        contentPhoto:
+          "https://images.unsplash.com/photo-1627654943068-53281891c46d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNyYWZ0JTIwYmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        drinkName: "drink9",
+        shopName: "shop9",
+        contentReview: "content review 9.0",
+        contentTag: "#beer #paleale",
+        userId: "64dee7d7e713527aee8c75bc",
+        username: "user1",
+        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
+        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
+      },
+      {
+        contentPhoto:
+          "https://images.unsplash.com/photo-1614383179498-59957ac36253?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNyYWZ0JTIwYmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        drinkName: "drink4",
+        shopName: "shop5",
+        contentReview: "content review 5.0",
+        contentTag: "#draught #pilsner",
+        userId: "64dee7d7e713527aee8c75bc",
+        username: "user1",
+        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
+        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
+      },
+      {
+        contentPhoto:
+          "https://images.unsplash.com/photo-1553190250-110d63ee4c7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNyYWZ0JTIwYmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        drinkName: "drink5",
+        shopName: "shop5",
+        contentReview: "content review 5.0",
+        contentTag: "#beer #draught",
+        userId: "64dee7d7e713527aee8c75bc",
+        username: "user1",
+        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
+        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
+      },
+      {
+        contentPhoto:
+          "https://images.unsplash.com/photo-1578880711829-049edba45194?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fGJlZXIlMjBjYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+        drinkName: "drink6",
+        shopName: "shop6",
+        contentReview: "content review 6.0",
+        contentTag: "#scotchale #paleale",
+        userId: "64dee7d7e713527aee8c75bc",
+        username: "user1",
+        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
+        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
+      },
+      {
+        contentPhoto:
+          "https://images.unsplash.com/photo-1617470686604-ad2bbb27da97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fGJlZXIlMjBjYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+        drinkName: "drink7",
+        shopName: "shop7",
+        contentReview: "content review 7.0",
+        contentTag: "#scotchale #pilsner",
+        userId: "64dee7d7e713527aee8c75bc",
+        username: "user1",
+        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
+        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
+      },
+      {
+        contentPhoto:
+          "https://images.unsplash.com/photo-1595545524296-038674247485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fGJlZXIlMjBjYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+        drinkName: "drink8",
+        shopName: "shop8",
+        contentReview: "content review 8.0",
+        contentTag: "#ipa #paleale",
+        userId: "64dee7d7e713527aee8c75bc",
+        username: "user1",
+        likedUsersId: ["64dee7d7e713527aee8c75bd", "64dee7d7e713527aee8c75be"],
+        comments: ["64e2fefb143f00c81f42f4a5", "64e2fefb143f00c81f42f4a6"],
+      },
     ];
 
     await ContentModel.create(contents);

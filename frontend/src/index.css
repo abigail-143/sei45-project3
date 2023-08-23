@@ -5,9 +5,9 @@ body {
 
 .backdrop {
   background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  width: 100vw;
-  height: calc(100vh - 70px);
+  position: fixed;
+  width: 100%;
+  height: 100%;
   z-index: 50;
   display: flex;
   flex-direction: row;
@@ -29,6 +29,7 @@ body {
   display: flex;
   color: white;
   cursor: pointer;
+  /* position: fixed; */
 }
 
 .backBtn > img {
@@ -52,6 +53,7 @@ body {
   align-items: center;
   border-radius: 20px;
   padding: 25px 50px;
+  /* position: fixed; */
 }
 
 .contentPhoto {
@@ -153,8 +155,8 @@ p {
 .commentUser {
   font-weight: bold;
   font-size: 0.9rem;
+  font-family: "Times New Roman", Times, serif;
 }
-
 
 .addComments {
   /* background-color: lightgreen; */

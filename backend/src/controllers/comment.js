@@ -14,24 +14,28 @@ const seedComments = async (req, res) => {
         comment: "This is a comment.",
         userId: "64dee7d7e713527aee8c75bd",
         contentId: "64df206ae805e92ed914b43d",
+        username: "user2",
       },
       {
         _id: "64e2fefb143f00c81f42f4a6",
         comment: "This is a comment 2.0.",
         userId: "64dee7d7e713527aee8c75be",
         contentId: "64df206ae805e92ed914b43d",
+        username: "user3",
       },
       {
         _id: "64e2fefb143f00c81f42f4a7",
         comment: "This is a comment 3.0.",
         userId: "64dee7d7e713527aee8c75be",
         contentId: "64df206ae805e92ed914b43c",
+        username: "user3",
       },
       {
         _id: "64e2fefb143f00c81f42f4a8",
         comment: "This is a comment 4.0.",
         userId: "64dee7d7e713527aee8c75be",
         contentId: "64df206ae805e92ed914b43e",
+        username: "user3",
       }
     );
 
@@ -107,7 +111,7 @@ const deleteComment = async (req, res) => {
 //get all the comment from collection (done)
 const getAllComment = async (req, res) => {
   try {
-    const comment = await CommentModel.findOne({contentId: req.params.id});
+    const comment = await CommentModel.findOne({ contentId: req.params.id });
     res.json(comment);
   } catch (error) {
     console.log(error.message);

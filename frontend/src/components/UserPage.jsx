@@ -8,6 +8,7 @@ import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth";
 
 const UserPage = (props) => {
+  const [showDetails, setShowDetails] = useState([]);
   const [showContentOverlay, setShowContentOverlay] = useState(false);
   const [submitContent, setSubmitContent] = useState(false);
   const [updateUser, setUpdateUser] = useState(false);
@@ -48,6 +49,7 @@ const UserPage = (props) => {
     }
   };
 
+
   const deleteContent = async (id) => {
     console.log("del button activate ");
     const res = await fetchData(
@@ -62,6 +64,22 @@ const UserPage = (props) => {
     } else {
       alert(JSON.stringify(res.data));
       console.log("res.data: ", res.data);
+
+  const getIndividualContent = async (id) => {
+    const res = await fetchData(
+      "/beer/singleContent/" + id,
+      "POST",
+      undefined,
+      auth.accessToken
+    );
+
+    if (res.ok) {
+      setShowDetails(res.data);
+      setShowContentOverlay(true);
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log("res.data:", res.data);
+
     }
   };
 
@@ -77,15 +95,32 @@ const UserPage = (props) => {
   const createdContentBlocks = createdContent.map((content, index) => {
     return (
       <div key={index} className={styles.contentDisplay}>
-        <div className={styles.contentImg}>
+        <div
+          className={styles.contentImg}
+          onClick={() => {
+            getIndividualContent(content._id);
+          }}
+        >
           <img className={styles.imgDisplay} src={content.contentPhoto}></img>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.icon} src="/like.png"></img>
+          <img
+            className={styles.icon}
+            src="/like.png"
+            onClick={() => {
+              getIndividualContent(content._id);
+            }}
+          ></img>
           <label className={styles.numLabel}>
             {content.likedUsersId.length}
           </label>
-          <img className={styles.icon} src="/chat.png"></img>
+          <img
+            className={styles.icon}
+            src="/chat.png"
+            onClick={() => {
+              getIndividualContent(content._id);
+            }}
+          ></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
           <button className={styles.deleteBtn} onClick={()=>{deleteContent(content._id)}}>
             Delete
@@ -102,7 +137,7 @@ const UserPage = (props) => {
         key={index}
         className={styles.contentDisplay}
         onClick={() => {
-          setShowContentOverlay(true);
+          getIndividualContent(content._id);
         }}
       >
         <div className={styles.contentImg}>
@@ -129,6 +164,7 @@ const UserPage = (props) => {
       {showContentOverlay && (
         <ContentOverlay
           setShowContentOverlay={setShowContentOverlay}
+          showDetails={showDetails}
         ></ContentOverlay>
       )}
       {submitContent && (

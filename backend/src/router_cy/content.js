@@ -22,10 +22,13 @@ const { validateAddContentData } = require("../validators/validateContent");
 router.get("/getCreatedContent/:id", getContent);
 
 //user create new content
-router.put("/putNewContent" , validateAddContentData, auth ,createNewContent);
+router.put("/putNewContent", validateAddContentData, auth, createNewContent);
 
 //user delete his own content
+
 router.delete("/delContent/:id", deleteContent);
+
+
 
 //user update his own content
 router.patch("/updateContent/:id", updateContent);
@@ -40,10 +43,10 @@ router.post("/getParticularComment/:id", getParticularComment);
 router.patch("/updateProfile", updateProfile);
 
 // add contentId into user model likedContent
-router.patch("/addFavourite/:id", addFavouriteContent);
+router.patch("/addFavourite/:id", auth, addFavouriteContent);
 
 // get individual content
-router.post("/singleContent/:id",auth, singleContent);
+router.post("/singleContent/:id", auth, singleContent);
 
 // get out data that user's favourite content
 router.get("/allFavourite/:id", allFavouriteContent);
