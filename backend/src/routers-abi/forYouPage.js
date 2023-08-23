@@ -15,7 +15,4 @@ router.get("/all-contents", auth, getAllContents);
 router.post("/:contentId", auth, getOneContentByContentID);
 router.patch("/:contentId", auth, addToLikeCount);
 
-router.patch("/comments/:contentId", addCommentToContent);
-router.delete("/comments/:commentId", deleteComment);
-
 module.exports = router;
