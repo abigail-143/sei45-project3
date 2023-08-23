@@ -1,0 +1,101 @@
+#profilePhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 5%;
+  margin: 30% 10% 0%;
+}
+
+#username {
+  color: #000;
+  text-align: left;
+  font-family: Merriweather Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 5%;
+}
+
+.drinkName {
+  color: #000;
+  text-align: left;
+  font-family: Merriweather Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.shopName {
+  color: #000;
+  text-align: left;
+  font-family: Merriweather Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#contentReview {
+  color: #000;
+  font-family: Merriweather Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.contentTag {
+  color: #000;
+  font-family: Merriweather Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.comment {
+  color: #000;
+  font-family: Merriweather Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+#photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#addComment {
+  border-radius: 20px;
+  background: rgba(217, 217, 217, 0.54);
+  width: 60%;
+  height: 80%;
+  flex-shrink: 0;
+}
+
+#arrow {
+  width: 5%;
+  height: 2%;
+  fill: #8d7b68;
+  stroke-width: 4px;
+  stroke: #8d7b68;
+  position: absolute;
+  top: 30%;
+}
+
+#foryou {
+  color: #8d7b68;
+  font-family: Merriweather Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: absolute;
+  top: 29%;
+  left: 3%;
+}
