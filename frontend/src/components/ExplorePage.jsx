@@ -9,13 +9,14 @@ import AuthContext from "./context/auth"; // add this
 const ExplorePage = (props) => {
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
-  const searchRef = useRef("");
-  const searchResult = useRef("");
+  const [search, setSearch] = useState("");
+  const searchResultRef = useRef("");
 
   const handleSearch = async () => {
     const res = await fetchData("/search/search", "POST", {
-      searchString: searchRef.current.value,
+      searchString: search,
     });
+    console.log("handleSearch called");
     console.log(res);
     if (res.ok) {
       searchResultRef.current = res.data;
@@ -31,9 +32,16 @@ const ExplorePage = (props) => {
   const hashtagItems = hashtags.map((hashtag, index) => {
     return (
       <li key={index} className={styles.quickFilterItem}>
-        <a href="/" ref={searchRef}>
+        <button
+          onClick={() => {
+            console.log(`${hashtag} clicked`);
+            setSearch(hashtag);
+            console.log(`search state: ${search}`);
+            handleSearch();
+          }}
+        >
           {hashtag}
-        </a>
+        </button>
       </li>
     );
   });
@@ -78,6 +86,10 @@ const ExplorePage = (props) => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    searchResultRef.current = "";
+
+  }, [search]);
 
   return (
     <>
