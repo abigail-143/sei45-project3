@@ -3,6 +3,7 @@
   width: 100vw;
   height: 70px;
   display: flex;
+  position: sticky;
 }
 
 .appLogo {
