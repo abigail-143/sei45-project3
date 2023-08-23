@@ -6,8 +6,8 @@ import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
 
-const ExplorePage = () => {
-  const [contentData, setContentData] = useState([]);
+const ExplorePage = (props) => {
+
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
 
@@ -29,7 +29,7 @@ const ExplorePage = () => {
       auth.accessToken // add these
     );
     if (res.ok) {
-      setContentData(res.data);
+      props.setContentData(res.data);
     } else {
       alert(JSON.stringify(res.data));
       console.log("res.data", res.data);
@@ -38,7 +38,7 @@ const ExplorePage = () => {
 
   // fetch collection, and return contentBlock
   // update with the state that the data is fetched and stored in
-  const contentBlocks = contentData.map((content, index) => {
+  const contentBlocks = props.contentData.map((content, index) => {
     return (
       <div key={index} className={styles.contentBlock}>
         <div className={styles.content}>
