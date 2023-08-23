@@ -25,11 +25,13 @@ const SubmitContent = (props) => {
         shopName: shopNameRef.current.value,
         contentReview: reviewRef.current.value,
         contentTag: contentTagRef.current.value,
+        userId: props.user.user_id,
       },
       auth.accessToken // add these
     );
     if (res.ok) {
-      props.setUser(res.data);
+      // props.setUser(res.data);
+      console.log(props.user)
       props.setSubmitContent(false);
     } else {
       alert(JSON.stringify(res.data));
