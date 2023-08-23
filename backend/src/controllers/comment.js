@@ -8,7 +8,7 @@ const seedComments = async (req, res) => {
   try {
     await CommentModel.deleteMany();
 
-    await CommentModel.create(
+    const newComments = [
       {
         _id: "64e2fefb143f00c81f42f4a5",
         comment: "This is a comment.",
@@ -36,8 +36,28 @@ const seedComments = async (req, res) => {
         userId: "64dee7d7e713527aee8c75be",
         contentId: "64df206ae805e92ed914b43e",
         username: "user3",
-      }
+      },
+    ];
+    await CommentModel.create(newComments);
+
+    const uniqueContents = new Set(
+      newComments.map((item) => {
+        return item.contentId;
+      })
     );
+
+    for (let uniqueContent of uniqueContents) {
+      const content = await ContentModel.findById({ _id: uniqueContent });
+
+      content.comments = [];
+
+      for (let newComment of newComments) {
+        if (uniqueContent === newComment.contentId) {
+          content.comments.push(newComment._id);
+        }
+      }
+      content.save();
+    }
 
     res.json({ status: "ok", msg: "seeded" });
   } catch (error) {
@@ -97,6 +117,7 @@ const deleteComment = async (req, res) => {
     content.comments.splice(index, 1);
     await content.save();
 
+    await CommentModel.findByIdAndDelete(req.params.id);
     // only the content user and comment create user have the right to delete comment
     if (comment.userId === req.user_id || content.userId === req.user_id) {
       return await CommentModel.findByIdAndDelete(req.params.id);

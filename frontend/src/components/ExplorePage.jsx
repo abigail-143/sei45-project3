@@ -6,8 +6,10 @@ import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
 import ContentOverlay from "./contentOverlay/ContentModal";
+import { useScrollTrigger } from "@mui/material";
 
 const ExplorePage = (props) => {
+  const [createrPhoto, setCreaterPhoto] = useState("");
   const [showDetails, setShowDetails] = useState([]);
   const [showContentOverlay, setShowContentOverlay] = useState(false);
 
@@ -71,6 +73,8 @@ const ExplorePage = (props) => {
     );
 
     if (res.ok) {
+      console.log(res.data);
+      setCreaterPhoto(res.data.user.profilePhoto);
       setShowDetails(res.data);
       setShowContentOverlay(true);
     } else {
@@ -144,6 +148,8 @@ const ExplorePage = (props) => {
         <ContentOverlay
           setShowContentOverlay={setShowContentOverlay}
           showDetails={showDetails}
+          createrPhoto={createrPhoto}
+          user={props.user}
         ></ContentOverlay>
       )}
       <div className={styles.quickFilter}>

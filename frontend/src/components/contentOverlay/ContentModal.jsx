@@ -7,6 +7,7 @@ import styles from "./ContentModal.module.css";
 
 const ContentModal = (props) => {
   const [comment, setComment] = useState([]);
+  const [remove, setRemove] = useState(true);
   const fetchData = useFetch();
   const commentRef = useRef();
   const auth = useContext(AuthContext);
@@ -27,24 +28,52 @@ const ContentModal = (props) => {
     }
   };
 
-  const addComment = async (e) => {
-    if (e.key === "Enter") {
-      const res = await fetchData("/beer/comment/newComment/", "PUT", {
-        comment: commentRef.current.vlue,
-        contentId: props.id,
-      });
-      if (res.ok) {
-        getComment();
-      } else {
-        alert(JSON.stringify(res.data));
-        console.log(res.data);
-      }
+  const addComment = async (id) => {
+    const res = await fetchData(
+      "/beer/comment/newComment/" + id,
+      "PUT",
+      {
+        comment: commentRef.current.value,
+        // contentId: props.showDetails._id,
+        // username: props.user.username,
+      },
+      auth.accessToken
+    );
+    if (res.ok) {
+      getComments();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
     }
   };
 
+  const delComment = async (id) => {
+    const res = await fetchData(
+      "/beer/comment/deleteComment/" + id,
+      "DELETE",
+      undefined,
+      auth.accessToken
+    );
+    if (res.ok) {
+      setRemove(!remove);
+      console.log(remove);
+      console.log("comment deleted");
+      getComments();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
+    }
+  };
+  //================================================
   const allContentComments = comment.map((comment, index) => {
     return (
-      <div key={index}>
+      <div
+        key={index}
+        onClick={() => {
+          // console.log(comment);
+          delComment(comment._id);
+        }}
+      >
         <span className={styles.commentUser}>@{comment.username}</span>{" "}
         {comment.comment}
       </div>
@@ -53,7 +82,7 @@ const ContentModal = (props) => {
 
   useEffect(() => {
     getComments();
-  }, []);
+  }, [remove]);
 
   return (
     <div className={styles.backdrop}>
@@ -75,9 +104,9 @@ const ContentModal = (props) => {
           <div className={styles.userInfo}>
             <img
               className={styles.userProfilePhoto}
-              src={data.user.profilePhoto}
+              src={props.createrPhoto} // change to content
             ></img>
-            <p className={styles.userName}>@{data.user.username}</p>
+            <p className={styles.userName}>@{data.content.username}</p>
           </div>
           <div className={styles.contentInfo}>
             <p className={styles.drinkName}>{data.content.drinkName}</p>
@@ -92,15 +121,22 @@ const ContentModal = (props) => {
             <div className={styles.comments}>{allContentComments}</div>
           </div>
           <div className={styles.addComments}>
-            <img
-              className={styles.userCommentPic}
-              src={data.user.profilePhoto}
-            ></img>
+            <img className={styles.userCommentPic} src={props.user.photo}></img>
             <input
               className={styles.newComment}
               placeholder="add a comment"
+              ref={commentRef}
+              type="text"
             ></input>
-            <img className={styles.heartIcon} src="/login.png"></img>
+
+            <img
+              className={styles.heartIcon}
+              src="/login.png"
+              onClick={() => {
+                // console.log(props.showDetails.content._id);
+                addComment(props.showDetails.content._id);
+              }}
+            ></img>
           </div>
         </div>
       </div>

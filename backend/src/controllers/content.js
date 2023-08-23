@@ -101,9 +101,8 @@ const updateContent = async (req, res) => {
 const singleContent = async (req, res) => {
   try {
     const content = await ContentModel.findById(req.params.id);
-    const user = await UserModel.findById(req.user_id);
-    console.log(user);
-    console.log(content);
+    const user = await UserModel.findById(content.userId);
+
     res.json({ user, content });
   } catch (error) {
     console.log(error.message);
