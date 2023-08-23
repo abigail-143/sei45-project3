@@ -59,7 +59,7 @@ const UserPage = (props) => {
     );
     if (res.ok) {
       console.log("delete done2");
-      getCreatedContent();
+      getCreatedContent(props.user.user_id);
     } else {
       alert(JSON.stringify(res.data));
       console.log("res.data: ", res.data);
