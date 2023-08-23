@@ -64,11 +64,11 @@ const UserPage = (props) => {
           <img className={styles.imgDisplay} src={content.contentPhoto}></img>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.icon} src="/heart.png"></img>
+          <img className={styles.icon} src="/like.png"></img>
           <label className={styles.numLabel}>
             {content.likedUsersId.length}
           </label>
-          <img className={styles.icon} src="/comment.png"></img>
+          <img className={styles.icon} src="/chat.png"></img>
           <label className={styles.numLabel}>{content.comments.length}</label>
           <button className={styles.deleteBtn}>Delete</button>
         </div>
@@ -93,13 +93,13 @@ const UserPage = (props) => {
           <p>{content.username}</p>
         </div>
         <div className={styles.contentDetail}>
-          <img className={styles.favIcon} src="/heart.png"></img>
-          <label className={styles.favNumLabel}>
+          <img className={styles.icon} src="/like.png"></img>
+          <label className={styles.numLabel}>
             {content.likedUsersId.length}
           </label>
           <div className={styles.divider}></div>
-          <img className={styles.favIcon} src="/comment.png"></img>
-          <label className={styles.favNumLabel}>
+          <img className={styles.icon} src="/chat.png"></img>
+          <label className={styles.numLabel}>
             {content.comments.length}
           </label>
         </div>

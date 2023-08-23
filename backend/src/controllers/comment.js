@@ -50,8 +50,8 @@ const newComment = async (req, res) => {
     const comment = new CommentModel({
       comment: req.body.comment,
       userId: req.user_id,
-      contentId: req.params.id,
       username: req.username,
+      contentId: req.params.id,
     });
     await comment.save();
 
@@ -85,7 +85,6 @@ const deleteComment = async (req, res) => {
   try {
     //line 85 to 94 is to delete out the comment_id from content itself
     const comment = await CommentModel.findById(req.params.id);
-    const delComment = req.params.id;
     const contentId = comment.contentId;
 
     const content = await ContentModel.findById(contentId);
@@ -105,10 +104,10 @@ const deleteComment = async (req, res) => {
   }
 };
 
-//get all the comment from collection
+//get all the comment from collection (done)
 const getAllComment = async (req, res) => {
   try {
-    const comment = await CommentModel.find();
+    const comment = await CommentModel.findOne({contentId: req.params.id});
     res.json(comment);
   } catch (error) {
     console.log(error.message);

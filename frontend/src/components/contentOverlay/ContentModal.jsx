@@ -11,7 +11,6 @@ const ContentModal = (props) => {
   //   const fetchData = useFetch();
   const commentRef = useRef();
 
-
   // const comment = [
   //   {
   //     _id: "64df9b5e287c74940aaac930",
@@ -47,7 +46,7 @@ const ContentModal = (props) => {
   };
 
   const getComment = async (id) => {
-    const res = await fetchData("/beer/getParticularComment/" + id);
+    const res = await fetchData("/beer/comment/getAllComment" + id);
     if (res.ok) {
       setComment(res.data);
     } else {
@@ -56,10 +55,11 @@ const ContentModal = (props) => {
     }
   };
 
-  const addComment = async (e, id) => {
+  const addComment = async (e) => {
     if (e.key === "Enter") {
-      const res = await fetchData("/beer/comment/newComment/" + id, "PUT", {
+      const res = await fetchData("/beer/comment/newComment/", "PUT", {
         comment: commentRef.current.vlue,
+        contentId: props.id,
       });
       if (res.ok) {
         getComment();
@@ -142,27 +142,58 @@ const ContentModal = (props) => {
     // </>
 
     <div className="backdrop">
-      <div className="backBtn">
-        <img src="/arrow.png"></img>
+      <div
+        className="backBtn"
+        onClick={() => {
+          props.setShowContentOverlay(false);
+        }}
+      >
+        <img src="/left-chevron.png"></img>
         <p>For You</p>
       </div>
       <div className="contentModal">
-        <img className="contentPhoto" src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60">
-        </img>
+        <img
+          className="contentPhoto"
+          src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        ></img>
         <div className="contentDetails">
           <div className="userInfo">
-            <img className="userProfilePhoto" src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"></img>
+            <img
+              className="userProfilePhoto"
+              src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            ></img>
             <p className="userName">@username</p>
           </div>
           <div className="contentInfo">
             <p className="drinkName">drink</p>
             <p className="shopName">shop</p>
-            <p className="review">this is a review this is a review this is a review this is a review this is a review this is a review this is a review this is a review this is a review this is a review</p>
+            <p className="review">
+              this is a review this is a review this is a review this is a
+              review this is a review this is a review this is a review this is
+              a review this is a review this is a review
+            </p>
             <small className="tags">#tag #tag #tag</small>
           </div>
-          <div className="comments"></div>
+          <div className="commentsContainer">
+          <div className="commentsCount">3 Comments</div>
+          <div className="comments">
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment this is a comment this is a comment this is a comment</div>
+            <div className="indivComment"><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+            <div><span className="commentUser">@username</span> this is a comment this is a comment this is a comment</div>
+          </div>
+
+          </div>
           <div className="addComments">
-            <img className="userCommentPic" src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"></img>
+            <img
+              className="userCommentPic"
+              src="https://images.unsplash.com/photo-1595545524289-0360e9152081?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVlciUyMGNhbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            ></img>
             <input className="newComment" placeholder="add a comment"></input>
             <img className="heartIcon" src="/heart.png"></img>
           </div>

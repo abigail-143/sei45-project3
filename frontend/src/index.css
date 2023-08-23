@@ -19,7 +19,7 @@ body {
   width: 150px;
   height: 10%;
   z-index: 100;
-  margin-top: 50px;
+  margin-top: 56px;
   margin-right: 10px;
   align-self: flex-start;
   justify-content: space-evenly;
@@ -32,8 +32,8 @@ body {
 }
 
 .backBtn > img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   filter: invert(1);
 }
 
@@ -129,11 +129,32 @@ p {
   align-items: center;
 }
 
-.comments {
-  background-color: plum;
+.commentsContainer {
   width: 100%;
   height: 35%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+
+.commentsCount {
+  font-weight: bold;
+}
+
+.comments {
+  overflow-y: auto;
+  font-size: 0.9rem;
+}
+
+.indivComment {
+  margin: 3px 0;
+}
+
+.commentUser {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
 
 .addComments {
   /* background-color: lightgreen; */
@@ -146,23 +167,25 @@ p {
 }
 
 .userCommentPic {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
 }
 
 .newComment {
   width: 75%;
-  height: 40px;
+  height: 35px;
   border: none;
   border-radius: 20px;
   text-indent: 10px;
   margin-right: 30px;
+  outline-color: rgba(222, 184, 135, 0.5);
+  font-size: 0.9rem;
 }
 
 .heartIcon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   right: 0;
 }
