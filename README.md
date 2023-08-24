@@ -1,8 +1,7 @@
+<a name="readme-top"></a>
 <h1 align="center">
 <img src="https://github.com/abigail-143/sei45-project3/assets/106907059/93019466-5784-4d63-bf32-6c27630e70fa" alt="beer" width="50" height="50"> Beer Time, Better Time <img src="https://github.com/abigail-143/sei45-project3/assets/106907059/93019466-5784-4d63-bf32-6c27630e70fa" alt="beer" width="50" height="50">
 </h1>
-<a name="readme-top"></a>
-
 
 ## Table of Contents
 1. [ Introduction ](#intro)
