@@ -39,16 +39,27 @@ A social media platform for beer enthusiast to share their favourite moments wit
 
 ### User Page - Update Profile / Submit Content
 <img width="1679" alt="Screenshot 2023-08-24 at 14 08 47" src="https://github.com/abigail-143/sei45-project3/assets/106907059/292ea07e-3a5d-427d-9337-108dda2fc221">
-// describe update profile 
+// describe update profile component
 <img width="1679" alt="Screenshot 2023-08-24 at 14 08 55" src="https://github.com/abigail-143/sei45-project3/assets/106907059/135f5a8a-2ce0-48ab-9d74-af979de03a57">
+// describe submit content component
 
 ## How to Use / View
 
-## Languages & Technology
+## Languages & Technology & Packages & Frameworks
+- HTML
+- CSS
+- Javascript
+- React
+- Express
+- MongoDB
+- Mongoose
+- Material UI
+- react-responsive-masonry
+- Base64
 
 ## Online Resources & References
 
-1. Uploading Images
+1. Uploading Images (Base64)
 - [https://www.youtube.com/watch?v=pfxd7L1kzio](https://www.youtube.com/watch?v=pfxd7L1kzio)
 - [https://github.com/akashyap2013/ImageToBase64](https://github.com/akashyap2013/ImageToBase64)
 
@@ -57,6 +68,7 @@ A social media platform for beer enthusiast to share their favourite moments wit
 - [https://codesandbox.io/s/dawn-lake-hli6n-2-forked-t3y5w?file=/src/styles.scss:283-314](https://codesandbox.io/s/dawn-lake-hli6n-2-forked-t3y5w?file=/src/styles.scss:283-314 "smartCard-inline")
 - [https://www.smashingmagazine.com/native-css-masonry-layout-css-grid/](https://www.smashingmagazine.com/native-css-masonry-layout-css-grid/ "smartCard-inline")
 - [https://jsbin.com/cebego/1/edit?html,css,output](https://jsbin.com/cebego/1/edit?html,css,output "smartCard-inline")
+- [https://www.npmjs.com/package/react-responsive-masonry](https://www.npmjs.com/package/react-responsive-masonry)
 
 3. Navigating MongoDB / Mongoose
 - [https://www.baeldung.com/java-mongodb-document-insert-array](https://www.baeldung.com/java-mongodb-document-insert-array)
