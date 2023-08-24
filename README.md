@@ -1,4 +1,5 @@
 # Better Time, Beer Time Platform
+<a name="readme-top"></a>
 
 ## Table of Contents
 1. [ Introduction ](#intro)
@@ -173,3 +174,5 @@ There is also a Add Post button which allows users to created content to be uplo
 6. Images Used
 - [https://unsplash.com/](https://unsplash.com/)
 - [https://picsum.photos/](https://picsum.photos/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
