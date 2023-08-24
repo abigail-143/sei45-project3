@@ -1,36 +1,72 @@
 # BTBT App
 
 ## Introduction
-A social media platform for beer enthusiast to share their favourite moments with their favourite drink. After users create an account with the platform, they will be able to interact with other users of the app. App users will be able to create and upload content as well as interact with other users' content, such as leaving comments and saving contents to their Favourites tab.
+A social media platform for beer enthusiast to share their favourite moments with their favourite drink. Platform users are able to interact with content from other users as well as upload content to the app to be shared with other users.
 
 ## The App
 
 ### Expectations
-<img width="940" alt="Screenshot 2023-08-24 at 15 33 12" src="https://github.com/abigail-143/sei45-project3/assets/106907059/dfe2202c-c76d-4baa-be9f-fbc6214838b1">
 
-// what we wanted to build
+![Screenshot 2023-08-24 at 20 32 18](https://github.com/abigail-143/sei45-project3/assets/106907059/72d8437c-f71c-4742-9802-6a76c4e2e72e)
+
+
+With inspiration taken from Pinterst and Instagram, we created a vision of what we wanted the social media platform to look like. There would be a landing page, an explore page where contents created by all platform users will be displayed as well as a user page where users will be able to view contents they have created as well as contents they have interacted with.
+
 
 ### Landing Page - Register & Login
+
 <img width="1658" alt="Screenshot 2023-08-24 at 14 06 48" src="https://github.com/abigail-143/sei45-project3/assets/106907059/7cbb92d9-3475-4e93-80e6-bc979b1b415a">
-// describe landing page
+
+
+On the landing page, users will be able to have a sneak preview of the contents they can expect on the platform. They will also be able to register an account or proceed to login with an existing account.
+
 
 <img width="1658" alt="Screenshot 2023-08-24 at 14 06 55" src="https://github.com/abigail-143/sei45-project3/assets/106907059/935dee56-2274-4a68-9d65-4d0f1415cb28">
-// describe register component
+
+
+To register, users will be able to upload their own profile photo and register an account with the platform using a username and password.
+
 
 <img width="1658" alt="Screenshot 2023-08-24 at 14 07 02" src="https://github.com/abigail-143/sei45-project3/assets/106907059/22f1ae3e-fcf9-4a29-9a64-14938772b023">
-// describe login component
+
+
+To login, users can login to the site with their registered username and password, and if the login is successful, users will be directed to the explore page.
+
+
+![Screenshot 2023-08-24 at 20 41 13](https://github.com/abigail-143/sei45-project3/assets/106907059/1d2e0192-4e25-4ef6-a05c-1d2e8098a59a)
+
+
+If users try to login with an incorrect username or password, they will be prompt of an unauthorised login.
+
 
 ### Explore Page - Search Bar & Like Content
+
 <img width="1658" alt="Screenshot 2023-08-24 at 14 07 26" src="https://github.com/abigail-143/sei45-project3/assets/106907059/7f9597a4-3a0f-4b05-9183-3adb77f645d5">
-// describe explore page
+
+
+On the explore page, user created content will be displayed in a Masonry layout. There is also a search bar and quick filter buttons that users can interact with. On the header, there is also a heart icon and a small icon of their profile photo. The heart icon will lead to the user's page where all the content they have liked will be displayed. The profile photo icon will lead to the user's page where all the content they have created will be displayed.
+
 
 <img width="1679" alt="Screenshot 2023-08-24 at 14 09 04" src="https://github.com/abigail-143/sei45-project3/assets/106907059/cb4a0bfa-13f8-48ce-82ff-d39a382a04c5">
-// describe like function on content component
+
+
+To interact with other user's content, the platform user can hover over the content display in the Masonry layout and click on the heart icon which will add the content to their Favourites tab.
+
+
+<img width="1440" alt="Screenshot 2023-08-24 at 20 42 21" src="https://github.com/abigail-143/sei45-project3/assets/106907059/9fa450ee-b77c-47f2-9aad-7f65bd52ee14">
+
+
+Else, users can also click on the content which will open up the content to display more information provided by the content creator. This includes the name of the drink, the place it was purchased from, a review of the drink as well as any unique hashtags they users wish to associate with the drink. Platform users will be able to upload comments to the content.
+
 
 <img width="1679" alt="Screenshot 2023-08-24 at 14 09 38" src="https://github.com/abigail-143/sei45-project3/assets/106907059/31708f1f-68ca-437d-8b37-b413e9547ac8">
-// describe search bar function and quick filter buttons
+
+
+Users can also choose to search for specific drinks using the search bar of the quick filter buttons. This will show users content related to the search keywords that the users wish to look for.
+
 
 ### User Page - Created Content / Favourite Content
+
 <img width="1679" alt="Screenshot 2023-08-24 at 14 08 05" src="https://github.com/abigail-143/sei45-project3/assets/106907059/cfa72ebc-f740-4c5d-938b-72b2f5ddfecd">
 // describe user page - created content component
 
