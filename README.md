@@ -5,6 +5,9 @@ A social media platform for beer enthusiast to share their favourite moments wit
 
 ## The App
 
+### Expectations
+
+<img width="940" alt="Screenshot 2023-08-24 at 15 33 12" src="https://github.com/abigail-143/sei45-project3/assets/106907059/dfe2202c-c76d-4baa-be9f-fbc6214838b1">
 
 ### Landing Page - Register & Login
 <img width="1658" alt="Screenshot 2023-08-24 at 14 06 48" src="https://github.com/abigail-143/sei45-project3/assets/106907059/7cbb92d9-3475-4e93-80e6-bc979b1b415a">
