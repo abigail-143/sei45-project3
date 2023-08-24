@@ -32,25 +32,27 @@ A social media platform for beer enthusiast to share their favourite moments wit
 
 ## Online Resources & References
 
-### Uploading Images
-
-### Masonry Layout
-
-### Navigating MongoDB / Mongoose
-- [https://www.baeldung.com/java-mongodb-document-insert-array](https://www.baeldung.com/java-mongodb-document-insert-array)
-- [https://www.mongodb.com/developer/products/mongodb/mongodb-schema-design-best-practices/](https://www.mongodb.com/developer/products/mongodb/mongodb-schema-design-best-practices/)
+1. Uploading Images
 - [https://www.youtube.com/watch?v=pfxd7L1kzio](https://www.youtube.com/watch?v=pfxd7L1kzio)
-- [https://www.mongodb.com/docs/manual/reference/operator/query/in/](https://www.mongodb.com/docs/manual/reference/operator/query/in/)
 - [https://github.com/akashyap2013/ImageToBase64](https://github.com/akashyap2013/ImageToBase64)
+
+2. Masonry Layout
 - [https://github.com/cedricdelpoux/react-responsive-masonry/blob/master/README.md](https://github.com/cedricdelpoux/react-responsive-masonry/blob/master/README.md "smartCard-inline")
 - [https://codesandbox.io/s/dawn-lake-hli6n-2-forked-t3y5w?file=/src/styles.scss:283-314](https://codesandbox.io/s/dawn-lake-hli6n-2-forked-t3y5w?file=/src/styles.scss:283-314 "smartCard-inline")
+
+4. Navigating MongoDB / Mongoose
+- [https://www.baeldung.com/java-mongodb-document-insert-array](https://www.baeldung.com/java-mongodb-document-insert-array)
+- [https://www.mongodb.com/developer/products/mongodb/mongodb-schema-design-best-practices/](https://www.mongodb.com/developer/products/mongodb/mongodb-schema-design-best-practices/)
+- [https://www.mongodb.com/docs/manual/reference/operator/query/in/](https://www.mongodb.com/docs/manual/reference/operator/query/in/)
+- [https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/ "smartCard-inline")
+- [https://www.mongodb.com/community/forums/t/find-an-object-in-nested-array-of-object/172159](https://www.mongodb.com/community/forums/t/find-an-object-in-nested-array-of-object/172159 "smartCard-inline")
+
+
 - [https://stackoverflow.com/questions/3029422/how-to-auto-resize-an-image-while-maintaining-aspect-ratio](https://stackoverflow.com/questions/3029422/how-to-auto-resize-an-image-while-maintaining-aspect-ratio "smartCard-inline")
 - [https://jsbin.com/cebego/1/edit?html,css,output](https://jsbin.com/cebego/1/edit?html,css,output "smartCard-inline")
 - [https://www.smashingmagazine.com/native-css-masonry-layout-css-grid/](https://www.smashingmagazine.com/native-css-masonry-layout-css-grid/ "smartCard-inline")
 - [https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/invert](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/invert "smartCard-inline")
 - [https://www.mongodb.com/docs/manual/reference/operator/update/pull/#:~:text=The%20%24pull%20operator%20removes%20from,an%20array%2C%20use%20dot%20notation.](https://www.mongodb.com/docs/manual/reference/operator/update/pull/#:~:text=The%20%24pull%20operator%20removes%20from,an%20array%2C%20use%20dot%20notation. "smartCard-inline")
-- [https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/ "smartCard-inline")
-- [https://www.mongodb.com/community/forums/t/find-an-object-in-nested-array-of-object/172159](https://www.mongodb.com/community/forums/t/find-an-object-in-nested-array-of-object/172159 "smartCard-inline")
 - [https://stackoverflow.com/questions/62970436/query-nested-array-of-object-mongoose](https://stackoverflow.com/questions/62970436/query-nested-array-of-object-mongoose "smartCard-inline")
 - [https://mongoosejs.com/docs/api/model.html#Model.find()](https://mongoosejs.com/docs/api/model.html#Model.find() "smartCard-inline")
 - [https://legacy.reactjs.org/docs/conditional-rendering.html](https://legacy.reactjs.org/docs/conditional-rendering.html "smartCard-inline")
