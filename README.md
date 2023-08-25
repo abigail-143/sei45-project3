@@ -119,8 +119,23 @@ There is also a Add Post button which allows users to created content to be uplo
 1. Download frontend folder, backend folder amd .gitignore
 2. Add individual .env files to both frontend folder and backend folder
 3. .env file for frontend folder should include:
-4. .env file for backend folder should include:
-5. npm run dev for both frontend and backend folders.
+   > VITE_SERVER=http://localhost:5001
+5. .env file for backend folder should include:
+   > PORT=5001
+   > 
+   > DATABASE=mongodb://127.0.0.1:27017/
+   >
+   > ACCESS_SECRET=[any alphanumerical string]
+7. npm run dev for both frontend and backend folders.
+8. seed users, content and comments on Postman (or equivalent)
+   > seed users
+   >> {{server}}/landing/seed
+   >
+   > seed contents
+   >> {{server}}/fyp/seed-contents
+   >
+   > seed comments
+   >> {{server}}/beer/comments/seed
 ***
 <a name="languages"></a>
 ## Languages & Technology & Packages & Frameworks
