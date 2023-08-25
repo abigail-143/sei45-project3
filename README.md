@@ -116,16 +116,16 @@ There is also a Add Post button which allows users to created content to be uplo
 ***
 <a name="use"></a>
 ## How to Use / View
-1. Download frontend folder, backend folder amd .gitignore
+1. Download frontend folder, backend folder and .gitignore
 2. Add individual .env files to both frontend folder and backend folder
 3. .env file for frontend folder should include:
    >
-   > VITE_SERVER=http://localhost:5001
+   > VITE_SERVER=http://localhost:[port]
 5. .env file for backend folder should include:
    >
-   > PORT=5001
+   > PORT=[port]
    > 
-   > DATABASE=mongodb://127.0.0.1:27017/
+   > DATABASE=mongodb://127.0.0.1:27017/[database]
    >
    > ACCESS_SECRET=[any alphanumerical string]
 7. npm run dev for both frontend and backend folders.
