@@ -145,7 +145,7 @@ There is also a Add Post button which allows users to created content to be uplo
 - HTML
 - CSS
 - Javascript
-- React
+- React (VITE)
 - Express
 - MongoDB
 - Mongoose
