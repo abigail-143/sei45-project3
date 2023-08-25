@@ -89,7 +89,7 @@ Users can also choose to search for specific drinks using the search bar of the 
 ![Screenshot](https://github.com/abigail-143/sei45-project3/assets/106907059/cfa72ebc-f740-4c5d-938b-72b2f5ddfecd)
 
 
-On the platform user's own page, they will be able to view all contents that they have created and uploaded to the platform through the Created tab. Clicking into the content block will also show a pop up of the content which allows they to take a look at the comments left behind by other users.
+On the platform user's own page, they will be able to view all contents that they have created and uploaded to the platform through the Created tab. Clicking into the content block will also show a pop up of the content which allows they to take a look at the comments left behind by other users. A user is allowed to delete comments of other users on a post that they have created. The user is also allowed to delete their own comment from another user's post. A user is also allowed to delete their own content from the platform.
 
 
 
