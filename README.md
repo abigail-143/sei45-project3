@@ -4,11 +4,11 @@
 </h1>
 
 ## Table of Contents
-1. [ Introduction ](#intro)
+1. [Introduction](#intro)
 2. [The Platform](#platform)
 3. [How to use](#use)
-4. [Languages & Technolog](#languages)
-5. [Resources](#resources)
+4. [Languages & Technology & Packages & Frameworks](#languages)
+5. [Resources & References](#resources)
 
 ***
 <a name="intro"></a>
@@ -125,10 +125,10 @@ There is also a Add Post button which allows users to created content to be uplo
    >
    > PORT=[port]
    > 
-   > DATABASE=mongodb://127.0.0.1:27017/[database]
+   > DATABASE=mongodb://127.0.0.1:27017/[database *optional]
    >
    > ACCESS_SECRET=[any alphanumerical string]
-7. npm run dev for both frontend and backend folders.
+7. npm install then npm run dev for both frontend and backend folders.
 8. seed users, content and comments on Postman (or equivalent)
    >
    > seed users
@@ -154,7 +154,7 @@ There is also a Add Post button which allows users to created content to be uplo
 - Base64
 ***
 <a name="resources"></a>
-## Online Resources & References
+## Resources & References
 
 1. Uploading Images (Base64)
 - [https://www.youtube.com/watch?v=pfxd7L1kzio](https://www.youtube.com/watch?v=pfxd7L1kzio)
