@@ -2,11 +2,13 @@
 // will use the showXXPage boolean indicators to toggle between the headers
 
 import React, { useContext, useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth";
 
 const Header = (props) => {
+  const navigate = useNavigate();
   const searchRef = useRef("");
   const searchResultRef = useRef([]);
   const fetchData = useFetch();
@@ -75,7 +77,8 @@ const Header = (props) => {
           <button
             className={styles.registerBtn}
             onClick={() => {
-              props.setShowRegister(true);
+              // props.setShowRegister(true);
+              navigate("/register");
               console.log("register clicked");
             }}
           >
@@ -84,7 +87,8 @@ const Header = (props) => {
           <button
             className={styles.loginBtn}
             onClick={() => {
-              props.setShowLogin(true);
+              // props.setShowLogin(true);
+              navigate("/login");
               console.log("login clicked");
             }}
           >
