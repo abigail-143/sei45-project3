@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import ExplorePage from "./components/ExplorePage";
@@ -44,13 +45,36 @@ function App() {
           contentData={contentData}
           setContentData={setContentData}
         ></Header>
-        {showWelcome && (
+        <Suspense>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Landing
+                  style={{ overflow: "hidden" }}
+                  // showLogin={showLogin}
+                ></Landing>
+              }
+            ></Route>
+            <Route path="/login" element={<LoginModal></LoginModal>}></Route>
+            <Route
+              path="/register"
+              element={<RegisterModal></RegisterModal>}
+            ></Route>
+            <Route
+              path="/explore"
+              element={<ExplorePage></ExplorePage>}
+            ></Route>
+            <Route path="/user" element={<UserPage></UserPage>}></Route>
+          </Routes>
+        </Suspense>
+        {/* {showWelcome && (
           <Landing
             style={{ overflow: "hidden" }}
             showLogin={showLogin}
           ></Landing>
-        )}
-        {showLogin && (
+        )} */}
+        {/* {showLogin && (
           <LoginModal
             setShowLogin={setShowLogin}
             setShowWelcome={setShowWelcome}
@@ -66,7 +90,6 @@ function App() {
             setShowLogin={setShowLogin}
           ></RegisterModal>
         )}
-        {/* {showRegister && <Register></Register>} */}
         {showExplorePage && (
           <ExplorePage
             contentData={contentData}
@@ -74,7 +97,6 @@ function App() {
             user={user}
           ></ExplorePage>
         )}
-
         {showUserPage && (
           <UserPage
             user={user}
@@ -82,8 +104,7 @@ function App() {
             showCreated={showCreated}
             setShowCreated={setShowCreated}
           ></UserPage>
-        )}
-        {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
+        )} */}
       </AuthContext.Provider>
     </>
   );
