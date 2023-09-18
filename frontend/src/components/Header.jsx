@@ -14,13 +14,13 @@ const Header = (props) => {
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
 
-  const handleClickExplore = () => {
-    if (props.showUserPage) {
-      props.setShowUserPage(false);
-      props.setShowExplorePage(true);
-      console.log("handleClickExplore");
-    }
-  };
+  // const handleClickExplore = () => {
+  //   if (props.showUserPage) {
+  //     props.setShowUserPage(false);
+  //     props.setShowExplorePage(true);
+  //     console.log("handleClickExplore");
+  //   }
+  // };
 
   const getData = async () => {
     const res = await fetchData(
@@ -37,13 +37,13 @@ const Header = (props) => {
     }
   };
 
-  const handleClickUser = () => {
-    if (props.showExplorePage) {
-      props.setShowExplorePage(false);
-      props.setShowUserPage(true);
-      console.log("handleClickUser");
-    }
-  };
+  // const handleClickUser = () => {
+  //   if (props.showExplorePage) {
+  //     props.setShowExplorePage(false);
+  //     props.setShowUserPage(true);
+  //     console.log("handleClickUser");
+  //   }
+  // };
 
   const handleSearch = async () => {
     const res = await fetchData("/search/search", "POST", {
@@ -104,10 +104,15 @@ const Header = (props) => {
             height="50"
             className={styles.appLogo}
             onClick={() => {
-              handleClickExplore();
+              navigate("/explore")
             }}
           ></img>
-          <div className={styles.appName} onClick={handleClickExplore}>
+          <div
+            className={styles.appName}
+            onClick={() => {
+              navigate("/explore");
+            }}
+          >
             <p>
               <span>Better Time, Beer Time</span>
             </p>
@@ -152,7 +157,8 @@ const Header = (props) => {
             height="40"
             className={styles.likesIcon}
             onClick={() => {
-              handleClickUser();
+              // handleClickUser();
+              navigate("/user")
               props.setShowCreated(false);
             }}
           ></img>
@@ -162,7 +168,8 @@ const Header = (props) => {
             height="40"
             className={styles.profilePic}
             onClick={() => {
-              handleClickUser();
+              // handleClickUser();
+              navigate("/user");
               props.setShowCreated(true);
             }}
           ></img>

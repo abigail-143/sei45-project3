@@ -34,11 +34,9 @@ const RegisterOverlay = (props) => {
     if (res.ok) {
       console.log(res);
       auth.setAccessToken(res.data.access);
-      navigate("/login")
-      // props.setShowRegister(false);
       props.setShowWelcome(true);
-      // props.setShowLogin(true);
       alert("User created!");
+      navigate("/login")
 
       // const decode = jwtDecode(res.data.access);
     } else {
@@ -78,7 +76,6 @@ const RegisterOverlay = (props) => {
         <button
           className={styles.closeButton}
           onClick={() => {
-            // props.setShowRegister(false);
             navigate("/");
           }}
         >
@@ -148,10 +145,7 @@ const RegisterModal = (props) => {
     <>
       {ReactDOM.createPortal(
         <RegisterOverlay
-          setShowRegister={props.setShowRegister}
-          setShowExplorePage={props.setShowExplorePage}
           setShowWelcome={props.setShowWelcome}
-          setShowLogin={props.setShowLogin}
         ></RegisterOverlay>,
         document.querySelector("#auth-root")
       )}

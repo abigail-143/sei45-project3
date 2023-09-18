@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import testImgs from "./testImgArray";
 import styles from "./UserPage.module.css";
 import ContentOverlay from "./contentOverlay/ContentModal";
 import SubmitContent from "./submitContent/SubmitContent";
@@ -90,7 +89,6 @@ const UserPage = (props) => {
       getCreatedContent(props.user.user_id);
     } else {
       getLikedContent();
-      // console.log(props.user);
     }
   }, [props.showCreated, showContentOverlay, createdContent]);
 
