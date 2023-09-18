@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import ExplorePage from "./components/ExplorePage";
@@ -9,81 +10,76 @@ import RegisterModal from "./components/authenticationOverlay/RegisterModal";
 import AuthContext from "./components/context/auth";
 
 function App() {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [showWelcome, setShowWelcome] = useState(true);
-  const [showExplorePage, setShowExplorePage] = useState(false);
   const [showUserPage, setShowUserPage] = useState(false);
   const [user, setUser] = useState([]);
   const [showCreated, setShowCreated] = useState(false);
   const [contentData, setContentData] = useState([]);
-  // const [showSubmitContent, setShowSubmisContent] = useState(false);
 
   if (showWelcome) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "initial";
   }
+  
   return (
     <>
       <AuthContext.Provider value={{ accessToken, setAccessToken }}>
         <Header
           showWelcome={showWelcome}
-          showLogin={showLogin}
-          setShowLogin={setShowLogin}
-          showRegister={showRegister}
-          setShowRegister={setShowRegister}
           showUserPage={showUserPage}
-          showExplorePage={showExplorePage}
-          setShowExplorePage={setShowExplorePage}
           setShowUserPage={setShowUserPage}
-          user={user}
           showCreated={showCreated}
           setShowCreated={setShowCreated}
           contentData={contentData}
           setContentData={setContentData}
+          user={user}
         ></Header>
-        {showWelcome && (
-          <Landing
-            style={{ overflow: "hidden" }}
-            showLogin={showLogin}
-          ></Landing>
-        )}
-        {showLogin && (
-          <LoginModal
-            setShowLogin={setShowLogin}
-            setShowWelcome={setShowWelcome}
-            setShowExplorePage={setShowExplorePage}
-            setUser={setUser}
-          ></LoginModal>
-        )}
-        {showRegister && (
-          <RegisterModal
-            setShowRegister={setShowRegister}
-            setShowWelcome={setShowWelcome}
-            setShowExplorePage={setShowExplorePage}
-            setShowLogin={setShowLogin}
-          ></RegisterModal>
-        )}
-        {/* {showRegister && <Register></Register>} */}
-        {showExplorePage && (
-          <ExplorePage
-            contentData={contentData}
-            setContentData={setContentData}
-            user={user}
-          ></ExplorePage>
-        )}
-
-        {showUserPage && (
-          <UserPage
-            user={user}
-            setUser={setUser}
-            showCreated={showCreated}
-            setShowCreated={setShowCreated}
-          ></UserPage>
-        )}
-        {/* {showSubmitContent && <SubmitContent></SubmitContent>} */}
+        <Suspense>
+          <Routes>
+            <Route
+              path="/"
+              element={<Landing></Landing>}
+            ></Route>
+            <Route
+              path="/login"
+              element={
+                <LoginModal
+                  setShowWelcome={setShowWelcome}
+                  setUser={setUser}
+                ></LoginModal>
+              }
+            ></Route>
+            <Route
+              path="/register"
+              element={
+                <RegisterModal setShowWelcome={setShowWelcome}></RegisterModal>
+              }
+            ></Route>
+            <Route
+              path="/explore"
+              element={
+                <ExplorePage
+                  contentData={contentData}
+                  setContentData={setContentData}
+                  user={user}
+                ></ExplorePage>
+              }
+            ></Route>
+            <Route
+              path="/user"
+              element={
+                <UserPage
+                  user={user}
+                  setUser={setUser}
+                  showCreated={showCreated}
+                  setShowCreated={setShowCreated}
+                ></UserPage>
+              }
+            ></Route>
+          </Routes>
+        </Suspense>
       </AuthContext.Provider>
     </>
   );
