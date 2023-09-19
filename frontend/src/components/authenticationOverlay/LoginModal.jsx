@@ -7,8 +7,8 @@ import styles from "./Modal.module.css";
 
 const LoginOverlay = (props) => {
   const auth = useContext(AuthContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("user1");
+  const [password, setPassword] = useState("password1");
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
   const fetchData = useFetch();
