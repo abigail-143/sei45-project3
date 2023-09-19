@@ -2,23 +2,25 @@
 // will use the showXXPage boolean indicators to toggle between the headers
 
 import React, { useContext, useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth";
 
 const Header = (props) => {
+  const navigate = useNavigate();
   const searchRef = useRef("");
   const searchResultRef = useRef([]);
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
 
-  const handleClickExplore = () => {
-    if (props.showUserPage) {
-      props.setShowUserPage(false);
-      props.setShowExplorePage(true);
-      console.log("handleClickExplore");
-    }
-  };
+  // const handleClickExplore = () => {
+  //   if (props.showUserPage) {
+  //     props.setShowUserPage(false);
+  //     props.setShowExplorePage(true);
+  //     console.log("handleClickExplore");
+  //   }
+  // };
 
   const getData = async () => {
     const res = await fetchData(
@@ -35,13 +37,13 @@ const Header = (props) => {
     }
   };
 
-  const handleClickUser = () => {
-    if (props.showExplorePage) {
-      props.setShowExplorePage(false);
-      props.setShowUserPage(true);
-      console.log("handleClickUser");
-    }
-  };
+  // const handleClickUser = () => {
+  //   if (props.showExplorePage) {
+  //     props.setShowExplorePage(false);
+  //     props.setShowUserPage(true);
+  //     console.log("handleClickUser");
+  //   }
+  // };
 
   const handleSearch = async () => {
     const res = await fetchData("/search/search", "POST", {
@@ -75,7 +77,8 @@ const Header = (props) => {
           <button
             className={styles.registerBtn}
             onClick={() => {
-              props.setShowRegister(true);
+              // props.setShowRegister(true);
+              navigate("/register");
               console.log("register clicked");
             }}
           >
@@ -84,7 +87,8 @@ const Header = (props) => {
           <button
             className={styles.loginBtn}
             onClick={() => {
-              props.setShowLogin(true);
+              // props.setShowLogin(true);
+              navigate("/login");
               console.log("login clicked");
             }}
           >
@@ -100,10 +104,15 @@ const Header = (props) => {
             height="50"
             className={styles.appLogo}
             onClick={() => {
-              handleClickExplore();
+              navigate("/explore")
             }}
           ></img>
-          <div className={styles.appName} onClick={handleClickExplore}>
+          <div
+            className={styles.appName}
+            onClick={() => {
+              navigate("/explore");
+            }}
+          >
             <p>
               <span>Better Time, Beer Time</span>
             </p>
@@ -148,7 +157,8 @@ const Header = (props) => {
             height="40"
             className={styles.likesIcon}
             onClick={() => {
-              handleClickUser();
+              // handleClickUser();
+              navigate("/user")
               props.setShowCreated(false);
             }}
           ></img>
@@ -158,7 +168,8 @@ const Header = (props) => {
             height="40"
             className={styles.profilePic}
             onClick={() => {
-              handleClickUser();
+              // handleClickUser();
+              navigate("/user");
               props.setShowCreated(true);
             }}
           ></img>

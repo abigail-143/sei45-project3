@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth";
 import jwtDecode from "jwt-decode";
 import useFetch from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
 
 const LoginOverlay = (props) => {
+  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const [username, setUsername] = useState("user1");
   const [password, setPassword] = useState("password1");
@@ -22,10 +24,9 @@ const LoginOverlay = (props) => {
     if (res.ok) {
       console.log(res.data);
       auth.setAccessToken(res.data.access);
-      props.setShowLogin(false);
       props.setShowWelcome(false);
-      props.setShowExplorePage(true);
       props.setUser(res.data.payload);
+      navigate("/explore")
       // test this
       // const decode = jwtDecode(res.data.access);
     } else {
@@ -44,7 +45,7 @@ const LoginOverlay = (props) => {
         <button
           className={styles.closeButton}
           onClick={() => {
-            props.setShowLogin(false);
+            navigate("/")
           }}
         >
           <img src="../../picture/Dell.jpg" />
@@ -104,8 +105,6 @@ const LoginModal = (props) => {
     <>
       {ReactDOM.createPortal(
         <LoginOverlay
-          setShowLogin={props.setShowLogin}
-          setShowExplorePage={props.setShowExplorePage}
           setShowWelcome={props.setShowWelcome}
           setUser={props.setUser}
         ></LoginOverlay>,

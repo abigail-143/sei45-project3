@@ -1,12 +1,9 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import Masonry from "@mui/lab/Masonry";
-
-import testImgs from "./testImgArray";
 import styles from "./ExplorePage.module.css";
 import useFetch from "./custom_hooks/useFetch";
 import AuthContext from "./context/auth"; // add this
 import ContentOverlay from "./contentOverlay/ContentModal";
-import { useScrollTrigger } from "@mui/material";
 
 const ExplorePage = (props) => {
   const [createrPhoto, setCreaterPhoto] = useState("");
