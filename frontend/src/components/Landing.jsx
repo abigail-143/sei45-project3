@@ -1,6 +1,6 @@
 import React from "react";
 import Masonry from "react-responsive-masonry";
-import testImgs from "./testImgArray";
+import testImgs from "../testfiles/testImgArray";
 import styles from "./Landing.module.css";
 
 const Landing = (props) => {

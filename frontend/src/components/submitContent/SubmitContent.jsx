@@ -79,23 +79,6 @@ const SubmitContent = (props) => {
       <div className="contentModal1">
         {/* change here */}
         <div className="column1">
-          {/* <label className="form" htmlFor="file-upload">
-            {uploadPhoto && (
-              <img
-                className="uploadPhoto"
-                src="../picture/upload-image-icon (1).png"
-              />
-            )}
-            <input
-              type="file"
-              label="Image"
-              id="file-upload"
-              className="inputPhoto"
-              accept=".jpeg, .png, .jpg"
-              onChange={(e) => handleFileUpload(e)}
-            ></input>
-            {displayPhoto && <img className="displayPhoto" src={image} />}
-          </label> */}
           <FileUpload setImage={setImage} image={image}></FileUpload>
         </div>
         {/* end here */}
@@ -115,7 +98,6 @@ const SubmitContent = (props) => {
               className="inputBox"
               placeholder="Name of the bar"
             ></input>
-            <br />
             <div className="font">Review</div>
             <textarea
               type="text"
@@ -125,7 +107,6 @@ const SubmitContent = (props) => {
               rows="5"
               placeholder="Leave a review"
             ></textarea>
-            <br />
             <div className="font">Tags</div>
             <input
               type="text"

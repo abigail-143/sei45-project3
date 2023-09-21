@@ -1,5 +1,4 @@
 // 2 types of headers - one for register/login/welcome pages, one for user/explore/submit pages
-// will use the showXXPage boolean indicators to toggle between the headers
 
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,14 +12,6 @@ const Header = (props) => {
   const searchResultRef = useRef([]);
   const fetchData = useFetch();
   const auth = useContext(AuthContext);
-
-  // const handleClickExplore = () => {
-  //   if (props.showUserPage) {
-  //     props.setShowUserPage(false);
-  //     props.setShowExplorePage(true);
-  //     console.log("handleClickExplore");
-  //   }
-  // };
 
   const getData = async () => {
     const res = await fetchData(
@@ -36,14 +27,6 @@ const Header = (props) => {
       console.log("res.data", res.data);
     }
   };
-
-  // const handleClickUser = () => {
-  //   if (props.showExplorePage) {
-  //     props.setShowExplorePage(false);
-  //     props.setShowUserPage(true);
-  //     console.log("handleClickUser");
-  //   }
-  // };
 
   const handleSearch = async () => {
     const res = await fetchData("/search/search", "POST", {
@@ -77,7 +60,6 @@ const Header = (props) => {
           <button
             className={styles.registerBtn}
             onClick={() => {
-              // props.setShowRegister(true);
               navigate("/register");
               console.log("register clicked");
             }}
@@ -87,7 +69,6 @@ const Header = (props) => {
           <button
             className={styles.loginBtn}
             onClick={() => {
-              // props.setShowLogin(true);
               navigate("/login");
               console.log("login clicked");
             }}
@@ -121,7 +102,7 @@ const Header = (props) => {
           <input
             id={"searchBar"}
             className={styles.searchBar}
-            placeholder="hello"
+            placeholder="Search content"
             type="text"
             ref={searchRef}
             onChange={(e) => {
@@ -135,21 +116,10 @@ const Header = (props) => {
                     console.log("enter");
                   }
                 });
-              // test
               if (searchRef.current.value.length === 0) {
                 getData();
               }
-
-              //
             }}
-            // {...document
-            //   .getElementById("searchBar")
-            //   .addEventListener("keypress", (event) => {
-            //     if (event.key === "Enter") {
-            //       handleSearch();
-            //       console.log("enter");
-            //     }
-            //   })}
           ></input>
           <img
             src="/heart.png"
