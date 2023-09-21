@@ -70,7 +70,6 @@ const ExplorePage = (props) => {
     );
 
     if (res.ok) {
-      console.log(res.data);
       setCreaterPhoto(res.data.user.profilePhoto);
       setShowDetails(res.data);
       setShowContentOverlay(true);
@@ -118,8 +117,8 @@ const ExplorePage = (props) => {
           <img
             src="/heart.png"
             className={styles.heartImg}
-            onClick={() => {
-              console.log("hi");
+            onClick={(e) => {
+              e.stopPropagation(); // this stops the contentOverlay from showing (stops bubbling)
               handleLikeClick(content._id);
             }}
           ></img>
