@@ -2,11 +2,11 @@
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 50;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  padding-top: 35px;
   justify-content: center;
 }
 
@@ -101,7 +101,7 @@ p {
 .contentInfo {
   /* background-color: lightcoral; */
   width: 100%;
-  height: 35%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -135,11 +135,12 @@ p {
   font-size: 0.9rem;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .commentsContainer {
   width: 100%;
-  height: 35%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -187,7 +188,8 @@ p {
   border: none;
   border-radius: 20px;
   margin-right: 30px;
-  outline-color: rgba(222, 184, 135, 0.5);
+  text-indent: 10px;
+  outline-color: rgba(199, 184, 171, 1);
   font-size: 0.9rem;
 }
 
@@ -198,17 +200,19 @@ p {
 }
 
 .delBtn {
-  background-color: lightblue;
+  background-color: rgba(199, 184, 171, 1);
   border: none;
   border-radius: 20px;
   padding: 0 10px;
   margin-left: 10px;
   font-size: 0.7rem;
   height: 20px;
+  color: white;
 }
 
 .oneComment {
   display: flex;
+  margin: 3px 0;
   /* if don't need to align to the end just remove justify-content*/
   justify-content: space-between;
   /* background-color: aqua; */

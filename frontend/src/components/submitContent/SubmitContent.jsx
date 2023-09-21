@@ -3,6 +3,7 @@ import styles from "./submitContent.module.css";
 import "./SubmitContent.css";
 import useFetch from "../custom_hooks/useFetch.jsx";
 import AuthContext from "../context/auth"; // add this
+import FileUpload from "./FileUpload";
 
 const SubmitContent = (props) => {
   const [image, setImage] = useState("");
@@ -31,25 +32,15 @@ const SubmitContent = (props) => {
     );
     if (res.ok) {
       // props.setUser(res.data);
-      console.log(props.user)
+      console.log(props.user);
       props.setSubmitContent(false);
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
     }
   };
-  // function to upload photo
-  // const createPost = async (newImage) => {
-  //   const res = await fetch("http://localhost:5002/upload", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newImage),
-  //   });
-  // };
 
-  //function to convert photo file into base64
+  //function to convert photo file into base64                      dont want this
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -63,7 +54,7 @@ const SubmitContent = (props) => {
     });
   };
 
-  // convert file into base64 and standby for upload
+  // convert file into base64 and standby for upload                dont want this
   const handleFileUpload = async (e) => {
     setUploadPhoto(false);
     const file = e.target.files[0];
@@ -73,11 +64,11 @@ const SubmitContent = (props) => {
   };
 
   // upload to data based and keep at state
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    publishNewPost(image);
-    console.log(image);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   publishNewPost(image);
+  //   console.log(image);
+  // };
 
   return (
     <div className="backdrop1">
@@ -86,26 +77,11 @@ const SubmitContent = (props) => {
         <p>For You</p>
       </div>
       <div className="contentModal1">
+        {/* change here */}
         <div className="column1">
-          <label className="form" htmlFor="file-upload">
-            {uploadPhoto && (
-              <img
-                className="uploadPhoto"
-                src="../picture/upload-image-icon (1).png"
-              />
-            )}
-
-            <input
-              type="file"
-              label="Image"
-              id="file-upload"
-              className="inputPhoto"
-              accept=".jpeg, .png, .jpg"
-              onChange={(e) => handleFileUpload(e)}
-            ></input>
-            {displayPhoto && <img className="displayPhoto" src={image} />}
-          </label>
+          <FileUpload setImage={setImage} image={image}></FileUpload>
         </div>
+        {/* end here */}
         <div className="column2">
           <div className="inputDetails">
             <div className="font">Drink</div>
@@ -122,7 +98,6 @@ const SubmitContent = (props) => {
               className="inputBox"
               placeholder="Name of the bar"
             ></input>
-            <br />
             <div className="font">Review</div>
             <textarea
               type="text"
@@ -132,7 +107,6 @@ const SubmitContent = (props) => {
               rows="5"
               placeholder="Leave a review"
             ></textarea>
-            <br />
             <div className="font">Tags</div>
             <input
               type="text"

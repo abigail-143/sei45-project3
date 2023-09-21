@@ -52,7 +52,7 @@
 
 .column1 {
   /* background-color: #a4907c; */
-  display: flex;
+  /* display: flex; */
   float: left;
   width: 50%;
   height: 100%;
@@ -60,8 +60,15 @@
 
 .form {
   /* background-color: blue; */
+  display: "flex";
+  flex-direction: "column";
+  justify-content: "center";
+  align-items: "center";
   width: 100%;
   height: 100%;
+  border: 3px dashed rgb(117, 112, 112);
+  border-radius: 20px;
+  padding: 20px;
 }
 
 .uploadPhoto {
@@ -70,7 +77,7 @@
   height: 30%;
   left: 35%;
   top: 34%;
-  margin: auto; 
+  margin: auto;
 }
 
 .inputPhoto {
@@ -82,11 +89,11 @@
   height: 100%;
   width: 100%;
   border-radius: 20px;
-  position:relative;
+  position: relative;
   margin: auto;
   /* top:5%;
   left:15%; */
-  object-fit:cover;
+  object-fit: cover;
 }
 
 .column2 {
@@ -98,7 +105,7 @@
 }
 
 .inputDetails {
-  /* background-color: lightskyblue; */
+  /* background-color: pink; */
   height: 80%;
   width: 80%;
   margin: auto;
@@ -106,59 +113,47 @@
 
 .font {
   color: #000;
-  font-family: Merriweather Sans;
-  font-size: 1.8rem;
+  font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 0 0 5px 0;
-  padding-left: 3%;
+  margin: 5px 0 10px 0;
+  padding-left: 7px;
 }
 
 .inputBox {
-  width: 90%;
-  height: 2.5rem;
-  border-radius: 15px;
-  border: 1px solid rgba(51, 54, 63, 0.7);
-  background: rgba(217, 217, 217, 0.5);
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(141, 123, 104, 1);
+  background: none;
   margin: 0 0 5px 0;
-}
-
-input[type=text] {
-  /* width: 100%; */
-  padding: 12px 20px;
-  /* margin: 8px 0; */
-  box-sizing: border-box;
-  font-size: 1.2rem;
-}
-
-::placeholder {
-  font-size: 1.2rem;
-  padding-left: 3%;
+  text-indent: 10px;
+  outline-color: rgba(164, 144, 124, 1);
 }
 
 .textBox {
-  width: 90%;
-  height: 6rem;
-  border-radius: 15px;
-  border: 1px solid rgba(51, 54, 63, 0.7);
-  background: rgba(217, 217, 217, 0.5);
-}
-
-textarea[type=text] {
-  /* width: 100%; */
-  padding: 12px 20px;
-  /* margin: 8px 0; */
-  box-sizing: border-box;
-  font-size: 1.2rem;
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  border: 1px solid rgba(141, 123, 104, 1);
+  background: none;
+  text-indent: 10px;
+  outline-color: rgba(164, 144, 124, 1);
 }
 
 .button {
   width: 103px;
   height: 32px;
   border-radius: 30px;
-  background: #a4907c;
+  border: none;
+  color: whitesmoke;
+  background: rgba(164, 144, 124, 1);
   position: relative;
-  left: 69%;
+  left: 74%;
   top: 5%;
+}
+
+.button:hover {
+  background-color: rgba(141, 123, 104, 1);
 }

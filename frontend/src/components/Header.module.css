@@ -1,9 +1,11 @@
 .header {
-  background-color: rgba(164, 144, 124, 0.5);
+  background-color: rgba(199, 184, 171, 1);
   width: 100vw;
   height: 70px;
   display: flex;
-  position: sticky;
+  position: sticky !important;
+  top: 0;
+  z-index: 100;
 }
 
 .appLogo {
@@ -48,6 +50,7 @@ span {
   border-radius: 30px;
   background-color: rgba(141, 123, 104, 0.7);
   color: whitesmoke;
+  box-shadow: 0px 0px 10px rgba(141, 123, 104, 1);
 }
 
 .registerBtn:hover {
@@ -64,6 +67,7 @@ span {
   border-radius: 30px;
   background-color: rgba(141, 123, 104, 0.7);
   color: whitesmoke;
+  box-shadow: 0px 0px 10px rgba(141, 123, 104, 1);
 }
 
 .loginBtn:hover {
@@ -72,12 +76,12 @@ span {
 
 .searchBar {
   position: absolute;
-  height: 30px;
+  height: 35px;
   width: 50vw;
   left: 260px;
-  top: 20px;
+  top: 15px;
   border-radius: 20px;
-  text-indent: 15px;
+  text-indent: 10px;
   border: none;
   outline-color: rgba(164, 144, 124, 0.5);
   background-color: rgba(141, 123, 104, 0.7);
@@ -85,7 +89,8 @@ span {
 }
 
 .searchBar::placeholder {
-  color: whitesmoke;
+  color: rgba(255, 250, 240, 0.6);
+  font-size: 16px;
 }
 
 .likesIcon {
