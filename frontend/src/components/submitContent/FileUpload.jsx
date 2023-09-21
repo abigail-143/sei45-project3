@@ -51,20 +51,8 @@ const FileUpload = (props) => {
   return (
     <>
       {!files && (
-        <div
-          // style={{
-          //   display: "flex",
-          //   flexDirection: "column",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   padding: "20px",
-          //   color: "#c20f08",
-          // }}
-          className="form"
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-        >
-          <h2>Add Your Image File Here</h2>
+        <div className="form" onDragOver={handleDragOver} onDrop={handleDrop}>
+          <h2>Drag & drop your image here</h2>
           <h2 style={{ color: "black" }}>OR</h2>
           <input
             type="file"
@@ -81,14 +69,14 @@ const FileUpload = (props) => {
             style={{
               padding: "12px",
               fontSize: "medium",
-              backgroundColor: "#c20f08",
+              backgroundColor: "#a4907c",
               border: "none",
               borderRadius: "10px",
               color: "white",
             }}
             onClick={() => inputRef.current?.click()}
           >
-            Select File
+            Choose from folder
           </button>
         </div>
       )}
