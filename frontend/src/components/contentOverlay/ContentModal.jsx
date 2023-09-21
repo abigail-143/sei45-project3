@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import "./content.css";
-import testComments from "../testingComments";
+import testComments from "../../testfiles/testingComments";
 import AuthContext from "../context/auth";
 import useFetch from "../custom_hooks/useFetch";
 import styles from "./ContentModal.module.css";
