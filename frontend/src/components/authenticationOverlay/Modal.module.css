@@ -18,12 +18,11 @@
 .modal {
   position: fixed;
   background: white;
-  top: 5vh;
+  top: 14vh;
   bottom: 5vh;
   left: 30%;
   width: 40%;
   z-index: 100;
-
   border-radius: 30px;
 }
 
@@ -55,7 +54,7 @@
 
 .form {
   /* background-color: aqua; */
-  top: 60%;
+  top: 50%;
   left: 42.5%;
   width: 100px;
   height: 100px;
@@ -65,8 +64,8 @@
   height: 100px;
   width: 100px;
   position: relative;
-  /* top: 45%;
-  left: 42.5%; */
+  bottom: 20%;
+  /* left: 42.5%; */
   /* margin: 20% 35%; */
   /* transform: translate(-50%); */
   border-radius: 50%;
@@ -92,7 +91,7 @@
 }
 
 .welcomeText {
-  top: 8%;
+  top: 6%;
   position: relative;
   font-weight: 400;
   font-size: 55px;
@@ -117,7 +116,7 @@
 }
 
 .loginDetails2 {
-  top: 6%;
+  top: 0%;
   margin-bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
