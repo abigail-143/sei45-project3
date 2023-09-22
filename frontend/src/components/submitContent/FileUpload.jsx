@@ -4,7 +4,7 @@ import "./SubmitContent.css";
 
 const FileUpload = (props) => {
   const [files, setFiles] = useState();
-  const [uploaded, setUploaded] = useState(true);
+  // const [uploaded, setUploaded] = useState(true);
   const inputRef = useRef(null);
   const uploadImg = useUpload();
 
@@ -22,7 +22,19 @@ const FileUpload = (props) => {
       console.log("uploaded");
       props.setImage(res.data.data.url);
       console.log(res.data.data.url);
-      setUploaded(true);
+      // setUploaded(true);
+      setFiles(selectedFile);
+    }
+  };
+
+  const handleUpload = async (selectedFile) => {
+    const res = await uploadImg(selectedFile);
+
+    if (res.ok) {
+      console.log("uploaded");
+      props.setImage(res.data.data.url);
+      console.log(res.data.data.url);
+      // setUploaded(true);
       setFiles(selectedFile);
     }
   };
@@ -40,7 +52,7 @@ const FileUpload = (props) => {
           padding: "20px",
         }}
       >
-        <img className="uploadImg" src={props.image} />
+        <img className="uploadImg" src={props.image} alt={props.image} />
         <p style={{ textAlign: "center" }}>{files.name}</p>
         <div>
           <button onClick={() => setFiles(null)}>Cancel</button>
@@ -51,15 +63,21 @@ const FileUpload = (props) => {
   return (
     <>
       {!files && (
+        // drag and drop
         <div className="form" onDragOver={handleDragOver} onDrop={handleDrop}>
           <h2>Drag & drop your image here</h2>
           <h2 style={{ color: "black" }}>OR</h2>
+
+          {/* button */}
           <input
             type="file"
             onChange={(e) => {
               const selectedFile = e.target.files && e.target.files[0];
+              console.log("uploaded file", selectedFile);
+
               if (selectedFile) {
                 setFiles(selectedFile);
+                handleUpload(selectedFile);
               }
             }}
             hidden
@@ -74,7 +92,10 @@ const FileUpload = (props) => {
               borderRadius: "10px",
               color: "white",
             }}
-            onClick={() => inputRef.current?.click()}
+            onClick={() => {
+              inputRef.current?.click();
+              console.log(inputRef.current);
+            }}
           >
             Choose from folder
           </button>
