@@ -2,7 +2,6 @@ import React, { useContext, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth";
-import jwtDecode from "jwt-decode";
 import useFetch from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
 
@@ -36,7 +35,7 @@ const RegisterOverlay = (props) => {
       auth.setAccessToken(res.data.access);
       props.setShowWelcome(true);
       alert("User created!");
-      navigate("/login")
+      navigate("/login");
 
       // const decode = jwtDecode(res.data.access);
     } else {
@@ -79,7 +78,7 @@ const RegisterOverlay = (props) => {
             navigate("/");
           }}
         >
-          <img src="../../picture/Dell.jpg" />
+          <img className={styles.closeImg} src="close.png" />
         </button>
         <label className={styles.form} htmlFor="profile-pic">
           {uploadPic && (
@@ -125,9 +124,8 @@ const RegisterOverlay = (props) => {
               <div style={{ height: "36px", margin: "0" }}></div>
             )}
           </div>
-
-          <br />
           <button
+            className={styles.loginBtn}
             onClick={() => {
               RegisterClick();
             }}
