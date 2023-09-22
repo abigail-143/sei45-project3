@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth";
-import jwtDecode from "jwt-decode";
 import useFetch from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
 
@@ -26,7 +25,7 @@ const LoginOverlay = (props) => {
       auth.setAccessToken(res.data.access);
       props.setShowWelcome(false);
       props.setUser(res.data.payload);
-      navigate("/explore")
+      navigate("/explore");
       // test this
       // const decode = jwtDecode(res.data.access);
     } else {
@@ -45,10 +44,10 @@ const LoginOverlay = (props) => {
         <button
           className={styles.closeButton}
           onClick={() => {
-            navigate("/")
+            navigate("/");
           }}
         >
-          <img src="../../picture/Dell.jpg" />
+          <img className={styles.closeImg} src="close.png" />
         </button>
         <div className={styles.profPic}>BTBT</div>
         <div className={styles.welcomeText}>Welcome to BTBT</div>
@@ -85,9 +84,8 @@ const LoginOverlay = (props) => {
               <div style={{ height: "36px", margin: "0" }}></div>
             )}
           </div>
-
-          <br />
           <button
+            className={styles.loginBtn}
             onClick={() => {
               loginClick();
             }}

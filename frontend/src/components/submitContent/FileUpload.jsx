@@ -40,7 +40,7 @@ const FileUpload = (props) => {
           padding: "20px",
         }}
       >
-        <img src={props.image} />
+        <img className="uploadImg" src={props.image} />
         <p style={{ textAlign: "center" }}>{files.name}</p>
         <div>
           <button onClick={() => setFiles(null)}>Cancel</button>
