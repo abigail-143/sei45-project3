@@ -15,7 +15,17 @@
 ## Introduction
 A social media platform for beer enthusiast to share their favourite moments with their favourite drink. Platform users are able to interact with content from other users as well as upload content to the app to be shared with other users.
 
-version 1: https://btbt.netlify.app/
+Live Site: https://btbt.netlify.app/
+
+Version 1.0:
+- MVP
+
+Version 1.1:
+- update upload image section, able to drag and drop files
+
+Version 1.2:
+- update Forgot Password feature.
+
 ***
 <a name="platform"></a>
 ## The Platform
