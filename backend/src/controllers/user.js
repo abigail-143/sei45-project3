@@ -117,7 +117,7 @@ const login = async (req, res) => {
 // will this work
 const resetPassword = async (req, res) => {
   try {
-    await UserModel.findOne({ username: req.body.username });
+    const user = await UserModel.findOne({ username: req.body.username });
 
     if (!user) {
       return res
@@ -125,11 +125,14 @@ const resetPassword = async (req, res) => {
         .json({ status: "error", msg: "unauthorised login" });
     }
 
-    const hashPWD = await bcrypt(req.body.password, 12);
+    const hashPWD = await bcrypt.hash(req.body.password, 12);
 
-    await UserModel.findOneAndUpdate(req.body.username, {
-      hashPWD,
-    });
+    await UserModel.findOneAndUpdate(
+      { username: req.body.username },
+      {
+        hashPWD,
+      }
+    );
 
     res.json({ status: "ok", msg: "password updated" });
   } catch (error) {
@@ -138,4 +141,4 @@ const resetPassword = async (req, res) => {
   }
 };
 
-module.exports = { register, login, seedUsers };
+module.exports = { register, login, resetPassword, seedUsers };
