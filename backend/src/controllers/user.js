@@ -63,7 +63,7 @@ const register = async (req, res) => {
     await UserModel.create({
       username: req.body.username,
       hashPWD,
-      profilePhoto: req.body.photo
+      profilePhoto: req.body.photo,
     });
 
     res.json({ status: "ok", msg: "user created" });
@@ -114,4 +114,31 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login, seedUsers };
+// will this work
+const resetPassword = async (req, res) => {
+  try {
+    const user = await UserModel.findOne({ username: req.body.username });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ status: "error", msg: "unauthorised login" });
+    }
+
+    const hashPWD = await bcrypt.hash(req.body.password, 12);
+
+    await UserModel.findOneAndUpdate(
+      { username: req.body.username },
+      {
+        hashPWD,
+      }
+    );
+
+    res.json({ status: "ok", msg: "password updated" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ status: "error", msg: "unable to update password" });
+  }
+};
+
+module.exports = { register, login, resetPassword, seedUsers };

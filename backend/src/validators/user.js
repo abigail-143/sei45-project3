@@ -22,4 +22,12 @@ const validateLogin = [
     max: 20,
   }),
 ];
-module.exports = { validateLogin, validateRegData };
+
+const validateResetData = [
+  body("password", "Password is invalid.").not().isEmpty().isLength({
+    min: 8,
+    max: 20,
+  }),
+];
+
+module.exports = { validateLogin, validateRegData, validateResetData };

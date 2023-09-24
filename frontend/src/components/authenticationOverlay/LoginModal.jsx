@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth";
 import useFetch from "../custom_hooks/useFetch";
 import styles from "./Modal.module.css";
+import ForgotPassword from "./ForgotPassword";
 
 const LoginOverlay = (props) => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const LoginOverlay = (props) => {
   const [error1, setError1] = useState("");
   const [error2, setError2] = useState("");
   const fetchData = useFetch();
+  const [resetPW, setResetPW] = useState(false);
 
   // function to deal with the login button in modal
   const loginClick = async () => {
@@ -39,62 +41,80 @@ const LoginOverlay = (props) => {
     }
   };
   return (
-    <div className={styles.backdrop}>
-      <div className={styles.modal}>
-        <button
-          className={styles.closeButton}
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          <img className={styles.closeImg} src="close.png" />
-        </button>
-        <div className={styles.profPic}>BTBT</div>
-        <div className={styles.welcomeText}>Welcome to BTBT</div>
-        <div className={styles.loginDetails}>
-          <div>
-            <div>Username:</div>
-            <input
-              type="text"
-              onChange={(e) => {
-                setUsername(e.target.value);
-                setError1("");
-                setError2("");
+    <>
+      {!resetPW && (
+        <div className={styles.backdrop}>
+          <div className={styles.modal}>
+            <button
+              className={styles.closeButton}
+              onClick={() => {
+                navigate("/");
               }}
-            ></input>
-            {error1 ? (
-              <p style={{ color: "red", margin: "0" }}>{error1}</p>
-            ) : (
-              <div style={{ height: "36px", margin: "0" }}></div>
-            )}
+            >
+              <img className={styles.closeImg} src="close.png" />
+            </button>
+            <div className={styles.profPic}>BTBT</div>
+            <div className={styles.welcomeText}>Welcome to BTBT</div>
+            <div className={styles.loginDetails}>
+              <div>
+                <div>Username:</div>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    setError1("");
+                    setError2("");
+                  }}
+                ></input>
+                {error1 ? (
+                  <p style={{ color: "red", margin: "0" }}>{error1}</p>
+                ) : (
+                  <div style={{ height: "36px", margin: "0" }}></div>
+                )}
+              </div>
+              <div>
+                <div>Password:</div>
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setError1("");
+                    setError2("");
+                  }}
+                ></input>
+                {error2 ? (
+                  <p className={styles.errormsg}>{error2}</p>
+                ) : (
+                  <div className={styles.emptyDiv}>
+                    <a
+                      className={styles.forgotPW}
+                      onClick={() => setResetPW(true)}
+                    >
+                      Forgot password
+                    </a>
+                  </div>
+                )}
+              </div>
+              <button
+                className={styles.loginBtn}
+                onClick={() => {
+                  loginClick();
+                }}
+              >
+                Log In
+              </button>
+            </div>
           </div>
-          <div>
-            <div>Password:</div>
-            <input
-              type="text"
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError1("");
-                setError2("");
-              }}
-            ></input>
-            {error2 ? (
-              <p style={{ color: "red", margin: "0" }}>{error2}</p>
-            ) : (
-              <div style={{ height: "36px", margin: "0" }}></div>
-            )}
-          </div>
-          <button
-            className={styles.loginBtn}
-            onClick={() => {
-              loginClick();
-            }}
-          >
-            Log In
-          </button>
         </div>
-      </div>
-    </div>
+      )}
+      {resetPW && (
+        <ForgotPassword
+          username={username}
+          setPassword={setPassword}
+          setResetPW={setResetPW}
+        ></ForgotPassword>
+      )}
+    </>
   );
 };
 

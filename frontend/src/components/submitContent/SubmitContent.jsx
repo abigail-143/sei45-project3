@@ -11,8 +11,8 @@ const SubmitContent = (props) => {
   const shopNameRef = useRef();
   const reviewRef = useRef();
   const contentTagRef = useRef();
-  const [uploadPhoto, setUploadPhoto] = useState(true);
-  const [displayPhoto, setDisplayPhoto] = useState(false);
+  // const [uploadPhoto, setUploadPhoto] = useState(true);
+  // const [displayPhoto, setDisplayPhoto] = useState(false);
   const fetchData = useFetch();
   const auth = useContext(AuthContext); // add this
 
@@ -41,30 +41,30 @@ const SubmitContent = (props) => {
   };
 
   //function to convert photo file into base64                      dont want this
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
+  // const convertToBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
 
   // convert file into base64 and standby for upload                dont want this
-  const handleFileUpload = async (e) => {
-    setUploadPhoto(false);
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setDisplayPhoto(true);
-    setImage(base64);
-  };
+  // const handleFileUpload = async (e) => {
+  //   setUploadPhoto(false);
+  //   const file = e.target.files[0];
+  //   const base64 = await convertToBase64(file);
+  //   setDisplayPhoto(true);
+  //   setImage(base64);
+  // };
 
   // upload to data based and keep at state
-  // const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {                                  dont want this
   //   e.preventDefault();
   //   publishNewPost(image);
   //   console.log(image);
