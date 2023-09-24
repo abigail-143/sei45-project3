@@ -128,6 +128,10 @@ There is also a Add Post button which allows users to created content to be uplo
 ***
 <a name="use"></a>
 ## How to Use / View
+Visit the Live Site: https://btbt.netlify.app/
+
+OR 
+
 1. Download frontend folder, backend folder and .gitignore
 2. Add individual .env files to both frontend folder and backend folder
 3. .env file for frontend folder should include:
